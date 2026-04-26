@@ -8,2895 +8,2871 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --teal: #1B9AAA;
-    --teal-light: #22b8cc;
-    --teal-dark: #157a87;
-    --white: #FFFFFF;
-    --navy: #0D2B30;
-    --navy-light: #163b42;
-    --gold: #C8973A;
-    --gold-light: #d9ac55;
-    --cream: #FBF8F3;
-    --warm-gray: #f0ece4;
-    --text-dark: #1a1a2e;
-    --text-mid: #3d4f52;
-    --text-light: #6b7c7f;
-    --border: rgba(27,154,170,0.15);
-    --shadow-sm: 0 2px 12px rgba(13,43,48,0.08);
-    --shadow-md: 0 8px 32px rgba(13,43,48,0.12);
-    --shadow-lg: 0 20px 60px rgba(13,43,48,0.18);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; font-size: 16px; }
-
-  body {
-    font-family: 'Lato', sans-serif;
-    color: var(--text-dark);
-    background: var(--cream);
-    overflow-x: hidden;
-    line-height: 1.7;
-  }
-
-  h1, h2, h3, h4, h5 {
-    font-family: 'Playfair Display', serif;
-    line-height: 1.25;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 999;
-    background: rgba(13,43,48,0.97);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(200,151,58,0.2);
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 68px;
-    transition: box-shadow 0.3s;
-  }
-
-  nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
-
-  .nav-brand {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--white);
-    cursor: pointer;
-    letter-spacing: 0.01em;
-  }
-
-  .nav-brand span { color: var(--gold); }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    display: block;
-    padding: 0.45rem 0.85rem;
-    color: rgba(255,255,255,0.75);
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    border-radius: 4px;
-    transition: color 0.2s, background 0.2s;
-    cursor: pointer;
-  }
-
-  .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
-  .nav-links a.active { color: var(--gold); background: rgba(200,151,58,0.12); }
-
-  .nav-cta {
-    background: var(--teal) !important;
-    color: var(--white) !important;
-    padding: 0.45rem 1.1rem !important;
-    border-radius: 4px !important;
-    font-weight: 700 !important;
-  }
-
-  .nav-cta:hover { background: var(--teal-light) !important; }
-
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 4px;
-  }
-
-  .hamburger span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: var(--white);
-    transition: all 0.3s;
-    border-radius: 2px;
-  }
-
-  .mobile-menu {
-    display: none;
-    position: fixed;
-    top: 68px; left: 0; right: 0;
-    background: var(--navy);
-    padding: 1.5rem 2rem;
-    z-index: 998;
-    border-bottom: 2px solid var(--gold);
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .mobile-menu.open { display: flex; }
-
-  .mobile-menu a {
-    color: rgba(255,255,255,0.8);
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    cursor: pointer;
-    transition: color 0.2s;
-  }
-
-  .mobile-menu a:hover, .mobile-menu a.active { color: var(--gold); }
-
-  /* ── PAGE SYSTEM ── */
-  .page { display: none; padding-top: 68px; }
-  .page.active { display: block; }
-
-  /* ── SHARED COMPONENTS ── */
-  .section { padding: 5rem 2rem; }
-  .section-inner { max-width: 1100px; margin: 0 auto; }
-
-  .section-label {
-    display: inline-block;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 1rem;
-    position: relative;
-    padding-left: 2rem;
-  }
-
-  .section-label::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 50%;
-    transform: translateY(-50%);
-    width: 1.4rem;
-    height: 1.5px;
-    background: var(--teal);
-  }
-
-  .section-title {
-    font-size: clamp(2rem, 4vw, 2.75rem);
-    color: var(--navy);
-    margin-bottom: 1.25rem;
-    font-weight: 700;
-  }
-
-  .section-subtitle {
-    font-size: 1.05rem;
-    color: var(--text-mid);
-    max-width: 600px;
-    line-height: 1.8;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 0.85rem 2rem;
-    border-radius: 4px;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    border: none;
-    text-decoration: none;
-    transition: all 0.25s;
-  }
-
-  .btn-primary {
-    background: var(--teal);
-    color: var(--white);
-  }
-
-  .btn-primary:hover {
-    background: var(--teal-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(27,154,170,0.35);
-  }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--white);
-    border: 1.5px solid rgba(255,255,255,0.5);
-  }
-
-  .btn-outline:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: var(--white);
-  }
-
-  .btn-gold {
-    background: var(--gold);
-    color: var(--white);
-  }
-
-  .btn-gold:hover {
-    background: var(--gold-light);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(200,151,58,0.35);
-  }
-
-  /* ── HOME HERO ── */
-  .hero {
-    min-height: 100vh;
-    background: var(--navy);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    padding: 6rem 2rem 4rem;
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 20% 50%, rgba(27,154,170,0.18) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 80% at 80% 20%, rgba(200,151,58,0.1) 0%, transparent 55%),
-      radial-gradient(ellipse 40% 40% at 60% 80%, rgba(27,154,170,0.08) 0%, transparent 50%);
-  }
-
-  .hero-pattern {
-    position: absolute;
-    inset: 0;
-    opacity: 0.03;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
-
-  .hero-content {
-    max-width: 820px;
-    text-align: center;
-    position: relative;
-    z-index: 2;
-    animation: heroFadeIn 1.2s ease both;
-  }
-
-  @keyframes heroFadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-eyebrow {
-    display: inline-block;
-    font-size: 0.7rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    padding: 0.4rem 1rem;
-    border: 1px solid rgba(200,151,58,0.35);
-    border-radius: 2px;
-    animation: heroFadeIn 1.2s ease 0.2s both;
-  }
-
-  .hero h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    color: var(--white);
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    animation: heroFadeIn 1.2s ease 0.3s both;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--teal-light);
-  }
-
-  .hero-tagline {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    color: rgba(255,255,255,0.7);
-    max-width: 560px;
-    margin: 0 auto 2.5rem;
-    line-height: 1.9;
-    font-style: italic;
-    animation: heroFadeIn 1.2s ease 0.4s both;
-  }
-
-  .hero-tagline span {
-    color: var(--gold);
-    font-style: normal;
-    font-weight: 700;
-  }
-
-  .hero-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    animation: heroFadeIn 1.2s ease 0.5s both;
-  }
-
-  .hero-scroll {
-    position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    color: rgba(255,255,255,0.4);
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    animation: bounce 2s ease-in-out infinite;
-  }
-
-  .hero-scroll-line {
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(6px); }
-  }
-
-  /* ── SCRIPTURE STRIP ── */
-  .scripture-strip {
-    background: var(--gold);
-    padding: 2.5rem 2rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .scripture-strip::before {
-    content: '❝';
-    position: absolute;
-    left: 2rem;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 5rem;
-    color: rgba(255,255,255,0.15);
-    font-family: 'Playfair Display', serif;
-    line-height: 1;
-  }
-
-  .scripture-strip blockquote {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-    font-style: italic;
-    color: var(--white);
-    max-width: 760px;
-    margin: 0 auto 0.75rem;
-    line-height: 1.7;
-  }
-
-  .scripture-strip cite {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.8);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-style: normal;
-    font-weight: 700;
-  }
-
-  /* ── MISSION PILLARS ── */
-  .pillars { background: var(--white); }
-
-  .pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-
-  .pillar-card {
-    background: var(--cream);
-    border-radius: 8px;
-    padding: 2.5rem 2rem;
-    border: 1px solid var(--border);
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .pillar-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--teal);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s;
-  }
-
-  .pillar-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-md);
-    border-color: rgba(27,154,170,0.3);
-  }
-
-  .pillar-card:hover::after { transform: scaleX(1); }
-
-  .pillar-icon {
-    width: 52px;
-    height: 52px;
-    background: rgba(27,154,170,0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-    font-size: 1.4rem;
-  }
-
-  .pillar-card h3 {
-    font-size: 1.2rem;
-    color: var(--navy);
-    margin-bottom: 0.75rem;
-    font-weight: 600;
-  }
-
-  .pillar-card p {
-    font-size: 0.92rem;
-    color: var(--text-mid);
-    line-height: 1.75;
-  }
-
-  /* ── BLOG POSTS ── */
-  .posts-preview { background: var(--cream); }
-
-  .posts-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 3rem;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .posts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.75rem;
-  }
-
-  .post-card {
-    background: var(--white);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.3s;
-    cursor: pointer;
-    border: 1px solid var(--border);
-  }
-
-  .post-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .post-card-img {
-    height: 200px;
-    background: var(--navy);
+ :root {
+ --teal: #1B9AAA;
+ --teal-light: #22b8cc;
+ --teal-dark: #157a87;
+ --white: #FFFFFF;
+ --navy: #0D2B30;
+ --navy-light: #163b42;
+ --gold: #C8973A;
+ --gold-light: #d9ac55;
+ --cream: #FBF8F3;
+ --warm-gray: #f0ece4;
+ --text-dark: #1a1a2e;
+ --text-mid: #3d4f52;
+ --text-light: #6b7c7f;
+ --border: rgba(27,154,170,0.15);
+ --shadow-sm: 0 2px 12px rgba(13,43,48,0.08);
+ --shadow-md: 0 8px 32px rgba(13,43,48,0.12);
+ --shadow-lg: 0 20px 60px rgba(13,43,48,0.18);
+ }
+
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+ html { scroll-behavior: smooth; font-size: 16px; }
+
+ body {
+ font-family: 'Lato', sans-serif;
+ color: var(--text-dark);
+ background: var(--cream);
+ overflow-x: hidden;
+ line-height: 1.7;
+ }
+
+ h1, h2, h3, h4, h5 {
+ font-family: 'Playfair Display', serif;
+ line-height: 1.25;
+ }
+
+ /* ── NAV ── */
+ nav {
+ position: fixed;
+ top: 0; left: 0; right: 0;
+ z-index: 999;
+ background: rgba(13,43,48,0.97);
+ backdrop-filter: blur(12px);
+ border-bottom: 1px solid rgba(200,151,58,0.2);
+ padding: 0 2rem;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ height: 68px;
+ transition: box-shadow 0.3s;
+ }
+
+ nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+
+ .nav-brand {
+ font-family: 'Playfair Display', serif;
+ font-size: 1.25rem;
+ font-weight: 700;
+ color: var(--white);
+ cursor: pointer;
+ letter-spacing: 0.01em;
+ }
+
+ .nav-brand span { color: var(--gold); }
+
+ .nav-links {
+ display: flex;
+ align-items: center;
+ gap: 0.25rem;
+ list-style: none;
+ }
+
+ .nav-links a {
+ display: block;
+ padding: 0.45rem 0.85rem;
+ color: rgba(255,255,255,0.75);
+ text-decoration: none;
+ font-size: 0.875rem;
+ font-weight: 400;
+ letter-spacing: 0.04em;
+ text-transform: uppercase;
+ border-radius: 4px;
+ transition: color 0.2s, background 0.2s;
+ cursor: pointer;
+ }
+
+ .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
+ .nav-links a.active { color: var(--gold); background: rgba(200,151,58,0.12); }
+
+ .nav-cta {
+ background: var(--teal) !important;
+ color: var(--white) !important;
+ padding: 0.45rem 1.1rem !important;
+ border-radius: 4px !important;
+ font-weight: 700 !important;
+ }
+
+ .nav-cta:hover { background: var(--teal-light) !important; }
+
+ .hamburger {
+ display: none;
+ flex-direction: column;
+ gap: 5px;
+ cursor: pointer;
+ padding: 4px;
+ }
+
+ .hamburger span {
+ display: block;
+ width: 24px;
+ height: 2px;
+ background: var(--white);
+ transition: all 0.3s;
+ border-radius: 2px;
+ }
+
+ .mobile-menu {
+ display: none;
+ position: fixed;
+ top: 68px; left: 0; right: 0;
+ background: var(--navy);
+ padding: 1.5rem 2rem;
+ z-index: 998;
+ border-bottom: 2px solid var(--gold);
+ flex-direction: column;
+ gap: 0.5rem;
+ }
+
+ .mobile-menu.open { display: flex; }
+
+ .mobile-menu a {
+ color: rgba(255,255,255,0.8);
+ text-decoration: none;
+ font-size: 1rem;
+ font-weight: 400;
+ letter-spacing: 0.05em;
+ text-transform: uppercase;
+ padding: 0.75rem 0;
+ border-bottom: 1px solid rgba(255,255,255,0.08);
+ cursor: pointer;
+ transition: color 0.2s;
+ }
+
+ .mobile-menu a:hover, .mobile-menu a.active { color: var(--gold); }
+
+ /* ── PAGE SYSTEM ── */
+ .page { display: none; padding-top: 68px; }
+ .page.active { display: block; }
+
+ /* ── SHARED COMPONENTS ── */
+ .section { padding: 5rem 2rem; }
+ .section-inner { max-width: 1100px; margin: 0 auto; }
+
+ .section-label {
+ display: inline-block;
+ font-family: 'Lato', sans-serif;
+ font-size: 1.2rem;
+ font-weight: 800;
+ letter-spacing: 0.15em;
+ text-transform: uppercase;
+ color: var(--teal);
+ margin-bottom: 1rem;
+ position: relative;
+ padding-left: 0;
+ }
+
+ .section-title {
+ font-size: clamp(2rem, 4vw, 2.75rem);
+ color: var(--navy);
+ margin-bottom: 1.25rem;
+ font-weight: 700;
+ }
+
+ .section-subtitle {
+ font-size: 1.05rem;
+ color: var(--text-mid);
+ max-width: 600px;
+ line-height: 1.8;
+ }
+
+ .btn {
+ display: inline-block;
+ padding: 0.85rem 2rem;
+ border-radius: 4px;
+ font-family: 'Lato', sans-serif;
+ font-size: 0.875rem;
+ font-weight: 700;
+ letter-spacing: 0.08em;
+ text-transform: uppercase;
+ cursor: pointer;
+ border: none;
+ text-decoration: none;
+ transition: all 0.25s;
+ }
+
+ .btn-primary {
+ background: var(--teal);
+ color: var(--white);
+ }
+
+ .btn-primary:hover {
+ background: var(--teal-dark);
+ transform: translateY(-2px);
+ box-shadow: 0 8px 24px rgba(27,154,170,0.35);
+ }
+
+ .btn-outline {
+ background: transparent;
+ color: var(--white);
+ border: 1.5px solid rgba(255,255,255,0.5);
+ }
+
+ .btn-outline:hover {
+ background: rgba(255,255,255,0.1);
+ border-color: var(--white);
+ }
+
+ .btn-gold {
+ background: var(--gold);
+ color: var(--white);
+ }
+
+ .btn-gold:hover {
+ background: var(--gold-light);
+ transform: translateY(-2px);
+ box-shadow: 0 8px 24px rgba(200,151,58,0.35);
+ }
+
+ /* ── HOME HERO ── */
+ .hero {
+ min-height: 100vh;
+ background: var(--navy);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ position: relative;
+ overflow: hidden;
+ padding: 6rem 2rem 4rem;
+ }
+
+ .hero-bg {
+ position: absolute;
+ inset: 0;
+ background:
+ radial-gradient(ellipse 80% 60% at 20% 50%, rgba(27,154,170,0.18) 0%, transparent 60%),
+ radial-gradient(ellipse 60% 80% at 80% 20%, rgba(200,151,58,0.1) 0%, transparent 55%),
+ radial-gradient(ellipse 40% 40% at 60% 80%, rgba(27,154,170,0.08) 0%, transparent 50%);
+ }
+
+ .hero-pattern {
+ position: absolute;
+ inset: 0;
+ opacity: 0.03;
+ background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+ }
+
+ .hero-content {
+ max-width: 820px;
+ text-align: center;
+ position: relative;
+ z-index: 2;
+ animation: heroFadeIn 1.2s ease both;
+ }
+
+ @keyframes heroFadeIn {
+ from { opacity: 0; transform: translateY(30px); }
+ to { opacity: 1; transform: translateY(0); }
+ }
+
+ .hero-eyebrow {
+ display: inline-block;
+ font-size: 0.7rem;
+ letter-spacing: 0.25em;
+ text-transform: uppercase;
+ color: var(--gold);
+ font-weight: 700;
+ margin-bottom: 1.5rem;
+ padding: 0.4rem 1rem;
+ border: 1px solid rgba(200,151,58,0.35);
+ border-radius: 2px;
+ animation: heroFadeIn 1.2s ease 0.2s both;
+ }
+
+ .hero h1 {
+ font-size: clamp(2.5rem, 6vw, 4.5rem);
+ color: var(--white);
+ font-weight: 800;
+ line-height: 1.1;
+ margin-bottom: 1.5rem;
+ animation: heroFadeIn 1.2s ease 0.3s both;
+ }
+
+ .hero h1 em {
+ font-style: italic;
+ color: var(--teal-light);
+ }
+
+ .hero-tagline {
+ font-size: clamp(1rem, 2vw, 1.2rem);
+ color: rgba(255,255,255,0.7);
+ max-width: 560px;
+ margin: 0 auto 2.5rem;
+ line-height: 1.9;
+ font-style: italic;
+ animation: heroFadeIn 1.2s ease 0.4s both;
+ }
+
+ .hero-tagline span {
+ color: var(--gold);
+ font-style: normal;
+ font-weight: 700;
+ }
+
+ .hero-buttons {
+ display: flex;
+ gap: 1rem;
+ justify-content: center;
+ flex-wrap: wrap;
+ animation: heroFadeIn 1.2s ease 0.5s both;
+ }
+
+ .hero-scroll {
+ position: absolute;
+ bottom: 2.5rem;
+ left: 50%;
+ transform: translateX(-50%);
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ gap: 0.5rem;
+ color: rgba(255,255,255,0.4);
+ font-size: 0.7rem;
+ letter-spacing: 0.15em;
+ text-transform: uppercase;
+ animation: bounce 2s ease-in-out infinite;
+ }
+
+ .hero-scroll-line {
+ width: 1px;
+ height: 40px;
+ background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+ }
+
+ @keyframes bounce {
+ 0%, 100% { transform: translateX(-50%) translateY(0); }
+ 50% { transform: translateX(-50%) translateY(6px); }
+ }
+
+ /* ── SCRIPTURE STRIP ── */
+ .scripture-strip {
+ background: var(--gold);
+ padding: 2.5rem 2rem;
+ text-align: center;
+ position: relative;
+ overflow: hidden;
+ }
+
+ .scripture-strip::before {
+ content: '';
+ position: absolute;
+ left: 2rem;
+ top: 50%;
+ transform: translateY(-50%);
+ font-size: 5rem;
+ color: rgba(255,255,255,0.15);
+ font-family: 'Playfair Display', serif;
+ line-height: 1;
+ }
+
+ .scripture-strip blockquote {
+ font-family: 'Playfair Display', serif;
+ font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+ font-style: italic;
+ color: var(--white);
+ max-width: 760px;
+ margin: 0 auto 0.75rem;
+ line-height: 1.7;
+ }
+
+ .scripture-strip cite {
+ font-size: 0.85rem;
+ color: rgba(255,255,255,0.8);
+ letter-spacing: 0.1em;
+ text-transform: uppercase;
+ font-style: normal;
+ font-weight: 700;
+ }
+
+ /* ── MISSION PILLARS ── */
+ .pillars { background: var(--white); }
+
+ .pillars-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+ gap: 1.5rem;
+ margin-top: 3rem;
+ }
+
+ .pillar-card {
+ background: var(--cream);
+ border-radius: 8px;
+ padding: 2.5rem 2rem;
+ border: 1px solid var(--border);
+ transition: all 0.3s;
+ position: relative;
+ overflow: hidden;
+ }
+
+ .pillar-card::after {
+ content: '';
+ position: absolute;
+ bottom: 0; left: 0; right: 0;
+ height: 3px;
+ background: var(--teal);
+ transform: scaleX(0);
+ transform-origin: left;
+ transition: transform 0.3s;
+ }
+
+ .pillar-card:hover {
+ transform: translateY(-6px);
+ box-shadow: var(--shadow-md);
+ border-color: rgba(27,154,170,0.3);
+ }
+
+ .pillar-card:hover::after { transform: scaleX(1); }
+
+ .pillar-icon {
+ width: 52px;
+ height: 52px;
+ background: rgba(27,154,170,0.1);
+ border-radius: 50%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-bottom: 1.5rem;
+ font-size: 1.4rem;
+ }
+
+ .pillar-card h3 {
+ font-size: 1.2rem;
+ color: var(--navy);
+ margin-bottom: 0.75rem;
+ font-weight: 600;
+ }
+
+ .pillar-card p {
+ font-size: 0.92rem;
+ color: var(--text-mid);
+ line-height: 1.75;
+ }
+
+ /* ── BLOG POSTS ── */
+ .posts-preview { background: var(--cream); }
+
+ .posts-header {
+ display: flex;
+ align-items: flex-end;
+ justify-content: space-between;
+ margin-bottom: 3rem;
+ gap: 1rem;
+ flex-wrap: wrap;
+ }
+
+ .posts-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ gap: 1.75rem;
+ }
+
+ .post-card {
+ background: var(--white);
+ border-radius: 8px;
+ overflow: hidden;
+ box-shadow: var(--shadow-sm);
+ transition: all 0.3s;
+ cursor: pointer;
+ border: 1px solid var(--border);
+ }
+
+ .post-card:hover {
+ transform: translateY(-5px);
+ box-shadow: var(--shadow-md);
+ }
+
+ .post-card-img {
+    height: 6px;
     position: relative;
     overflow: hidden;
   }
-
-  .post-card-img-inner {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-  }
-
-  .post-card-img-1 {
-    background: linear-gradient(135deg, #0D2B30 0%, #1B9AAA 100%);
-  }
-
-  .post-card-img-2 {
-    background: linear-gradient(135deg, #1a1a2e 0%, #C8973A 100%);
-  }
-
-  .post-card-img-3 {
-    background: linear-gradient(135deg, #0D2B30 0%, #2d6a4f 100%);
-  }
-
-  .post-card-body { padding: 1.75rem; }
-
-  .post-category {
-    display: inline-block;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--teal);
-    background: rgba(27,154,170,0.1);
-    padding: 0.25rem 0.65rem;
-    border-radius: 2px;
-    margin-bottom: 0.85rem;
-  }
-
-  .post-card h3 {
-    font-size: 1.2rem;
-    color: var(--navy);
-    margin-bottom: 0.75rem;
-    font-weight: 600;
-    line-height: 1.4;
-  }
-
-  .post-scripture {
-    font-size: 0.8rem;
-    color: var(--gold);
-    font-style: italic;
-    margin-bottom: 0.85rem;
-    font-family: 'Playfair Display', serif;
-  }
-
-  .post-excerpt {
-    font-size: 0.9rem;
-    color: var(--text-mid);
-    line-height: 1.7;
-    margin-bottom: 1.25rem;
-  }
-
-  .post-read-more {
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--teal);
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    transition: gap 0.2s;
-    cursor: pointer;
-    background: none;
-    border: none;
-  }
-
-  .post-read-more:hover { gap: 0.7rem; }
-
-  /* ── NEWSLETTER ── */
-  .newsletter {
-    background: var(--navy);
-    padding: 5rem 2rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .newsletter::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 70% 80% at 50% 0%, rgba(27,154,170,0.15) 0%, transparent 60%);
-  }
-
-  .newsletter-inner { max-width: 600px; margin: 0 auto; position: relative; }
-
-  .newsletter h2 {
-    font-size: clamp(1.8rem, 4vw, 2.4rem);
-    color: var(--white);
-    margin-bottom: 1rem;
-  }
-
-  .newsletter p {
-    color: rgba(255,255,255,0.65);
-    margin-bottom: 2rem;
-    font-size: 1rem;
-    line-height: 1.8;
-  }
-
-  .newsletter-form {
-    display: flex;
-    gap: 0.75rem;
-    max-width: 440px;
-    margin: 0 auto;
-  }
-
-  .newsletter-form input {
-    flex: 1;
-    padding: 0.85rem 1.25rem;
-    border-radius: 4px;
-    border: 1px solid rgba(255,255,255,0.2);
-    background: rgba(255,255,255,0.07);
-    color: var(--white);
-    font-family: 'Lato', sans-serif;
-    font-size: 0.9rem;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  .newsletter-form input::placeholder { color: rgba(255,255,255,0.4); }
-  .newsletter-form input:focus { border-color: var(--teal); }
-
-  /* ── FOOTER ── */
-  footer {
-    background: #070f11;
-    padding: 3.5rem 2rem 2rem;
-    color: rgba(255,255,255,0.5);
-    font-size: 0.875rem;
-  }
-
-  .footer-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .footer-top {
-    display: grid;
-    grid-template-columns: 1.5fr repeat(3, 1fr);
-    gap: 2.5rem;
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-  }
-
-  .footer-brand h3 {
-    font-family: 'Playfair Display', serif;
-    color: var(--white);
-    font-size: 1.2rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .footer-brand h3 span { color: var(--gold); }
-
-  .footer-brand p {
-    font-style: italic;
-    color: rgba(255,255,255,0.4);
-    font-size: 0.85rem;
-    line-height: 1.8;
-    margin-bottom: 1.25rem;
-  }
-
-  .footer-teal-line {
-    width: 40px;
-    height: 2px;
-    background: var(--teal);
-  }
-
-  .footer-col h4 {
-    font-family: 'Lato', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
-    margin-bottom: 1.25rem;
-  }
-
-  .footer-col ul { list-style: none; }
-
-  .footer-col ul li {
-    margin-bottom: 0.6rem;
-  }
-
-  .footer-col ul li a {
-    color: rgba(255,255,255,0.4);
-    text-decoration: none;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: color 0.2s;
-  }
-
-  .footer-col ul li a:hover { color: var(--teal-light); }
-
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    font-size: 0.8rem;
-  }
-
-  /* ── ABOUT PAGE ── */
-  .about-hero {
-    background: var(--navy);
-    padding: 7rem 2rem 5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .about-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 60% 80% at 30% 50%, rgba(27,154,170,0.15) 0%, transparent 60%);
-  }
-
-  .about-hero-inner {
-    max-width: 740px;
-    margin: 0 auto;
-    text-align: center;
-    position: relative;
-  }
-
-  .about-hero h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    color: var(--white);
-    font-weight: 800;
-    margin-bottom: 1.5rem;
-    line-height: 1.15;
-  }
-
-  .about-hero h1 em { color: var(--teal-light); font-style: italic; }
-
-  .about-hero p {
-    color: rgba(255,255,255,0.65);
-    font-size: 1.1rem;
-    line-height: 1.9;
-  }
-
-  .about-story { background: var(--white); }
-
-  .about-story-inner {
-    max-width: 760px;
-    margin: 0 auto;
-  }
-
-  .about-story p {
-    font-size: 1.05rem;
-    color: var(--text-mid);
-    line-height: 1.9;
-    margin-bottom: 1.5rem;
-  }
-
-  .pull-quote {
-    border-left: 3px solid var(--gold);
-    margin: 2.5rem 0;
-    padding: 1.5rem 2rem;
-    background: rgba(200,151,58,0.06);
-    border-radius: 0 8px 8px 0;
-  }
-
-  .pull-quote p {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
-    font-style: italic;
-    color: var(--navy);
-    line-height: 1.6;
-    margin-bottom: 0.5rem !important;
-  }
-
-  .pull-quote cite {
-    font-size: 0.8rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-style: normal;
-    font-weight: 700;
-  }
-
-  .mission-vision {
-    background: var(--cream);
-  }
-
-  .mv-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-  }
-
-  .mv-card {
-    background: var(--white);
-    border-radius: 8px;
-    padding: 2.5rem;
-    border: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .mv-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--teal);
-  }
-
-  .mv-card h3 {
-    font-size: 1.3rem;
-    color: var(--navy);
-    margin-bottom: 1rem;
-  }
-
-  .mv-card p {
-    color: var(--text-mid);
-    line-height: 1.8;
-  }
-
-  .values-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-
-  .value-card {
-    text-align: center;
-    padding: 2.5rem 1.75rem;
-    background: var(--white);
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    transition: all 0.3s;
-  }
-
-  .value-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .value-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1.25rem;
-    display: block;
-  }
-
-  .value-card h3 {
-    font-size: 1.15rem;
-    color: var(--navy);
-    margin-bottom: 0.75rem;
-  }
-
-  .value-card p {
-    font-size: 0.9rem;
-    color: var(--text-mid);
-    line-height: 1.75;
-  }
-
-  .commitments { background: var(--navy); }
-
-  .commitments .section-title { color: var(--white); }
-  .commitments .section-subtitle { color: rgba(255,255,255,0.6); }
-
-  .commit-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.75rem;
-    margin-top: 3rem;
-  }
-
-  .commit-card {
-    border: 1px solid rgba(27,154,170,0.25);
-    border-radius: 8px;
-    padding: 2.5rem;
-    background: rgba(27,154,170,0.05);
-    transition: all 0.3s;
-  }
-
-  .commit-card:hover {
-    background: rgba(27,154,170,0.1);
-    border-color: rgba(27,154,170,0.5);
-    transform: translateY(-4px);
-  }
-
-  .commit-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: rgba(27,154,170,0.25);
-    line-height: 1;
-    margin-bottom: 1rem;
-  }
-
-  .commit-card h3 {
-    font-size: 1.25rem;
-    color: var(--white);
-    margin-bottom: 0.75rem;
-  }
-
-  .commit-card p {
-    color: rgba(255,255,255,0.55);
-    font-size: 0.9rem;
-    line-height: 1.8;
-  }
-
-  /* ── BLOG PAGE ── */
-  .blog-hero {
-    background: var(--navy);
-    padding: 6rem 2rem 4rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .blog-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(27,154,170,0.12) 0%, transparent 60%);
-  }
-
-  .blog-hero h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    color: var(--white);
-    margin-bottom: 1rem;
-    position: relative;
-  }
-
-  .blog-hero p {
-    color: rgba(255,255,255,0.6);
-    max-width: 540px;
-    margin: 0 auto;
-    font-size: 1rem;
-    line-height: 1.8;
-    position: relative;
-  }
-
-  .blog-filters {
-    padding: 2rem;
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .blog-filters-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-  }
-
-  .filter-btn {
-    padding: 0.45rem 1rem;
-    border-radius: 40px;
-    border: 1.5px solid var(--border);
-    background: transparent;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    color: var(--text-mid);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .filter-btn.active, .filter-btn:hover {
-    background: var(--teal);
-    border-color: var(--teal);
-    color: var(--white);
-  }
-
-  .blog-grid-section { background: var(--cream); }
-
-  .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.75rem;
-  }
-
-  /* ── PRAYER PAGE ── */
-  .prayer-hero {
-    background: var(--navy);
-    padding: 6rem 2rem 4rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .prayer-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(200,151,58,0.1) 0%, transparent 60%);
-  }
-
-  .prayer-hero h1 {
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    color: var(--white);
-    margin-bottom: 1rem;
-    position: relative;
-  }
-
-  .prayer-hero p {
-    color: rgba(255,255,255,0.65);
-    max-width: 580px;
-    margin: 0 auto;
-    font-size: 1rem;
-    line-height: 1.9;
-    position: relative;
-  }
-
-  .prayer-form-section {
-    background: var(--cream);
-    padding: 5rem 2rem;
-  }
-
-  .prayer-form-wrap {
-    max-width: 640px;
-    margin: 0 auto;
-    background: var(--white);
-    border-radius: 12px;
-    padding: 3rem;
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--border);
-  }
-
-  .prayer-note {
-    background: rgba(27,154,170,0.08);
-    border-left: 3px solid var(--teal);
-    padding: 1rem 1.25rem;
-    border-radius: 0 6px 6px 0;
-    margin-bottom: 2.5rem;
-    font-size: 0.875rem;
-    color: var(--text-mid);
-    line-height: 1.7;
-  }
-
-  .prayer-note strong { color: var(--teal); }
-
-  /* ── FORM STYLES ── */
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
-
-  .form-group label {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--navy);
-    margin-bottom: 0.5rem;
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%;
-    padding: 0.85rem 1.1rem;
-    border-radius: 6px;
-    border: 1.5px solid var(--border);
-    background: var(--cream);
-    font-family: 'Lato', sans-serif;
-    font-size: 0.95rem;
-    color: var(--text-dark);
-    outline: none;
-    transition: border-color 0.2s, background 0.2s;
-  }
-
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    border-color: var(--teal);
-    background: var(--white);
-  }
-
-  .form-group textarea {
-    min-height: 140px;
-    resize: vertical;
-    line-height: 1.7;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
-  .form-group select {
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7c7f' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    padding-right: 2.5rem;
-    cursor: pointer;
-  }
-
-  /* ── DONATE PAGE ── */
-  .donate-hero {
-    background: var(--navy);
-    padding: 6rem 2rem 4rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .donate-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(200,151,58,0.15) 0%, transparent 60%);
-  }
-
-  .donate-hero h1 {
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    color: var(--white);
-    margin-bottom: 1rem;
-    position: relative;
-  }
-
-  .donate-hero p {
-    color: rgba(255,255,255,0.65);
-    max-width: 600px;
-    margin: 0 auto;
-    font-size: 1rem;
-    line-height: 1.9;
-    position: relative;
-  }
-
-  .tiers-section { background: var(--cream); }
-
-  .tiers-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-
-  .tier-card {
-    background: var(--white);
-    border-radius: 10px;
-    padding: 2.5rem 2rem;
-    border: 2px solid var(--border);
-    text-align: center;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .tier-card.featured {
-    border-color: var(--gold);
-    transform: scale(1.03);
-  }
-
-  .tier-card.featured::before {
-    content: 'Most Impactful';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    background: var(--gold);
-    color: white;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 0.4rem;
-    text-align: center;
-  }
-
-  .tier-card:hover {
-    transform: translateY(-6px) scale(1);
-    box-shadow: var(--shadow-md);
-    border-color: var(--teal);
-  }
-
-  .tier-card.featured:hover {
-    transform: translateY(-6px) scale(1.03);
-  }
-
-  .tier-amount {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--teal);
-    margin-bottom: 0.25rem;
-    line-height: 1;
-  }
-
-  .tier-name {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-light);
-    margin-bottom: 1.25rem;
-  }
-
-  .tier-card p {
-    font-size: 0.9rem;
-    color: var(--text-mid);
-    line-height: 1.75;
-    margin-bottom: 1.5rem;
-  }
-
-  .donate-form-section { background: var(--white); padding: 5rem 2rem; }
-
-  .donate-form-wrap {
-    max-width: 560px;
-    margin: 0 auto;
-    background: var(--cream);
-    border-radius: 12px;
-    padding: 3rem;
-    border: 1px solid var(--border);
-  }
-
-  .payment-note {
-    background: var(--navy);
-    border-radius: 8px;
-    padding: 1.25rem 1.5rem;
-    margin-top: 2rem;
-    font-size: 0.875rem;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.7;
-    text-align: center;
-  }
-
-  .payment-note strong { color: var(--gold); }
-
-  /* ── CONTACT PAGE ── */
-  .contact-hero {
-    background: var(--navy);
-    padding: 6rem 2rem 4rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .contact-hero h1 {
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    color: var(--white);
-    margin-bottom: 1rem;
-    position: relative;
-  }
-
-  .contact-hero p {
-    color: rgba(255,255,255,0.65);
-    max-width: 520px;
-    margin: 0 auto;
-    font-size: 1rem;
-    line-height: 1.9;
-    position: relative;
-  }
-
-  .contact-section { background: var(--cream); padding: 5rem 2rem; }
-
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.6fr;
-    gap: 3rem;
-    max-width: 960px;
-    margin: 0 auto;
-  }
-
-  .contact-info h3 {
-    font-size: 1.3rem;
-    color: var(--navy);
-    margin-bottom: 1.5rem;
-  }
-
-  .contact-info-item {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    align-items: flex-start;
-  }
-
-  .contact-info-icon {
-    width: 40px;
-    height: 40px;
-    background: rgba(27,154,170,0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-  }
-
-  .contact-info-text strong {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--navy);
-    margin-bottom: 0.2rem;
-  }
-
-  .contact-info-text span {
-    font-size: 0.9rem;
-    color: var(--text-mid);
-    line-height: 1.6;
-  }
-
-  .contact-form-wrap {
-    background: var(--white);
-    border-radius: 12px;
-    padding: 2.5rem;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border);
-  }
-
-  /* ── WHY CHECKLIST ── */
-  .why-list { list-style: none; margin-top: 1.5rem; }
-
-  .why-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.85rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.95rem;
-    color: var(--text-mid);
-  }
-
-  .why-list li:last-child { border-bottom: none; }
-
-  .why-check {
-    width: 22px;
-    height: 22px;
-    background: var(--teal);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    color: white;
-    font-size: 0.65rem;
-    margin-top: 2px;
-  }
-
-  /* ── PAGE TRANSITION ── */
-  @keyframes fadeInPage {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .page.active { animation: fadeInPage 0.4s ease both; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    .footer-top {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .contact-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 700px) {
-    .nav-links { display: none; }
-    .hamburger { display: flex; }
-
-    .footer-top {
-      grid-template-columns: 1fr;
-    }
-
-    .newsletter-form {
-      flex-direction: column;
-    }
-
-    .form-row {
-      grid-template-columns: 1fr;
-    }
-
-    .hero h1 { font-size: 2.5rem; }
-
-    .hero-scroll { display: none; }
-
-    .prayer-form-wrap,
-    .donate-form-wrap,
-    .contact-form-wrap {
-      padding: 1.75rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .section { padding: 3.5rem 1.25rem; }
-    .section-title { font-size: 1.75rem; }
-  }
-
-  /* ── UTILITY ── */
-  .text-center { text-align: center; }
-  .mb-0 { margin-bottom: 0 !important; }
-  .mt-1 { margin-top: 0.5rem; }
-  .mt-2 { margin-top: 1rem; }
-  .mt-3 { margin-top: 1.5rem; }
-  .gold { color: var(--gold); }
-  .teal { color: var(--teal); }
-
-  /* Accessible focus styles */
-  :focus-visible {
-    outline: 2px solid var(--teal);
-    outline-offset: 3px;
-  }
-
-  /* ── PUBLISHED BADGE ── */
-  .post-card.is-published {
-    border-color: rgba(200,151,58,0.35);
-    position: relative;
-  }
-
-  .published-badge {
-    position: absolute;
-    top: 12px; right: 12px;
-    background: var(--gold);
-    color: white;
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 0.25rem 0.6rem;
-    border-radius: 2px;
-    z-index: 2;
-  }
-
-  /* ── SINGLE POST PAGE ── */
-  .post-page-hero {
-    background: var(--navy);
-    padding: 7rem 2rem 5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .post-page-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 70% 60% at 20% 50%, rgba(27,154,170,0.14) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 50% at 80% 30%, rgba(200,151,58,0.08) 0%, transparent 55%);
-  }
-
-  .post-page-hero-inner {
-    max-width: 780px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .post-back-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: rgba(255,255,255,0.5);
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    border: none;
-    background: none;
-    padding: 0;
-    margin-bottom: 2rem;
-    transition: color 0.2s;
-  }
-
-  .post-back-btn:hover { color: var(--teal-light); }
-
-  .post-meta-row {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .post-meta-row .post-category {
-    font-size: 0.65rem;
-  }
-
-  .post-meta-date {
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.4);
-    letter-spacing: 0.08em;
-  }
-
-  .post-page-hero h1 {
-    font-size: clamp(1.9rem, 4.5vw, 3.2rem);
-    color: var(--white);
-    font-weight: 800;
-    line-height: 1.15;
-    margin-bottom: 1rem;
-  }
-
-  .post-page-hero .post-subtitle {
-    font-size: 1.1rem;
-    color: rgba(255,255,255,0.6);
-    font-style: italic;
-    font-family: 'Playfair Display', serif;
-    line-height: 1.7;
-  }
-
-  /* ── ARTICLE BODY ── */
-  .article-body {
-    background: var(--white);
-    padding: 4rem 2rem 5rem;
-  }
-
-  .article-inner {
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  .article-inner p {
-    font-size: 1.05rem;
-    color: var(--text-mid);
-    line-height: 1.95;
-    margin-bottom: 1.65rem;
-  }
-
-  .article-inner h2 {
-    font-size: 1.55rem;
-    color: var(--navy);
-    margin: 2.75rem 0 1.1rem;
-    font-weight: 700;
-  }
-
-  .article-inner strong {
-    color: var(--navy);
-    font-weight: 700;
-  }
-
-  .article-scripture {
-    border-left: 3px solid var(--gold);
-    background: rgba(200,151,58,0.06);
-    border-radius: 0 8px 8px 0;
-    padding: 1.5rem 2rem;
-    margin: 2.25rem 0;
-  }
-
-  .article-scripture p {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: var(--navy);
-    line-height: 1.7;
-    margin-bottom: 0.5rem !important;
-  }
-
-  .article-scripture cite {
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-style: normal;
-  }
-
-  .article-callout {
-    background: var(--navy);
-    border-radius: 10px;
-    padding: 2.25rem 2rem;
-    margin: 2.5rem 0;
-  }
-
-  .article-callout-label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.1rem;
-    display: block;
-  }
-
-  .article-callout p {
-    color: rgba(255,255,255,0.8) !important;
-    font-size: 0.95rem !important;
-    line-height: 1.85 !important;
-    margin-bottom: 0 !important;
-  }
-
-  .article-callout ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .article-callout ul li {
-    color: rgba(255,255,255,0.75);
-    font-size: 0.95rem;
-    line-height: 1.85;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    padding-left: 1.25rem;
-    position: relative;
-  }
-
-  .article-callout ul li:last-child { border-bottom: none; }
-
-  .article-callout ul li::before {
-    content: '✦';
-    position: absolute;
-    left: 0;
-    color: var(--gold);
-    font-size: 0.6rem;
-    top: 0.85rem;
-  }
-
-  .article-prayer {
-    background: linear-gradient(135deg, rgba(27,154,170,0.08) 0%, rgba(200,151,58,0.06) 100%);
-    border: 1px solid rgba(27,154,170,0.2);
-    border-radius: 10px;
-    padding: 2.25rem 2rem;
-    margin: 2.5rem 0;
-    text-align: center;
-  }
-
-  .article-prayer-label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 1rem;
-    display: block;
-  }
-
-  .article-prayer p {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1rem !important;
-    color: var(--navy) !important;
-    line-height: 1.85 !important;
-    margin-bottom: 0 !important;
-  }
-
-  .article-challenge {
-    background: var(--cream);
-    border-radius: 10px;
-    padding: 2.25rem 2rem;
-    margin: 2.5rem 0;
-    border: 1px solid var(--border);
-  }
-
-  .article-challenge-label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 1rem;
-    display: block;
-  }
-
-  .article-challenge p {
-    font-size: 0.95rem !important;
-    color: var(--text-mid) !important;
-    line-height: 1.85 !important;
-    margin-bottom: 0 !important;
-  }
-
-  .article-divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 3rem 0;
-  }
-
-  .article-share {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .article-share p {
-    font-size: 0.85rem !important;
-    color: var(--text-light) !important;
-    font-style: italic;
-    margin: 0 !important;
-  }
+  .post-card-img-inner { display: none; }
+
+ .post-card-img-inner {
+ position: absolute;
+ inset: 0;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-size: 3rem;
+ }
+
+ .post-card-body { padding: 1.75rem; }
+
+ .post-category {
+ display: inline-block;
+ font-size: 0.65rem;
+ font-weight: 700;
+ letter-spacing: 0.15em;
+ text-transform: uppercase;
+ color: var(--teal);
+ background: rgba(27,154,170,0.1);
+ padding: 0.25rem 0.65rem;
+ border-radius: 2px;
+ margin-bottom: 0.85rem;
+ }
+
+ .post-card h3 {
+ font-size: 1.2rem;
+ color: var(--navy);
+ margin-bottom: 0.75rem;
+ font-weight: 600;
+ line-height: 1.4;
+ }
+
+ .post-scripture {
+ font-size: 0.8rem;
+ color: var(--gold);
+ font-style: italic;
+ margin-bottom: 0.85rem;
+ font-family: 'Playfair Display', serif;
+ }
+
+ .post-excerpt {
+ font-size: 0.9rem;
+ color: var(--text-mid);
+ line-height: 1.7;
+ margin-bottom: 1.25rem;
+ }
+
+ .post-read-more {
+ font-size: 0.8rem;
+ font-weight: 700;
+ letter-spacing: 0.1em;
+ text-transform: uppercase;
+ color: var(--teal);
+ display: flex;
+ align-items: center;
+ gap: 0.4rem;
+ transition: gap 0.2s;
+ cursor: pointer;
+ background: none;
+ border: none;
+ }
+
+ .post-read-more:hover { gap: 0.7rem; }
+
+ /* ── NEWSLETTER ── */
+ .newsletter {
+ background: var(--navy);
+ padding: 5rem 2rem;
+ text-align: center;
+ position: relative;
+ overflow: hidden;
+ }
+
+ .newsletter::before {
+ content: '';
+ position: absolute;
+ inset: 0;
+ background: radial-gradient(ellipse 70% 80% at 50% 0%, rgba(27,154,170,0.15) 0%, transparent 60%);
+ }
+
+ .newsletter-inner { max-width: 600px; margin: 0 auto; position: relative; }
+
+ .newsletter h2 {
+ font-size: clamp(1.8rem, 4vw, 2.4rem);
+ color: var(--white);
+ margin-bottom: 1rem;
+ }
+
+ .newsletter p {
+ color: rgba(255,255,255,0.65);
+ margin-bottom: 2rem;
+ font-size: 1rem;
+ line-height: 1.8;
+ }
+
+ .newsletter-form {
+ display: flex;
+ gap: 0.75rem;
+ max-width: 440px;
+ margin: 0 auto;
+ }
+
+ .newsletter-form input {
+ flex: 1;
+ padding: 0.85rem 1.25rem;
+ border-radius: 4px;
+ border: 1px solid rgba(255,255,255,0.2);
+ background: rgba(255,255,255,0.07);
+ color: var(--white);
+ font-family: 'Lato', sans-serif;
+ font-size: 0.9rem;
+ outline: none;
+ transition: border-color 0.2s;
+ }
+
+ .newsletter-form input::placeholder { color: rgba(255,255,255,0.4); }
+ .newsletter-form input:focus { border-color: var(--teal); }
+
+ /* ── FOOTER ── */
+ footer {
+ background: #070f11;
+ padding: 3.5rem 2rem 2rem;
+ color: rgba(255,255,255,0.5);
+ font-size: 0.875rem;
+ }
+
+ .footer-inner {
+ max-width: 1100px;
+ margin: 0 auto;
+ }
+
+ .footer-top {
+ display: grid;
+ grid-template-columns: 1.5fr repeat(3, 1fr);
+ gap: 2.5rem;
+ margin-bottom: 3rem;
+ padding-bottom: 3rem;
+ border-bottom: 1px solid rgba(255,255,255,0.07);
+ }
+
+ .footer-brand h3 {
+ font-family: 'Playfair Display', serif;
+ color: var(--white);
+ font-size: 1.2rem;
+ margin-bottom: 0.75rem;
+ }
+
+ .footer-brand h3 span { color: var(--gold); }
+
+ .footer-brand p {
+ font-style: italic;
+ color: rgba(255,255,255,0.4);
+ font-size: 0.85rem;
+ line-height: 1.8;
+ margin-bottom: 1.25rem;
+ }
+
+ .footer-teal-line {
+ width: 40px;
+ height: 2px;
+ background: var(--teal);
+ }
+
+ .footer-col h4 {
+ font-family: 'Lato', sans-serif;
+ font-size: 0.7rem;
+ font-weight: 700;
+ letter-spacing: 0.15em;
+ text-transform: uppercase;
+ color: rgba(255,255,255,0.6);
+ margin-bottom: 1.25rem;
+ }
+
+ .footer-col ul { list-style: none; }
+
+ .footer-col ul li {
+ margin-bottom: 0.6rem;
+ }
+
+ .footer-col ul li a {
+ color: rgba(255,255,255,0.4);
+ text-decoration: none;
+ font-size: 0.875rem;
+ cursor: pointer;
+ transition: color 0.2s;
+ }
+
+ .footer-col ul li a:hover { color: var(--teal-light); }
+
+ .footer-bottom {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ flex-wrap: wrap;
+ gap: 1rem;
+ font-size: 0.8rem;
+ }
+
+ /* ── ABOUT PAGE ── */
+ .about-hero {
+ background: var(--navy);
+ padding: 7rem 2rem 5rem;
+ position: relative;
+ overflow: hidden;
+ }
+
+ .about-hero::before {
+ content: '';
+ position: absolute;
+ inset: 0;
+ background: radial-gradient(ellipse 60% 80% at 30% 50%, rgba(27,154,170,0.15) 0%, transparent 60%);
+ }
+
+ .about-hero-inner {
+ max-width: 740px;
+ margin: 0 auto;
+ text-align: center;
+ position: relative;
+ }
+
+ .about-hero h1 {
+ font-size: clamp(2rem, 5vw, 3.5rem);
+ color: var(--white);
+ font-weight: 800;
+ margin-bottom: 1.5rem;
+ line-height: 1.15;
+ }
+
+ .about-hero h1 em { color: var(--teal-light); font-style: italic; }
+
+ .about-hero p {
+ color: rgba(255,255,255,0.65);
+ font-size: 1.1rem;
+ line-height: 1.9;
+ }
+
+ .about-story { background: var(--white); }
+
+ .about-story-inner {
+ max-width: 760px;
+ margin: 0 auto;
+ }
+
+ .about-story p {
+ font-size: 1.05rem;
+ color: var(--text-mid);
+ line-height: 1.9;
+ margin-bottom: 1.5rem;
+ }
+
+ .pull-quote {
+ border-left: 3px solid var(--gold);
+ margin: 2.5rem 0;
+ padding: 1.5rem 2rem;
+ background: rgba(200,151,58,0.06);
+ border-radius: 0 8px 8px 0;
+ }
+
+ .pull-quote p {
+ font-family: 'Playfair Display', serif;
+ font-size: 1.25rem;
+ font-style: italic;
+ color: var(--navy);
+ line-height: 1.6;
+ margin-bottom: 0.5rem !important;
+ }
+
+ .pull-quote cite {
+ font-size: 0.8rem;
+ letter-spacing: 0.12em;
+ text-transform: uppercase;
+ color: var(--gold);
+ font-style: normal;
+ font-weight: 700;
+ }
+
+ .mission-vision {
+ background: var(--cream);
+ }
+
+ .mv-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ gap: 2rem;
+ margin-top: 3rem;
+ }
+
+ .mv-card {
+ background: var(--white);
+ border-radius: 8px;
+ padding: 2.5rem;
+ border: 1px solid var(--border);
+ position: relative;
+ overflow: hidden;
+ }
+
+ .mv-card::before {
+ content: '';
+ position: absolute;
+ top: 0; left: 0; right: 0;
+ height: 3px;
+ background: var(--teal);
+ }
+
+ .mv-card h3 {
+ font-size: 1.3rem;
+ color: var(--navy);
+ margin-bottom: 1rem;
+ }
+
+ .mv-card p {
+ color: var(--text-mid);
+ line-height: 1.8;
+ }
+
+ .values-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+ gap: 1.5rem;
+ margin-top: 3rem;
+ }
+
+ .value-card {
+ text-align: center;
+ padding: 2.5rem 1.75rem;
+ background: var(--white);
+ border-radius: 8px;
+ border: 1px solid var(--border);
+ transition: all 0.3s;
+ }
+
+ .value-card:hover {
+ transform: translateY(-4px);
+ box-shadow: var(--shadow-md);
+ }
+
+ .value-icon {
+ font-size: 2.5rem;
+ margin-bottom: 1.25rem;
+ display: block;
+ }
+
+ .value-card h3 {
+ font-size: 1.15rem;
+ color: var(--navy);
+ margin-bottom: 0.75rem;
+ }
+
+ .value-card p {
+ font-size: 0.9rem;
+ color: var(--text-mid);
+ line-height: 1.75;
+ }
+
+ .commitments { background: var(--navy); }
+
+ .commitments .section-title { color: var(--white); }
+ .commitments .section-subtitle { color: rgba(255,255,255,0.6); }
+
+ .commit-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+ gap: 1.75rem;
+ margin-top: 3rem;
+ }
+
+ .commit-card {
+ border: 1px solid rgba(27,154,170,0.25);
+ border-radius: 8px;
+ padding: 2.5rem;
+ background: rgba(27,154,170,0.05);
+ transition: all 0.3s;
+ }
+
+ .commit-card:hover {
+ background: rgba(27,154,170,0.1);
+ border-color: rgba(27,154,170,0.5);
+ transform: translateY(-4px);
+ }
+
+ .commit-number {
+ font-family: 'Playfair Display', serif;
+ font-size: 3.5rem;
+ font-weight: 800;
+ color: rgba(27,154,170,0.25);
+ line-height: 1;
+ margin-bottom: 1rem;
+ }
+
+ .commit-card h3 {
+ font-size: 1.25rem;
+ color: var(--white);
+ margin-bottom: 0.75rem;
+ }
+
+ .commit-card p {
+ color: rgba(255,255,255,0.55);
+ font-size: 0.9rem;
+ line-height: 1.8;
+ }
+
+ /* ── BLOG PAGE ── */
+ .blog-hero {
+ background: var(--navy);
+ padding: 6rem 2rem 4rem;
+ text-align: center;
+ position: relative;
+ overflow: hidden;
+ }
+
+ .blog-hero::before {
+ content: '';
+ position: absolute;
+ inset: 0;
+ background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(27,154,170,0.12) 0%, transparent 60%);
+ }
+
+ .blog-hero h1 {
+ font-size: clamp(2rem, 5vw, 3.5rem);
+ color: var(--white);
+ margin-bottom: 1rem;
+ position: relative;
+ }
+
+ .blog-hero p {
+ color: rgba(255,255,255,0.6);
+ max-width: 540px;
+ margin: 0 auto;
+ font-size: 1rem;
+ line-height: 1.8;
+ position: relative;
+ }
+
+ .blog-filters {
+ padding: 2rem;
+ background: var(--white);
+ border-bottom: 1px solid var(--border);
+ }
+
+ .blog-filters-inner {
+ max-width: 1100px;
+ margin: 0 auto;
+ display: flex;
+ gap: 0.75rem;
+ flex-wrap: wrap;
+ }
+
+ .filter-btn {
+ padding: 0.45rem 1rem;
+ border-radius: 40px;
+ border: 1.5px solid var(--border);
+ background: transparent;
+ font-family: 'Lato', sans-serif;
+ font-size: 0.8rem;
+ font-weight: 700;
+ letter-spacing: 0.06em;
+ color: var(--text-mid);
+ cursor: pointer;
+ transition: all 0.2s;
+ }
+
+ .filter-btn.active, .filter-btn:hover {
+ background: var(--teal);
+ border-color: var(--teal);
+ color: var(--white);
+ }
+
+ .blog-grid-section { background: var(--cream); }
+
+ .blog-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+ gap: 1.75rem;
+ }
+
+ /* ── PRAYER PAGE ── */
+ .prayer-hero {
+ background: var(--navy);
+ padding: 6rem 2rem 4rem;
+ text-align: center;
+ position: relative;
+ overflow: hidden;
+ }
+
+ .prayer-hero::before {
+ content: '';
+ position: absolute;
+ inset: 0;
+ background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(200,151,58,0.1) 0%, transparent 60%);
+ }
+
+ .prayer-hero h1 {
+ font-size: clamp(2rem, 5vw, 3.2rem);
+ color: var(--white);
+ margin-bottom: 1rem;
+ position: relative;
+ }
+
+ .prayer-hero p {
+ color: rgba(255,255,255,0.65);
+ max-width: 580px;
+ margin: 0 auto;
+ font-size: 1rem;
+ line-height: 1.9;
+ position: relative;
+ }
+
+ .prayer-form-section {
+ background: var(--cream);
+ padding: 5rem 2rem;
+ }
+
+ .prayer-form-wrap {
+ max-width: 640px;
+ margin: 0 auto;
+ background: var(--white);
+ border-radius: 12px;
+ padding: 3rem;
+ box-shadow: var(--shadow-md);
+ border: 1px solid var(--border);
+ }
+
+ .prayer-note {
+ background: rgba(27,154,170,0.08);
+ border-left: 3px solid var(--teal);
+ padding: 1rem 1.25rem;
+ border-radius: 0 6px 6px 0;
+ margin-bottom: 2.5rem;
+ font-size: 0.875rem;
+ color: var(--text-mid);
+ line-height: 1.7;
+ }
+
+ .prayer-note strong { color: var(--teal); }
+
+ /* ── FORM STYLES ── */
+ .form-group {
+ margin-bottom: 1.5rem;
+ }
+
+ .form-group label {
+ display: block;
+ font-size: 0.8rem;
+ font-weight: 700;
+ letter-spacing: 0.08em;
+ text-transform: uppercase;
+ color: var(--navy);
+ margin-bottom: 0.5rem;
+ }
+
+ .form-group input,
+ .form-group select,
+ .form-group textarea {
+ width: 100%;
+ padding: 0.85rem 1.1rem;
+ border-radius: 6px;
+ border: 1.5px solid var(--border);
+ background: var(--cream);
+ font-family: 'Lato', sans-serif;
+ font-size: 0.95rem;
+ color: var(--text-dark);
+ outline: none;
+ transition: border-color 0.2s, background 0.2s;
+ }
+
+ .form-group input:focus,
+ .form-group select:focus,
+ .form-group textarea:focus {
+ border-color: var(--teal);
+ background: var(--white);
+ }
+
+ .form-group textarea {
+ min-height: 140px;
+ resize: vertical;
+ line-height: 1.7;
+ }
+
+ .form-row {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 1rem;
+ }
+
+ .form-group select {
+ appearance: none;
+ background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7c7f' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+ background-repeat: no-repeat;
+ background-position: right 1rem center;
+ padding-right: 2.5rem;
+ cursor: pointer;
+ }
+
+ /* ── DONATE PAGE ── */
+ .donate-hero {
+ background: var(--navy);
+ padding: 6rem 2rem 4rem;
+ text-align: center;
+ position: relative;
+ overflow: hidden;
+ }
+
+ .donate-hero::before {
+ content: '';
+ position: absolute;
+ inset: 0;
+ background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(200,151,58,0.15) 0%, transparent 60%);
+ }
+
+ .donate-hero h1 {
+ font-size: clamp(2rem, 5vw, 3.2rem);
+ color: var(--white);
+ margin-bottom: 1rem;
+ position: relative;
+ }
+
+ .donate-hero p {
+ color: rgba(255,255,255,0.65);
+ max-width: 600px;
+ margin: 0 auto;
+ font-size: 1rem;
+ line-height: 1.9;
+ position: relative;
+ }
+
+ .tiers-section { background: var(--cream); }
+
+ .tiers-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+ gap: 1.5rem;
+ margin-top: 3rem;
+ }
+
+ .tier-card {
+ background: var(--white);
+ border-radius: 10px;
+ padding: 2.5rem 2rem;
+ border: 2px solid var(--border);
+ text-align: center;
+ transition: all 0.3s;
+ position: relative;
+ overflow: hidden;
+ }
+
+ .tier-card.featured {
+ border-color: var(--gold);
+ transform: scale(1.03);
+ }
+
+ .tier-card.featured::before {
+ content: 'Most Impactful';
+ position: absolute;
+ top: 0; left: 0; right: 0;
+ background: var(--gold);
+ color: white;
+ font-size: 0.65rem;
+ font-weight: 700;
+ letter-spacing: 0.12em;
+ text-transform: uppercase;
+ padding: 0.4rem;
+ text-align: center;
+ }
+
+ .tier-card:hover {
+ transform: translateY(-6px) scale(1);
+ box-shadow: var(--shadow-md);
+ border-color: var(--teal);
+ }
+
+ .tier-card.featured:hover {
+ transform: translateY(-6px) scale(1.03);
+ }
+
+ .tier-amount {
+ font-family: 'Playfair Display', serif;
+ font-size: 2.5rem;
+ font-weight: 800;
+ color: var(--teal);
+ margin-bottom: 0.25rem;
+ line-height: 1;
+ }
+
+ .tier-name {
+ font-size: 0.75rem;
+ font-weight: 700;
+ letter-spacing: 0.15em;
+ text-transform: uppercase;
+ color: var(--text-light);
+ margin-bottom: 1.25rem;
+ }
+
+ .tier-card p {
+ font-size: 0.9rem;
+ color: var(--text-mid);
+ line-height: 1.75;
+ margin-bottom: 1.5rem;
+ }
+
+ .donate-form-section { background: var(--white); padding: 5rem 2rem; }
+
+ .donate-form-wrap {
+ max-width: 560px;
+ margin: 0 auto;
+ background: var(--cream);
+ border-radius: 12px;
+ padding: 3rem;
+ border: 1px solid var(--border);
+ }
+
+ .payment-note {
+ background: var(--navy);
+ border-radius: 8px;
+ padding: 1.25rem 1.5rem;
+ margin-top: 2rem;
+ font-size: 0.875rem;
+ color: rgba(255,255,255,0.65);
+ line-height: 1.7;
+ text-align: center;
+ }
+
+ .payment-note strong { color: var(--gold); }
+
+ /* ── CONTACT PAGE ── */
+ .contact-hero {
+ background: var(--navy);
+ padding: 6rem 2rem 4rem;
+ text-align: center;
+ position: relative;
+ overflow: hidden;
+ }
+
+ .contact-hero h1 {
+ font-size: clamp(2rem, 5vw, 3.2rem);
+ color: var(--white);
+ margin-bottom: 1rem;
+ position: relative;
+ }
+
+ .contact-hero p {
+ color: rgba(255,255,255,0.65);
+ max-width: 520px;
+ margin: 0 auto;
+ font-size: 1rem;
+ line-height: 1.9;
+ position: relative;
+ }
+
+ .contact-section { background: var(--cream); padding: 5rem 2rem; }
+
+ .contact-grid {
+ display: grid;
+ grid-template-columns: 1fr 1.6fr;
+ gap: 3rem;
+ max-width: 960px;
+ margin: 0 auto;
+ }
+
+ .contact-info h3 {
+ font-size: 1.3rem;
+ color: var(--navy);
+ margin-bottom: 1.5rem;
+ }
+
+ .contact-info-item {
+ display: flex;
+ gap: 1rem;
+ margin-bottom: 1.5rem;
+ align-items: flex-start;
+ }
+
+ .contact-info-icon {
+ width: 46px;
+ height: 46px;
+ background: rgba(27,154,170,0.1);
+ border-radius: 50%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-shrink: 0;
+ transition: background 0.2s;
+ }
+
+ .contact-info-icon svg {
+ width: 20px;
+ height: 20px;
+ stroke: var(--teal);
+ stroke-width: 1.75;
+ fill: none;
+ }
+
+ .contact-info-item:hover .contact-info-icon {
+ background: rgba(27,154,170,0.2);
+ }
+
+ .contact-info-link {
+ color: var(--teal);
+ text-decoration: none;
+ font-weight: 700;
+ transition: color 0.2s;
+ display: inline-block;
+ margin-top: 0.2rem;
+ }
+
+ .contact-info-link:hover {
+ color: var(--teal-dark);
+ text-decoration: underline;
+ }
+
+ .whatsapp-btn {
+ display: inline-flex;
+ align-items: center;
+ gap: 0.5rem;
+ background: #25D366;
+ color: white;
+ padding: 0.55rem 1.1rem;
+ border-radius: 40px;
+ font-size: 0.82rem;
+ font-weight: 700;
+ text-decoration: none;
+ margin-top: 0.6rem;
+ transition: background 0.2s, transform 0.2s;
+ width: fit-content;
+ }
+
+ .whatsapp-btn:hover {
+ background: #1fba57;
+ transform: translateY(-1px);
+ }
+
+ .whatsapp-btn svg {
+ width: 16px;
+ height: 16px;
+ fill: white;
+ stroke: none;
+ }
+
+ .contact-info-text strong {
+ display: block;
+ font-size: 0.8rem;
+ font-weight: 700;
+ letter-spacing: 0.08em;
+ text-transform: uppercase;
+ color: var(--navy);
+ margin-bottom: 0.2rem;
+ }
+
+ .contact-info-text span {
+ font-size: 0.9rem;
+ color: var(--text-mid);
+ line-height: 1.6;
+ }
+
+ .contact-form-wrap {
+ background: var(--white);
+ border-radius: 12px;
+ padding: 2.5rem;
+ box-shadow: var(--shadow-sm);
+ border: 1px solid var(--border);
+ }
+
+ /* ── WHY CHECKLIST ── */
+ .why-list { list-style: none; margin-top: 1.5rem; }
+
+ .why-list li {
+ display: flex;
+ align-items: flex-start;
+ gap: 0.85rem;
+ padding: 0.75rem 0;
+ border-bottom: 1px solid var(--border);
+ font-size: 0.95rem;
+ color: var(--text-mid);
+ }
+
+ .why-list li:last-child { border-bottom: none; }
+
+ .why-check {
+ width: 22px;
+ height: 22px;
+ background: var(--teal);
+ border-radius: 50%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-shrink: 0;
+ color: white;
+ font-size: 0.65rem;
+ margin-top: 2px;
+ }
+
+ /* ── PAGE TRANSITION ── */
+ @keyframes fadeInPage {
+ from { opacity: 0; transform: translateY(16px); }
+ to { opacity: 1; transform: translateY(0); }
+ }
+
+ .page.active { animation: fadeInPage 0.4s ease both; }
+
+ /* ── RESPONSIVE ── */
+ @media (max-width: 900px) {
+ .footer-top {
+ grid-template-columns: 1fr 1fr;
+ }
+
+ .contact-grid {
+ grid-template-columns: 1fr;
+ }
+ }
+
+ @media (max-width: 700px) {
+ .nav-links { display: none; }
+ .hamburger { display: flex; }
+
+ .footer-top {
+ grid-template-columns: 1fr;
+ }
+
+ .newsletter-form {
+ flex-direction: column;
+ }
+
+ .form-row {
+ grid-template-columns: 1fr;
+ }
+
+ .hero h1 { font-size: 2.5rem; }
+
+ .hero-scroll { display: none; }
+
+ .prayer-form-wrap,
+ .donate-form-wrap,
+ .contact-form-wrap {
+ padding: 1.75rem;
+ }
+ }
+
+ @media (max-width: 480px) {
+ .section { padding: 3.5rem 1.25rem; }
+ .section-title { font-size: 1.75rem; }
+ }
+
+ /* ── UTILITY ── */
+ .text-center { text-align: center; }
+ .mb-0 { margin-bottom: 0 !important; }
+ .mt-1 { margin-top: 0.5rem; }
+ .mt-2 { margin-top: 1rem; }
+ .mt-3 { margin-top: 1.5rem; }
+ .gold { color: var(--gold); }
+ .teal { color: var(--teal); }
+
+ /* Accessible focus styles */
+ :focus-visible {
+ outline: 2px solid var(--teal);
+ outline-offset: 3px;
+ }
+
+ /* ── PUBLISHED BADGE ── */
+ .post-card.is-published {
+ border-color: rgba(200,151,58,0.35);
+ position: relative;
+ }
+
+ .published-badge {
+ position: absolute;
+ top: 12px; right: 12px;
+ background: var(--gold);
+ color: white;
+ font-size: 0.6rem;
+ font-weight: 700;
+ letter-spacing: 0.15em;
+ text-transform: uppercase;
+ padding: 0.25rem 0.6rem;
+ border-radius: 2px;
+ z-index: 2;
+ }
+
+ /* ── SINGLE POST PAGE ── */
+ .post-page-hero {
+ background: var(--navy);
+ padding: 7rem 2rem 5rem;
+ position: relative;
+ overflow: hidden;
+ }
+
+ .post-page-hero::before {
+ content: '';
+ position: absolute;
+ inset: 0;
+ background:
+ radial-gradient(ellipse 70% 60% at 20% 50%, rgba(27,154,170,0.14) 0%, transparent 60%),
+ radial-gradient(ellipse 40% 50% at 80% 30%, rgba(200,151,58,0.08) 0%, transparent 55%);
+ }
+
+ .post-page-hero-inner {
+ max-width: 780px;
+ margin: 0 auto;
+ position: relative;
+ }
+
+ .post-back-btn {
+ display: inline-flex;
+ align-items: center;
+ gap: 0.5rem;
+ color: rgba(255,255,255,0.5);
+ font-size: 0.8rem;
+ font-weight: 700;
+ letter-spacing: 0.1em;
+ text-transform: uppercase;
+ cursor: pointer;
+ border: none;
+ background: none;
+ padding: 0;
+ margin-bottom: 2rem;
+ transition: color 0.2s;
+ }
+
+ .post-back-btn:hover { color: var(--teal-light); }
+
+ .post-meta-row {
+ display: flex;
+ align-items: center;
+ gap: 1rem;
+ margin-bottom: 1.5rem;
+ flex-wrap: wrap;
+ }
+
+ .post-meta-row .post-category {
+ font-size: 0.65rem;
+ }
+
+ .post-meta-date {
+ font-size: 0.75rem;
+ color: rgba(255,255,255,0.4);
+ letter-spacing: 0.08em;
+ }
+
+ .post-page-hero h1 {
+ font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+ color: var(--white);
+ font-weight: 800;
+ line-height: 1.15;
+ margin-bottom: 1rem;
+ }
+
+ .post-page-hero .post-subtitle {
+ font-size: 1.1rem;
+ color: rgba(255,255,255,0.6);
+ font-style: italic;
+ font-family: 'Playfair Display', serif;
+ line-height: 1.7;
+ }
+
+ /* ── ARTICLE BODY ── */
+ .article-body {
+ background: var(--white);
+ padding: 4rem 2rem 5rem;
+ }
+
+ .article-inner {
+ max-width: 720px;
+ margin: 0 auto;
+ }
+
+ .article-inner p {
+ font-size: 1.05rem;
+ color: var(--text-mid);
+ line-height: 1.95;
+ margin-bottom: 1.65rem;
+ }
+
+ .article-inner h2 {
+ font-size: 1.55rem;
+ color: var(--navy);
+ margin: 2.75rem 0 1.1rem;
+ font-weight: 700;
+ }
+
+ .article-inner strong {
+ color: var(--navy);
+ font-weight: 700;
+ }
+
+ .article-scripture {
+ border-left: 3px solid var(--gold);
+ background: rgba(200,151,58,0.06);
+ border-radius: 0 8px 8px 0;
+ padding: 1.5rem 2rem;
+ margin: 2.25rem 0;
+ }
+
+ .article-scripture p {
+ font-family: 'Playfair Display', serif;
+ font-style: italic;
+ font-size: 1.1rem;
+ color: var(--navy);
+ line-height: 1.7;
+ margin-bottom: 0.5rem !important;
+ }
+
+ .article-scripture cite {
+ font-size: 0.78rem;
+ font-weight: 700;
+ letter-spacing: 0.12em;
+ text-transform: uppercase;
+ color: var(--gold);
+ font-style: normal;
+ }
+
+ .article-callout {
+ background: var(--navy);
+ border-radius: 10px;
+ padding: 2.25rem 2rem;
+ margin: 2.5rem 0;
+ }
+
+ .article-callout-label {
+ font-size: 0.7rem;
+ font-weight: 700;
+ letter-spacing: 0.2em;
+ text-transform: uppercase;
+ color: var(--gold);
+ margin-bottom: 1.1rem;
+ display: block;
+ }
+
+ .article-callout p {
+ color: rgba(255,255,255,0.8) !important;
+ font-size: 0.95rem !important;
+ line-height: 1.85 !important;
+ margin-bottom: 0 !important;
+ }
+
+ .article-callout ul {
+ list-style: none;
+ margin: 0;
+ padding: 0;
+ }
+
+ .article-callout ul li {
+ color: rgba(255,255,255,0.75);
+ font-size: 0.95rem;
+ line-height: 1.85;
+ padding: 0.5rem 0;
+ border-bottom: 1px solid rgba(255,255,255,0.07);
+ padding-left: 1.25rem;
+ position: relative;
+ }
+
+ .article-callout ul li:last-child { border-bottom: none; }
+
+ .article-callout ul li::before {
+ content: '';
+ position: absolute;
+ left: 0;
+ color: var(--gold);
+ font-size: 0.6rem;
+ top: 0.85rem;
+ }
+
+ .article-prayer {
+ background: linear-gradient(135deg, rgba(27,154,170,0.08) 0%, rgba(200,151,58,0.06) 100%);
+ border: 1px solid rgba(27,154,170,0.2);
+ border-radius: 10px;
+ padding: 2.25rem 2rem;
+ margin: 2.5rem 0;
+ text-align: center;
+ }
+
+ .article-prayer-label {
+ font-size: 0.7rem;
+ font-weight: 700;
+ letter-spacing: 0.2em;
+ text-transform: uppercase;
+ color: var(--teal);
+ margin-bottom: 1rem;
+ display: block;
+ }
+
+ .article-prayer p {
+ font-family: 'Playfair Display', serif;
+ font-style: italic;
+ font-size: 1rem !important;
+ color: var(--navy) !important;
+ line-height: 1.85 !important;
+ margin-bottom: 0 !important;
+ }
+
+ .article-challenge {
+ background: var(--cream);
+ border-radius: 10px;
+ padding: 2.25rem 2rem;
+ margin: 2.5rem 0;
+ border: 1px solid var(--border);
+ }
+
+ .article-challenge-label {
+ font-size: 0.7rem;
+ font-weight: 700;
+ letter-spacing: 0.2em;
+ text-transform: uppercase;
+ color: var(--teal);
+ margin-bottom: 1rem;
+ display: block;
+ }
+
+ .article-challenge p {
+ font-size: 0.95rem !important;
+ color: var(--text-mid) !important;
+ line-height: 1.85 !important;
+ margin-bottom: 0 !important;
+ }
+
+ .article-divider {
+ border: none;
+ border-top: 1px solid var(--border);
+ margin: 3rem 0;
+ }
+
+ .article-share {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ flex-wrap: wrap;
+ gap: 1rem;
+ padding-top: 2rem;
+ border-top: 1px solid var(--border);
+ }
+
+ .article-share p {
+ font-size: 0.85rem !important;
+ color: var(--text-light) !important;
+ font-style: italic;
+ margin: 0 !important;
+ }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="mainNav">
-  <div class="nav-brand" onclick="navigate('home')">
-    Mavel's <span>Corner</span>
-  </div>
-  <ul class="nav-links">
-    <li><a onclick="navigate('home')" data-page="home">Home</a></li>
-    <li><a onclick="navigate('about')" data-page="about">About</a></li>
-    <li><a onclick="navigate('blog')" data-page="blog">Blog</a></li>
-    <li><a onclick="navigate('prayer')" data-page="prayer">Prayer</a></li>
-    <li><a onclick="navigate('donate')" data-page="donate">Donate</a></li>
-    <li><a onclick="navigate('contact')" data-page="contact">Contact</a></li>
-  </ul>
-  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
+ <div class="nav-brand" onclick="navigate('home')">
+ Mavel's <span>Corner</span>
+ </div>
+ <ul class="nav-links">
+ <li><a onclick="navigate('home')" data-page="home">Home</a></li>
+ <li><a onclick="navigate('about')" data-page="about">About</a></li>
+ <li><a onclick="navigate('blog')" data-page="blog">Blog</a></li>
+ <li><a onclick="navigate('prayer')" data-page="prayer">Prayer</a></li>
+ <li><a onclick="navigate('contact')" data-page="contact">Contact</a></li>
+ </ul>
+ <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+ <span></span><span></span><span></span>
+ </div>
 </nav>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a onclick="navigate('home')" data-mobile-page="home">Home</a>
-  <a onclick="navigate('about')" data-mobile-page="about">About</a>
-  <a onclick="navigate('blog')" data-mobile-page="blog">Blog</a>
-  <a onclick="navigate('prayer')" data-mobile-page="prayer">Prayer</a>
-  <a onclick="navigate('donate')" data-mobile-page="donate">Donate</a>
-  <a onclick="navigate('contact')" data-mobile-page="contact">Contact</a>
+ <a onclick="navigate('home')" data-mobile-page="home">Home</a>
+ <a onclick="navigate('about')" data-mobile-page="about">About</a>
+ <a onclick="navigate('blog')" data-mobile-page="blog">Blog</a>
+ <a onclick="navigate('prayer')" data-mobile-page="prayer">Prayer</a>
+ <a onclick="navigate('contact')" data-mobile-page="contact">Contact</a>
 </div>
 
 <!-- ══════════════════════════════════════════════
-     PAGE: HOME
+ PAGE: HOME
 ══════════════════════════════════════════════ -->
 <div class="page active" id="page-home">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-pattern"></div>
-    <div class="hero-content">
-      <span class="hero-eyebrow">A place of real hope</span>
-      <h1>Welcome to<br><em>Mavel's Corner</em></h1>
-      <p class="hero-tagline">
-        <span>Hope for the broken.</span> Truth for the searching.<br>Grace for the waiting.
-      </p>
-      <div class="hero-buttons">
-        <button class="btn btn-primary" onclick="navigate('blog')">Read the Blog</button>
-        <button class="btn btn-outline" onclick="navigate('prayer')">Submit a Prayer Request</button>
-      </div>
-    </div>
-    <div class="hero-scroll">
-      <div class="hero-scroll-line"></div>
-      Scroll
-    </div>
-  </section>
+ <!-- HERO -->
+ <section class="hero">
+ <div class="hero-bg"></div>
+ <div class="hero-pattern"></div>
+ <div class="hero-content">
+ <span class="hero-eyebrow">A place of real hope</span>
+ <h1>Welcome to<br><em>Mavel's Corner</em></h1>
+ <p class="hero-tagline">
+ <span>Hope for the broken.</span> Truth for the searching.<br>Grace for the waiting.
+ </p>
+ <div class="hero-buttons">
+ <button class="btn btn-primary" onclick="navigate('blog')">Read the Blog</button>
+ <button class="btn btn-outline" onclick="navigate('prayer')">Submit a Prayer Request</button>
+ </div>
+ </div>
+ <div class="hero-scroll">
+ <div class="hero-scroll-line"></div>
+ Scroll
+ </div>
+ </section>
 
-  <!-- SCRIPTURE STRIP -->
-  <section class="scripture-strip">
-    <blockquote>"For I know the plans I have for you," declares the Lord, "plans to prosper you and not to harm you, plans to give you hope and a future."</blockquote>
-    <cite>Jeremiah 29:11 — NIV</cite>
-  </section>
+ <!-- SCRIPTURE STRIP -->
+ <section class="scripture-strip">
+ <blockquote>"For I know the plans I have for you," declares the Lord, "plans to prosper you and not to harm you, plans to give you hope and a future."</blockquote>
+ <cite>Jeremiah 29:11 — NIV</cite>
+ </section>
 
-  <!-- MISSION PILLARS -->
-  <section class="section pillars">
-    <div class="section-inner">
-      <span class="section-label">Why We Exist</span>
-      <h2 class="section-title">You Are Not Forgotten</h2>
-      <p class="section-subtitle">Mavel's Corner is a space built for the ones the world overlooks — those who are broken, questioning, and waiting on God's promises.</p>
-      <div class="pillars-grid">
-        <div class="pillar-card">
-          <div class="pillar-icon">💔</div>
-          <h3>Hope for the Broken</h3>
-          <p>For those who have hit rock bottom and cannot see a way forward. You are seen. You are loved. And this is not your end.</p>
-        </div>
-        <div class="pillar-card">
-          <div class="pillar-icon">📖</div>
-          <h3>Truth from the Word</h3>
-          <p>Every post is rooted in Scripture, because the Word of God is the only truth that holds when everything else falls apart.</p>
-        </div>
-        <div class="pillar-card">
-          <div class="pillar-icon">🕊️</div>
-          <h3>A Second Chance</h3>
-          <p>God is the God of new beginnings. If you feel disqualified by your past, come here and be reminded of who He says you are.</p>
-        </div>
-        <div class="pillar-card">
-          <div class="pillar-icon">🌱</div>
-          <h3>His Plans Shall Manifest</h3>
-          <p>The seasons of waiting are never wasted. What God started in your life, He will finish. Every single promise will come to pass.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+ <!-- MISSION PILLARS -->
+ <section class="section pillars">
+ <div class="section-inner">
+ <span class="section-label">Why We Exist</span>
+ <h2 class="section-title">You Are Not Forgotten</h2>
+ <p class="section-subtitle">Mavel's Corner is a space built for the ones the world overlooks — those who are broken, questioning, and waiting on God's promises.</p>
+ <div class="pillars-grid">
+ <div class="pillar-card">
+ <h3>Hope for the Broken</h3>
+ <p>For those who have hit rock bottom and cannot see a way forward. You are seen. You are loved. And this is not your end.</p>
+ </div>
+ <div class="pillar-card">
+ <h3>Truth from the Word</h3>
+ <p>Every post is rooted in Scripture, because the Word of God is the only truth that holds when everything else falls apart.</p>
+ </div>
+ <div class="pillar-card">
+ <h3>A Second Chance</h3>
+ <p>God is the God of new beginnings. If you feel disqualified by your past, come here and be reminded of who He says you are.</p>
+ </div>
+ <div class="pillar-card">
+ <h3>His Plans Shall Manifest</h3>
+ <p>The seasons of waiting are never wasted. What God started in your life, He will finish. Every single promise will come to pass.</p>
+ </div>
+ </div>
+ </div>
+ </section>
 
-  <!-- LATEST POSTS -->
-  <section class="section posts-preview">
-    <div class="section-inner">
-      <div class="posts-header">
-        <div>
-          <span class="section-label">Recent Words</span>
-          <h2 class="section-title">From the Blog</h2>
-        </div>
-        <button class="btn btn-primary" onclick="navigate('blog')">View All Posts</button>
-      </div>
-      <div class="posts-grid">
-        <div class="post-card is-published" style="position:relative;">
-          <span class="published-badge">New Post</span>
-          <div class="post-card-img post-card-img-1">
-            <div class="post-card-img-inner">⏳</div>
-          </div>
-          <div class="post-card-body">
-            <span class="post-category">Faith & Discipleship</span>
-            <h3>Still Waiting? So Was Abraham.</h3>
-            <p class="post-scripture">Habakkuk 2:3 — "Though it tarries, wait for it; it will surely come."</p>
-            <p class="post-excerpt">You were going to be further along by now. The waiting is starting to feel less like a season and more like a sentence. This post is for you.</p>
-            <button class="post-read-more" onclick="navigate('post001')">Read More →</button>
-          </div>
-        </div>
-        <div class="post-card is-published" style="position:relative;">
-          <span class="published-badge">New Post</span>
-          <div class="post-card-img post-card-img-2">
-            <div class="post-card-img-inner">⛰️</div>
-          </div>
-          <div class="post-card-body">
-            <span class="post-category">Faith & Discipleship</span>
-            <h3>He Is A Mountain Moving God</h3>
-            <p class="post-scripture">Matthew 17:20 — "Nothing will be impossible for you."</p>
-            <p class="post-excerpt">You have watched others get their breakthrough and quietly wondered — what about me? The mountain is still there. But so is the God who moves it.</p>
-            <button class="post-read-more" onclick="navigate('post002')">Read More →</button>
-          </div>
-        </div>
-        <div class="post-card">
-          <div class="post-card-img post-card-img-3">
-            <div class="post-card-img-inner">🌅</div>
-          </div>
-          <div class="post-card-body">
-            <span class="post-category">Faith & Discipleship</span>
-            <h3>Why Waiting on God Is Never Wasted Time</h3>
-            <p class="post-scripture">Isaiah 40:31 — "They will soar on wings like eagles."</p>
-            <p class="post-excerpt">The waiting room is not a punishment. It is a preparation. God is doing something in the hidden seasons that only eternity will fully reveal.</p>
-            <button class="post-read-more" onclick="navigate('blog')">Read More →</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+ <!-- LATEST POSTS -->
+ <section class="section posts-preview">
+ <div class="section-inner">
+ <div class="posts-header">
+ <div>
+ <span class="section-label">Recent Words</span>
+ <h2 class="section-title">From the Blog</h2>
+ </div>
+ <button class="btn btn-primary" onclick="navigate('blog')">View All Posts</button>
+ </div>
+ <div class="posts-grid">
+ <div class="post-card is-published" style="position:relative;">
+ <span class="published-badge">New Post</span>
+ <div class="post-card-img post-card-img-1">
+ 
+ </div>
+ <div class="post-card-body">
+ <span class="post-category">Faith & Discipleship</span>
+ <h3>Still Waiting? So Was Abraham.</h3>
+ <p class="post-scripture">Habakkuk 2:3 — "Though it tarries, wait for it; it will surely come."</p>
+ <p class="post-excerpt">You were going to be further along by now. The waiting is starting to feel less like a season and more like a sentence. This post is for you.</p>
+ <button class="post-read-more" onclick="navigate('post001')">Read More →</button>
+ </div>
+ </div>
+ <div class="post-card is-published" style="position:relative;">
+ <span class="published-badge">New Post</span>
+ <div class="post-card-img post-card-img-2">
+ 
+ </div>
+ <div class="post-card-body">
+ <span class="post-category">Faith & Discipleship</span>
+ <h3>He Is A Mountain Moving God</h3>
+ <p class="post-scripture">Matthew 17:20 — "Nothing will be impossible for you."</p>
+ <p class="post-excerpt">You have watched others get their breakthrough and quietly wondered — what about me? The mountain is still there. But so is the God who moves it.</p>
+ <button class="post-read-more" onclick="navigate('post002')">Read More →</button>
+ </div>
+ </div>
+ <div class="post-card">
+ <div class="post-card-img post-card-img-3">
+ 
+ </div>
+ <div class="post-card-body">
+ <span class="post-category">Faith & Discipleship</span>
+ <h3>Why Waiting on God Is Never Wasted Time</h3>
+ <p class="post-scripture">Isaiah 40:31 — "They will soar on wings like eagles."</p>
+ <p class="post-excerpt">The waiting room is not a punishment. It is a preparation. God is doing something in the hidden seasons that only eternity will fully reveal.</p>
+ <button class="post-read-more" onclick="navigate('blog')">Read More →</button>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section>
 
-  <!-- NEWSLETTER -->
-  <section class="newsletter">
-    <div class="newsletter-inner">
-      <span class="section-label" style="color: var(--gold);">Stay Connected</span>
-      <h2>Words of Hope, Straight to Your Inbox</h2>
-      <p>Join a growing community of believers finding their footing again. No spam — just honest, life-giving words delivered when you need them most.</p>
-      <div class="newsletter-form">
-        <input type="email" placeholder="Your email address">
-        <button class="btn btn-gold">Subscribe</button>
-      </div>
-    </div>
-  </section>
+ <!-- NEWSLETTER -->
+ <section class="newsletter">
+ <div class="newsletter-inner">
+ <span class="section-label" style="color: var(--gold);">Stay Connected</span>
+ <h2>Words of Hope, Straight to Your Inbox</h2>
+ <p>Join a growing community of believers finding their footing again. No spam — just honest, life-giving words delivered when you need them most.</p>
+ <div class="newsletter-form">
+ <input type="email" placeholder="Your email address">
+ <button class="btn btn-gold">Subscribe</button>
+ </div>
+ </div>
+ </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <h3>Mavel's <span>Corner</span></h3>
-          <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
-          <div class="footer-teal-line"></div>
-        </div>
-        <div class="footer-col">
-          <h4>Navigate</h4>
-          <ul>
-            <li><a onclick="navigate('home')">Home</a></li>
-            <li><a onclick="navigate('about')">About</a></li>
-            <li><a onclick="navigate('blog')">Blog</a></li>
-            <li><a onclick="navigate('prayer')">Prayer Request</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Support</h4>
-          <ul>
-            <li><a onclick="navigate('donate')">Donate</a></li>
-            <li><a onclick="navigate('contact')">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Categories</h4>
-          <ul>
-            <li><a onclick="navigate('blog')">Faith & Discipleship</a></li>
-            <li><a onclick="navigate('blog')">Christian Living</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Mavel's Corner. All rights reserved.</span>
-        <span>Built with love and faith.</span>
-      </div>
-    </div>
-  </footer>
+ <!-- FOOTER -->
+ <footer>
+ <div class="footer-inner">
+ <div class="footer-top">
+ <div class="footer-brand">
+ <h3>Mavel's <span>Corner</span></h3>
+ <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
+ <div class="footer-teal-line"></div>
+ </div>
+ <div class="footer-col">
+ <h4>Navigate</h4>
+ <ul>
+ <li><a onclick="navigate('home')">Home</a></li>
+ <li><a onclick="navigate('about')">About</a></li>
+ <li><a onclick="navigate('blog')">Blog</a></li>
+ <li><a onclick="navigate('prayer')">Prayer Request</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h4>Support</h4>
+ <ul>
+ <li><a onclick="navigate('contact')">Contact</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h4>Categories</h4>
+ <ul>
+ <li><a onclick="navigate('blog')">Faith & Discipleship</a></li>
+ <li><a onclick="navigate('blog')">Christian Living</a></li>
+ </ul>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <span>© 2026 Mavel's Corner. All rights reserved.</span>
+ <span>Built with love and faith.</span>
+ </div>
+ </div>
+ </footer>
 
 </div>
 
 <!-- ══════════════════════════════════════════════
-     PAGE: ABOUT
+ PAGE: ABOUT
 ══════════════════════════════════════════════ -->
 <div class="page" id="page-about">
 
-  <section class="about-hero">
-    <div class="about-hero-inner">
-      <span class="section-label" style="color: var(--teal-light);">Our Story</span>
-      <h1>Rooted in Faith.<br><em>Reaching the Lost.</em></h1>
-      <p>Mavel's Corner was not born in a comfortable season. It was born in the dark — to reach those still sitting in theirs.</p>
-    </div>
-  </section>
+ <section class="about-hero">
+ <div class="about-hero-inner">
+ <span class="section-label" style="color: var(--teal-light);">Our Story</span>
+ <h1>Rooted in Faith.<br><em>Reaching the Lost.</em></h1>
+ <p>Mavel's Corner was not born in a comfortable season. It was born in the dark — to reach those still sitting in theirs.</p>
+ </div>
+ </section>
 
-  <section class="section about-story" style="background: var(--white);">
-    <div class="about-story-inner">
-      <span class="section-label">Why We Started</span>
-      <h2 class="section-title">The Story Behind Mavel's Corner</h2>
+ <section class="section about-story" style="background: var(--white);">
+ <div class="about-story-inner">
+ <span class="section-label">Why We Started</span>
+ <h2 class="section-title">The Story Behind Mavel's Corner</h2>
 
-      <p>There is a kind of pain that makes you question whether life is worth living. A heaviness so deep it feels permanent. A silence so loud you begin to wonder if God has looked away.</p>
+ <p>There is a kind of pain that makes you question whether life is worth living. A heaviness so deep it feels permanent. A silence so loud you begin to wonder if God has looked away.</p>
 
-      <p>Mavel's Corner was created for those moments. For the young adult staring at their ceiling at 2am, asking God why. For the millennial who gave their best years to a dream that crumbled. For the one who smiled through service on Sunday but wept alone on Monday.</p>
+ <p>Mavel's Corner was created for those moments. For the young adult staring at their ceiling at 2am, asking God why. For the millennial who gave their best years to a dream that crumbled. For the one who smiled through service on Sunday but wept alone on Monday.</p>
 
-      <div class="pull-quote">
-        <p>"He heals the brokenhearted and binds up their wounds."</p>
-        <cite>Psalm 147:3 — NIV</cite>
-      </div>
+ <div class="pull-quote">
+ <p>"He heals the brokenhearted and binds up their wounds."</p>
+ <cite>Psalm 147:3 — NIV</cite>
+ </div>
 
-      <p>This is not a platform for polished theology or performance-based Christianity. Mavel's Corner is a table where the broken, the searching, and the waiting are welcome exactly as they are. Where the truth is spoken plainly. Where Scripture is not weaponised but offered like water to someone desperately thirsty.</p>
+ <p>This is not a platform for polished theology or performance-based Christianity. Mavel's Corner is a table where the broken, the searching, and the waiting are welcome exactly as they are. Where the truth is spoken plainly. Where Scripture is not weaponised but offered like water to someone desperately thirsty.</p>
 
-      <p>If you have ever felt like giving up on life — or worse, acted on that feeling — please know: God has not given up on you. Not one breath you take has been outside of His notice. And His plans for your life are not cancelled by your pain. They are simply not finished yet.</p>
+ <p>If you have ever felt like giving up on life — or worse, acted on that feeling — please know: God has not given up on you. Not one breath you take has been outside of His notice. And His plans for your life are not cancelled by your pain. They are simply not finished yet.</p>
 
-      <div class="pull-quote">
-        <p>"Being confident of this, that he who began a good work in you will carry it on to completion until the day of Christ Jesus."</p>
-        <cite>Philippians 1:6 — NIV</cite>
-      </div>
+ <div class="pull-quote">
+ <p>"Being confident of this, that he who began a good work in you will carry it on to completion until the day of Christ Jesus."</p>
+ <cite>Philippians 1:6 — NIV</cite>
+ </div>
 
-      <p>We believe every person who finds their way to Mavel's Corner was brought here by Someone who loves them. And we will do our part to make sure they leave with more hope than they came with.</p>
-    </div>
-  </section>
+ <p>We believe every person who finds their way to Mavel's Corner was brought here by Someone who loves them. And we will do our part to make sure they leave with more hope than they came with.</p>
+ </div>
+ </section>
 
-  <section class="section mission-vision">
-    <div class="section-inner">
-      <span class="section-label">Our Foundation</span>
-      <h2 class="section-title">Mission & Vision</h2>
-      <div class="mv-grid">
-        <div class="mv-card">
-          <h3>Our Mission</h3>
-          <p>To give hope to those who have given up on life, are battling suicidal thoughts or deep hopelessness, and to point them to the only true source of healing — a God who has not abandoned them and whose plans for their lives are still very much alive.</p>
-        </div>
-        <div class="mv-card">
-          <h3>Our Vision</h3>
-          <p>To become a trusted digital sanctuary where young adults and millennials across the world encounter the love of God, experience genuine restoration, and find the courage to step into the purpose He prepared for them before the foundation of the earth.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+ <section class="section mission-vision">
+ <div class="section-inner">
+ <span class="section-label">Our Foundation</span>
+ <h2 class="section-title">Mission & Vision</h2>
+ <div class="mv-grid">
+ <div class="mv-card">
+ <h3>Our Mission</h3>
+ <p>To give hope to those who have given up on life, are battling suicidal thoughts or deep hopelessness, and to point them to the only true source of healing — a God who has not abandoned them and whose plans for their lives are still very much alive.</p>
+ </div>
+ <div class="mv-card">
+ <h3>Our Vision</h3>
+ <p>To become a trusted digital sanctuary where young adults and millennials across the world encounter the love of God, experience genuine restoration, and find the courage to step into the purpose He prepared for them before the foundation of the earth.</p>
+ </div>
+ </div>
+ </div>
+ </section>
 
-  <section class="section" style="background: var(--white);">
-    <div class="section-inner">
-      <span class="section-label">What We Stand For</span>
-      <h2 class="section-title">Our Core Values</h2>
-      <div class="values-grid">
-        <div class="value-card">
-          <span class="value-icon">🕊️</span>
-          <h3>Radical Grace</h3>
-          <p>We lead with grace first. No one who comes here should feel judged or shamed. Jesus did not come for the well — He came for the broken.</p>
-        </div>
-        <div class="value-card">
-          <span class="value-icon">📖</span>
-          <h3>Scripture-Grounded</h3>
-          <p>Everything here is anchored in the Word of God. Not opinion, not self-help — but the unchanging truth of who God is and what He says about you.</p>
-        </div>
-        <div class="value-card">
-          <span class="value-icon">❤️</span>
-          <h3>Authentic Community</h3>
-          <p>We are not curating a highlight reel. We are having honest conversations about faith, struggle, and the real journey of following Jesus.</p>
-        </div>
-        <div class="value-card">
-          <span class="value-icon">🌱</span>
-          <h3>Life-Giving Purpose</h3>
-          <p>We believe every person reading these words was made for a purpose that goes beyond their worst day. We exist to help them remember that.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+ <section class="section" style="background: var(--white);">
+ <div class="section-inner">
+ <span class="section-label">What We Stand For</span>
+ <h2 class="section-title">Our Core Values</h2>
+ <div class="values-grid">
+ <div class="value-card">
+ <h3>Radical Grace</h3>
+ <p>We lead with grace first. No one who comes here should feel judged or shamed. Jesus did not come for the well — He came for the broken.</p>
+ </div>
+ <div class="value-card">
+ <h3>Scripture-Grounded</h3>
+ <p>Everything here is anchored in the Word of God. Not opinion, not self-help — but the unchanging truth of who God is and what He says about you.</p>
+ </div>
+ <div class="value-card">
+ <h3>Authentic Community</h3>
+ <p>We are not curating a highlight reel. We are having honest conversations about faith, struggle, and the real journey of following Jesus.</p>
+ </div>
+ <div class="value-card">
+ <h3>Life-Giving Purpose</h3>
+ <p>We believe every person reading these words was made for a purpose that goes beyond their worst day. We exist to help them remember that.</p>
+ </div>
+ </div>
+ </div>
+ </section>
 
-  <section class="section commitments">
-    <div class="section-inner">
-      <span class="section-label" style="color: var(--teal-light);">Our Promise to You</span>
-      <h2 class="section-title">Three Core Commitments</h2>
-      <p class="section-subtitle" style="color: rgba(255,255,255,0.55);">These three commitments shape every post, every prayer, and every word written at Mavel's Corner.</p>
-      <div class="commit-grid">
-        <div class="commit-card">
-          <div class="commit-number">01</div>
-          <h3>Restore Hope</h3>
-          <p>We are committed to speaking life into people who have heard nothing but death. If you came here hopeless, we want you to leave with a spark that will not go out.</p>
-        </div>
-        <div class="commit-card">
-          <div class="commit-number">02</div>
-          <h3>Root in Scripture</h3>
-          <p>Every word will be tested against the Word. We will never lead you to a feeling — we will lead you to a Person. Jesus Christ, the same yesterday, today and forever.</p>
-        </div>
-        <div class="commit-card">
-          <div class="commit-number">03</div>
-          <h3>Release Purpose</h3>
-          <p>We are not just here to comfort — we are here to mobilise. Once hope is restored and truth is received, we want to help you step into why God made you.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+ <section class="section commitments">
+ <div class="section-inner">
+ <span class="section-label" style="color: var(--teal-light);">Our Promise to You</span>
+ <h2 class="section-title">Three Core Commitments</h2>
+ <p class="section-subtitle" style="color: rgba(255,255,255,0.55);">These three commitments shape every post, every prayer, and every word written at Mavel's Corner.</p>
+ <div class="commit-grid">
+ <div class="commit-card">
+ <div class="commit-number">01</div>
+ <h3>Restore Hope</h3>
+ <p>We are committed to speaking life into people who have heard nothing but death. If you came here hopeless, we want you to leave with a spark that will not go out.</p>
+ </div>
+ <div class="commit-card">
+ <div class="commit-number">02</div>
+ <h3>Root in Scripture</h3>
+ <p>Every word will be tested against the Word. We will never lead you to a feeling — we will lead you to a Person. Jesus Christ, the same yesterday, today and forever.</p>
+ </div>
+ <div class="commit-card">
+ <div class="commit-number">03</div>
+ <h3>Release Purpose</h3>
+ <p>We are not just here to comfort — we are here to mobilise. Once hope is restored and truth is received, we want to help you step into why God made you.</p>
+ </div>
+ </div>
+ </div>
+ </section>
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <h3>Mavel's <span>Corner</span></h3>
-          <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
-          <div class="footer-teal-line"></div>
-        </div>
-        <div class="footer-col">
-          <h4>Navigate</h4>
-          <ul>
-            <li><a onclick="navigate('home')">Home</a></li>
-            <li><a onclick="navigate('about')">About</a></li>
-            <li><a onclick="navigate('blog')">Blog</a></li>
-            <li><a onclick="navigate('prayer')">Prayer Request</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Support</h4>
-          <ul>
-            <li><a onclick="navigate('donate')">Donate</a></li>
-            <li><a onclick="navigate('contact')">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Categories</h4>
-          <ul>
-            <li><a onclick="navigate('blog')">Faith & Discipleship</a></li>
-            <li><a onclick="navigate('blog')">Christian Living</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Mavel's Corner. All rights reserved.</span>
-        <span>Built with love and faith.</span>
-      </div>
-    </div>
-  </footer>
+ <footer>
+ <div class="footer-inner">
+ <div class="footer-top">
+ <div class="footer-brand">
+ <h3>Mavel's <span>Corner</span></h3>
+ <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
+ <div class="footer-teal-line"></div>
+ </div>
+ <div class="footer-col">
+ <h4>Navigate</h4>
+ <ul>
+ <li><a onclick="navigate('home')">Home</a></li>
+ <li><a onclick="navigate('about')">About</a></li>
+ <li><a onclick="navigate('blog')">Blog</a></li>
+ <li><a onclick="navigate('prayer')">Prayer Request</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h4>Support</h4>
+ <ul>
+ <li><a onclick="navigate('contact')">Contact</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h4>Categories</h4>
+ <ul>
+ <li><a onclick="navigate('blog')">Faith & Discipleship</a></li>
+ <li><a onclick="navigate('blog')">Christian Living</a></li>
+ </ul>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <span>© 2026 Mavel's Corner. All rights reserved.</span>
+ <span>Built with love and faith.</span>
+ </div>
+ </div>
+ </footer>
 
 </div>
 
 <!-- ══════════════════════════════════════════════
-     PAGE: BLOG
+ PAGE: BLOG
 ══════════════════════════════════════════════ -->
 <div class="page" id="page-blog">
 
-  <section class="blog-hero">
-    <span class="section-label" style="color: var(--teal-light); position: relative;">Words for the Journey</span>
-    <h1 style="position: relative; margin-top: 1rem;">The Blog</h1>
-    <p style="margin-top: 1rem;">Honest, Scripture-rooted words for the broken, the waiting, and the searching. Written for you, in love.</p>
-  </section>
+ <section class="blog-hero">
+ <span class="section-label" style="color: var(--teal-light); position: relative;">Words for the Journey</span>
+ <h1 style="position: relative; margin-top: 1rem;">The Blog</h1>
+ <p style="margin-top: 1rem;">Honest, Scripture-rooted words for the broken, the waiting, and the searching. Written for you, in love.</p>
+ </section>
 
-  <div class="blog-filters">
-    <div class="blog-filters-inner">
-      <button class="filter-btn active" onclick="filterPosts(this, 'all')">All Posts</button>
-      <button class="filter-btn" onclick="filterPosts(this, 'faith')">Faith & Discipleship</button>
-      <button class="filter-btn" onclick="filterPosts(this, 'living')">Christian Living & Lifestyle</button>
-    </div>
-  </div>
+ <div class="blog-filters">
+ <div class="blog-filters-inner">
+ <button class="filter-btn active" onclick="filterPosts(this, 'all')">All Posts</button>
+ <button class="filter-btn" onclick="filterPosts(this, 'faith')">Faith & Discipleship</button>
+ <button class="filter-btn" onclick="filterPosts(this, 'living')">Christian Living & Lifestyle</button>
+ </div>
+ </div>
 
-  <section class="section blog-grid-section">
-    <div class="section-inner">
-      <div class="blog-grid" id="blogGrid">
+ <section class="section blog-grid-section">
+ <div class="section-inner">
+ <div class="blog-grid" id="blogGrid">
 
-        <div class="post-card is-published" data-category="faith" style="position:relative;">
-          <span class="published-badge">Post No. 001</span>
-          <div class="post-card-img post-card-img-1"><div class="post-card-img-inner">⏳</div></div>
-          <div class="post-card-body">
-            <span class="post-category">Faith & Discipleship</span>
-            <h3>Still Waiting? So Was Abraham.</h3>
-            <p class="post-scripture">Habakkuk 2:3 — "Though it tarries, wait for it; it will surely come."</p>
-            <p class="post-excerpt">You were going to be further along by now. The waiting is starting to feel less like a season and more like a sentence. A delay is not a denial.</p>
-            <button class="post-read-more" onclick="navigate('post001')">Read More →</button>
-          </div>
-        </div>
+ <div class="post-card is-published" data-category="faith" style="position:relative;">
+ <span class="published-badge">Post No. 001</span>
+ <div class="post-card-img post-card-img-1"></div>
+ <div class="post-card-body">
+ <span class="post-category">Faith & Discipleship</span>
+ <h3>Still Waiting? So Was Abraham.</h3>
+ <p class="post-scripture">Habakkuk 2:3 — "Though it tarries, wait for it; it will surely come."</p>
+ <p class="post-excerpt">You were going to be further along by now. The waiting is starting to feel less like a season and more like a sentence. A delay is not a denial.</p>
+ <button class="post-read-more" onclick="navigate('post001')">Read More →</button>
+ </div>
+ </div>
 
-        <div class="post-card is-published" data-category="faith" style="position:relative;">
-          <span class="published-badge">Post No. 002</span>
-          <div class="post-card-img post-card-img-2"><div class="post-card-img-inner">⛰️</div></div>
-          <div class="post-card-body">
-            <span class="post-category">Faith & Discipleship</span>
-            <h3>He Is A Mountain Moving God</h3>
-            <p class="post-scripture">Matthew 17:20 — "Nothing will be impossible for you."</p>
-            <p class="post-excerpt">You have watched others get their breakthrough and quietly wondered — what about me? The mountain is still there. But so is the God who moves it.</p>
-            <button class="post-read-more" onclick="navigate('post002')">Read More →</button>
-          </div>
-        </div>
+ <div class="post-card is-published" data-category="faith" style="position:relative;">
+ <span class="published-badge">Post No. 002</span>
+ <div class="post-card-img post-card-img-2"></div>
+ <div class="post-card-body">
+ <span class="post-category">Faith & Discipleship</span>
+ <h3>He Is A Mountain Moving God</h3>
+ <p class="post-scripture">Matthew 17:20 — "Nothing will be impossible for you."</p>
+ <p class="post-excerpt">You have watched others get their breakthrough and quietly wondered — what about me? The mountain is still there. But so is the God who moves it.</p>
+ <button class="post-read-more" onclick="navigate('post002')">Read More →</button>
+ </div>
+ </div>
 
-        <div class="post-card" data-category="faith">
-          <div class="post-card-img post-card-img-3"><div class="post-card-img-inner">🌅</div></div>
-          <div class="post-card-body">
-            <span class="post-category">Faith & Discipleship</span>
-            <h3>Why Waiting on God Is Never Wasted Time</h3>
-            <p class="post-scripture">Isaiah 40:31 — "They will soar on wings like eagles."</p>
-            <p class="post-excerpt">The waiting room is not a punishment. It is a preparation. God is doing something in the hidden seasons that only eternity will fully reveal.</p>
-            <button class="post-read-more">Read More →</button>
-          </div>
-        </div>
+ <div class="post-card" data-category="faith">
+ <div class="post-card-img post-card-img-3"></div>
+ <div class="post-card-body">
+ <span class="post-category">Faith & Discipleship</span>
+ <h3>Why Waiting on God Is Never Wasted Time</h3>
+ <p class="post-scripture">Isaiah 40:31 — "They will soar on wings like eagles."</p>
+ <p class="post-excerpt">The waiting room is not a punishment. It is a preparation. God is doing something in the hidden seasons that only eternity will fully reveal.</p>
+ <button class="post-read-more">Read More →</button>
+ </div>
+ </div>
 
-        <div class="post-card" data-category="living">
-          <div class="post-card-img post-card-img-1"><div class="post-card-img-inner">🙏</div></div>
-          <div class="post-card-body">
-            <span class="post-category">Christian Living</span>
-            <h3>How to Pray When You Have No Words Left</h3>
-            <p class="post-scripture">Romans 8:26 — "The Spirit intercedes for us through wordless groans."</p>
-            <p class="post-excerpt">Some prayers are not spoken. Some are breathed. And the Holy Spirit knows exactly what your soul is trying to say when your mouth cannot form the words.</p>
-            <button class="post-read-more">Read More →</button>
-          </div>
-        </div>
+ <div class="post-card" data-category="living">
+ <div class="post-card-img post-card-img-1"></div>
+ <div class="post-card-body">
+ <span class="post-category">Christian Living</span>
+ <h3>How to Pray When You Have No Words Left</h3>
+ <p class="post-scripture">Romans 8:26 — "The Spirit intercedes for us through wordless groans."</p>
+ <p class="post-excerpt">Some prayers are not spoken. Some are breathed. And the Holy Spirit knows exactly what your soul is trying to say when your mouth cannot form the words.</p>
+ <button class="post-read-more">Read More →</button>
+ </div>
+ </div>
 
-        <div class="post-card" data-category="faith">
-          <div class="post-card-img post-card-img-2"><div class="post-card-img-inner">🔥</div></div>
-          <div class="post-card-body">
-            <span class="post-category">Faith & Discipleship</span>
-            <h3>God Doesn't Need You at Your Best to Use You</h3>
-            <p class="post-scripture">2 Corinthians 12:9 — "My power is made perfect in weakness."</p>
-            <p class="post-excerpt">Moses stuttered. David fell. Peter denied. God's catalogue of chosen instruments is filled with people who were disqualified on paper and appointed by grace.</p>
-            <button class="post-read-more">Read More →</button>
-          </div>
-        </div>
+ <div class="post-card" data-category="faith">
+ <div class="post-card-img post-card-img-2"></div>
+ <div class="post-card-body">
+ <span class="post-category">Faith & Discipleship</span>
+ <h3>God Doesn't Need You at Your Best to Use You</h3>
+ <p class="post-scripture">2 Corinthians 12:9 — "My power is made perfect in weakness."</p>
+ <p class="post-excerpt">Moses stuttered. David fell. Peter denied. God's catalogue of chosen instruments is filled with people who were disqualified on paper and appointed by grace.</p>
+ <button class="post-read-more">Read More →</button>
+ </div>
+ </div>
 
-        <div class="post-card" data-category="living">
-          <div class="post-card-img post-card-img-3"><div class="post-card-img-inner">🌿</div></div>
-          <div class="post-card-body">
-            <span class="post-category">Christian Living</span>
-            <h3>Guarding Your Peace in a World That Never Stops</h3>
-            <p class="post-scripture">Philippians 4:7 — "The peace of God, which transcends all understanding."</p>
-            <p class="post-excerpt">In a generation defined by noise and urgency, guarding your God-given peace is not passive. It is one of the most radical acts of faith you can practice.</p>
-            <button class="post-read-more">Read More →</button>
-          </div>
-        </div>
+ <div class="post-card" data-category="living">
+ <div class="post-card-img post-card-img-3"></div>
+ <div class="post-card-body">
+ <span class="post-category">Christian Living</span>
+ <h3>Guarding Your Peace in a World That Never Stops</h3>
+ <p class="post-scripture">Philippians 4:7 — "The peace of God, which transcends all understanding."</p>
+ <p class="post-excerpt">In a generation defined by noise and urgency, guarding your God-given peace is not passive. It is one of the most radical acts of faith you can practice.</p>
+ <button class="post-read-more">Read More →</button>
+ </div>
+ </div>
 
-      </div>
-    </div>
-  </section>
+ </div>
+ </div>
+ </section>
 
-  <section class="newsletter">
-    <div class="newsletter-inner">
-      <span class="section-label" style="color: var(--gold);">Never Miss a Word</span>
-      <h2>Words of Hope, Straight to Your Inbox</h2>
-      <p>Join a growing community of believers finding their footing again. No spam — just honest, life-giving words when you need them most.</p>
-      <div class="newsletter-form">
-        <input type="email" placeholder="Your email address">
-        <button class="btn btn-gold">Subscribe</button>
-      </div>
-    </div>
-  </section>
+ <section class="newsletter">
+ <div class="newsletter-inner">
+ <span class="section-label" style="color: var(--gold);">Never Miss a Word</span>
+ <h2>Words of Hope, Straight to Your Inbox</h2>
+ <p>Join a growing community of believers finding their footing again. No spam — just honest, life-giving words when you need them most.</p>
+ <div class="newsletter-form">
+ <input type="email" placeholder="Your email address">
+ <button class="btn btn-gold">Subscribe</button>
+ </div>
+ </div>
+ </section>
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <h3>Mavel's <span>Corner</span></h3>
-          <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
-          <div class="footer-teal-line"></div>
-        </div>
-        <div class="footer-col">
-          <h4>Navigate</h4>
-          <ul>
-            <li><a onclick="navigate('home')">Home</a></li>
-            <li><a onclick="navigate('about')">About</a></li>
-            <li><a onclick="navigate('blog')">Blog</a></li>
-            <li><a onclick="navigate('prayer')">Prayer Request</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Support</h4>
-          <ul>
-            <li><a onclick="navigate('donate')">Donate</a></li>
-            <li><a onclick="navigate('contact')">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Categories</h4>
-          <ul>
-            <li><a onclick="navigate('blog')">Faith & Discipleship</a></li>
-            <li><a onclick="navigate('blog')">Christian Living</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Mavel's Corner. All rights reserved.</span>
-        <span>Built with love and faith.</span>
-      </div>
-    </div>
-  </footer>
+ <footer>
+ <div class="footer-inner">
+ <div class="footer-top">
+ <div class="footer-brand">
+ <h3>Mavel's <span>Corner</span></h3>
+ <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
+ <div class="footer-teal-line"></div>
+ </div>
+ <div class="footer-col">
+ <h4>Navigate</h4>
+ <ul>
+ <li><a onclick="navigate('home')">Home</a></li>
+ <li><a onclick="navigate('about')">About</a></li>
+ <li><a onclick="navigate('blog')">Blog</a></li>
+ <li><a onclick="navigate('prayer')">Prayer Request</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h4>Support</h4>
+ <ul>
+ <li><a onclick="navigate('contact')">Contact</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h4>Categories</h4>
+ <ul>
+ <li><a onclick="navigate('blog')">Faith & Discipleship</a></li>
+ <li><a onclick="navigate('blog')">Christian Living</a></li>
+ </ul>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <span>© 2026 Mavel's Corner. All rights reserved.</span>
+ <span>Built with love and faith.</span>
+ </div>
+ </div>
+ </footer>
 
 </div>
 
 <!-- ══════════════════════════════════════════════
-     PAGE: POST 001 — Still Waiting? So Was Abraham.
+ PAGE: POST 001 — Still Waiting? So Was Abraham.
 ══════════════════════════════════════════════ -->
 <div class="page" id="page-post001">
 
-  <section class="post-page-hero">
-    <div class="post-page-hero-inner">
-      <button class="post-back-btn" onclick="navigate('blog')">← Back to Blog</button>
-      <div class="post-meta-row">
-        <span class="post-category">Faith &amp; Discipleship</span>
-        <span class="post-meta-date">Blog Post No. 001 &nbsp;·&nbsp; 2026</span>
-      </div>
-      <h1>Still Waiting? So Was Abraham.</h1>
-      <p class="post-subtitle">Why Delays From God Are Never Denials</p>
-    </div>
-  </section>
+ <section class="post-page-hero">
+ <div class="post-page-hero-inner">
+ <button class="post-back-btn" onclick="navigate('blog')">← Back to Blog</button>
+ <div class="post-meta-row">
+ <span class="post-category">Faith &amp; Discipleship</span>
+ <span class="post-meta-date">Blog Post No. 001 &nbsp;·&nbsp; 2026</span>
+ </div>
+ <h1>Still Waiting? So Was Abraham.</h1>
+ <p class="post-subtitle">Why Delays From God Are Never Denials</p>
+ </div>
+ </section>
 
-  <article class="article-body">
-    <div class="article-inner">
+ <article class="article-body">
+ <div class="article-inner">
 
-      <p>You had a plan. Maybe you still do. Somewhere underneath all the disappointment, it is still there, folded up quietly in the corner of your heart. You were going to launch that business by twenty-five. You were going to be married by now. You were going to be further along in life, further along in your healing journey, further along in your Christian faith — but here you are, still waiting. And the waiting is starting to feel less like a season and more like a sentence.</p>
+ <p>You had a plan. Maybe you still do. Somewhere underneath all the disappointment, it is still there, folded up quietly in the corner of your heart. You were going to launch that business by twenty-five. You were going to be married by now. You were going to be further along in life, further along in your healing journey, further along in your Christian faith — but here you are, still waiting. And the waiting is starting to feel less like a season and more like a sentence.</p>
 
-      <p>If that is where you are right now, feeling exhausted by waiting, tempted to give up, wondering whether God even remembers you — this post is written for you. Not to give you a five-step formula. Not to minimise how heavy this feels — but to tell you the truth that the devil and his cohorts does not want you to believe: in yourself and in your God.</p>
+ <p>If that is where you are right now, feeling exhausted by waiting, tempted to give up, wondering whether God even remembers you — this post is written for you. Not to give you a five-step formula. Not to minimise how heavy this feels — but to tell you the truth that the devil and his cohorts does not want you to believe: in yourself and in your God.</p>
 
-      <p><strong>A delay is not a denial — and the fact that you are still alive means your story is not over.</strong></p>
+ <p><strong>A delay is not a denial — and the fact that you are still alive means your story is not over.</strong></p>
 
-      <h2>When Waiting Feels Like Losing</h2>
+ <h2>When Waiting Feels Like Losing</h2>
 
-      <p>There is something uniquely painful about waiting when you know what you are waiting for. It is different from not knowing what you want. This is the ache of having a God-given dream, a promise you believe He placed in your heart, a vision you have prayed over — and then watching time pass with no visible movement.</p>
+ <p>There is something uniquely painful about waiting when you know what you are waiting for. It is different from not knowing what you want. This is the ache of having a God-given dream, a promise you believe He placed in your heart, a vision you have prayed over — and then watching time pass with no visible movement.</p>
 
-      <p>You begin to question everything. Did I hear God wrong? Did I miss my window? Is this a punishment for something wrong I did in the past? And eventually, for some of us, the questions stop entirely and the silence feels like an answer in itself. We assume the worst: that God has moved on without us, that the promise has expired, that we waited too long or sinned too much or simply do not qualify for His blessings anymore.</p>
+ <p>You begin to question everything. Did I hear God wrong? Did I miss my window? Is this a punishment for something wrong I did in the past? And eventually, for some of us, the questions stop entirely and the silence feels like an answer in itself. We assume the worst: that God has moved on without us, that the promise has expired, that we waited too long or sinned too much or simply do not qualify for His blessings anymore.</p>
 
-      <p>But that is not what Scripture says. Not even close.</p>
+ <p>But that is not what Scripture says. Not even close.</p>
 
-      <div class="article-scripture">
-        <p>"For the vision is yet for an appointed time; but at the end it will speak, and it will not lie. Though it tarries, wait for it; because it will surely come, it will not tarry."</p>
-        <cite>Habakkuk 2:3</cite>
-      </div>
+ <div class="article-scripture">
+ <p>"For the vision is yet for an appointed time; but at the end it will speak, and it will not lie. Though it tarries, wait for it; because it will surely come, it will not tarry."</p>
+ <cite>Habakkuk 2:3</cite>
+ </div>
 
-      <h2>Abraham Waited Too. And He Was God's Friend.</h2>
+ <h2>Abraham Waited Too. And He Was God's Friend.</h2>
 
-      <p>Consider Abraham for a moment. Not the finished, stained-glass version you may have seen in Sunday school. The real man. The one who waited <strong>twenty-five years</strong> for a son God had promised him. Twenty-five years of barrenness. Twenty-five years of watching his wife Sarah age. Twenty-five years of a promise that had not arrived yet.</p>
+ <p>Consider Abraham for a moment. Not the finished, stained-glass version you may have seen in Sunday school. The real man. The one who waited <strong>twenty-five years</strong> for a son God had promised him. Twenty-five years of barrenness. Twenty-five years of watching his wife Sarah age. Twenty-five years of a promise that had not arrived yet.</p>
 
-      <p>He was not a perfect man during that wait. He made mistakes. He tried to help God along by his own methods. He laughed when God reaffirmed the promise — because honestly, at his age, it seemed absurd. But God did not revoke the promise because of Abraham's impatience or his laughter or his unbelief.</p>
+ <p>He was not a perfect man during that wait. He made mistakes. He tried to help God along by his own methods. He laughed when God reaffirmed the promise — because honestly, at his age, it seemed absurd. But God did not revoke the promise because of Abraham's impatience or his laughter or his unbelief.</p>
 
-      <p>Isaac was still born. And the promise was still fulfilled. The delay was not a denial. It was a divine appointment.</p>
+ <p>Isaac was still born. And the promise was still fulfilled. The delay was not a denial. It was a divine appointment.</p>
 
-      <p>The same God who kept His word to Abraham across twenty-five years is the same God who holds your promise today. He does not forget. He does not change His mind based on how long things are taking. He is not scrambling to rework the plan because of your circumstances.</p>
+ <p>The same God who kept His word to Abraham across twenty-five years is the same God who holds your promise today. He does not forget. He does not change His mind based on how long things are taking. He is not scrambling to rework the plan because of your circumstances.</p>
 
-      <div class="article-scripture">
-        <p>"Yet he did not waver through unbelief regarding the promise of God, but was strengthened in his faith and gave glory to God, being fully persuaded that God had power to do what He had promised."</p>
-        <cite>Romans 4:20–21</cite>
-      </div>
+ <div class="article-scripture">
+ <p>"Yet he did not waver through unbelief regarding the promise of God, but was strengthened in his faith and gave glory to God, being fully persuaded that God had power to do what He had promised."</p>
+ <cite>Romans 4:20–21</cite>
+ </div>
 
-      <h2>What Is Happening In the Wait</h2>
+ <h2>What Is Happening In the Wait</h2>
 
-      <p>Here is something nobody tells you about seasons of delay: they are rarely empty. They feel empty, they look empty from the outside — but God is working underneath the surface in ways that will only make sense in hindsight.</p>
+ <p>Here is something nobody tells you about seasons of delay: they are rarely empty. They feel empty, they look empty from the outside — but God is working underneath the surface in ways that will only make sense in hindsight.</p>
 
-      <p>Think about a seed. From the outside, after you plant it, there is nothing — just soil. Total silence. What looks like nothing is happening. But underground, so much is happening. The shell is breaking open. The roots are forming. The very structure that will hold the plant upright when it finally grows is being built in secret, in the dark, before anything is visible.</p>
+ <p>Think about a seed. From the outside, after you plant it, there is nothing — just soil. Total silence. What looks like nothing is happening. But underground, so much is happening. The shell is breaking open. The roots are forming. The very structure that will hold the plant upright when it finally grows is being built in secret, in the dark, before anything is visible.</p>
 
-      <p>Your waiting season is not wasted time. It is root-formation time. God is building in you the capacity to carry what He is about to bring into your life — the character, the faith, the emotional stability. Why? Because a blessing without a foundation to hold it will collapse. He is not withholding the promise. He is preparing the person who will steward it well.</p>
+ <p>Your waiting season is not wasted time. It is root-formation time. God is building in you the capacity to carry what He is about to bring into your life — the character, the faith, the emotional stability. Why? Because a blessing without a foundation to hold it will collapse. He is not withholding the promise. He is preparing the person who will steward it well.</p>
 
-      <p>That person is you. He has not given up on you. He is not finished with you. And what He has promised will come to pass — in the fullness of His time, which is always the right time.</p>
+ <p>That person is you. He has not given up on you. He is not finished with you. And what He has promised will come to pass — in the fullness of His time, which is always the right time.</p>
 
-      <div class="article-scripture">
-        <p>"But those who wait on the Lord shall renew their strength; they shall mount up with wings like eagles, they shall run and not be weary, they shall walk and not faint."</p>
-        <cite>Isaiah 40:31</cite>
-      </div>
+ <div class="article-scripture">
+ <p>"But those who wait on the Lord shall renew their strength; they shall mount up with wings like eagles, they shall run and not be weary, they shall walk and not faint."</p>
+ <cite>Isaiah 40:31</cite>
+ </div>
 
-      <h2>You Are Still Here. And That Is Not an Accident.</h2>
+ <h2>You Are Still Here. And That Is Not an Accident.</h2>
 
-      <p>Maybe you have been through something so dark that you are honestly surprised you made it to this point. Maybe there were moments when you were not sure if God still hears your prayers. Maybe the waiting did not just feel like a delay — it felt like abandonment, like God had turned His face away and left you to find your own way out of the darkness.</p>
+ <p>Maybe you have been through something so dark that you are honestly surprised you made it to this point. Maybe there were moments when you were not sure if God still hears your prayers. Maybe the waiting did not just feel like a delay — it felt like abandonment, like God had turned His face away and left you to find your own way out of the darkness.</p>
 
-      <p>If that is your story, I need you to hear this: <strong>the fact that you are still here is not luck.</strong> It is not coincidence. It is the hand of a God who refuses to let you go — even when you have let go of Him. Even when you have stopped praying. Even when you have stopped believing. He has not stopped working.</p>
+ <p>If that is your story, I need you to hear this: <strong>the fact that you are still here is not luck.</strong> It is not coincidence. It is the hand of a God who refuses to let you go — even when you have let go of Him. Even when you have stopped praying. Even when you have stopped believing. He has not stopped working.</p>
 
-      <p>Jeremiah 29:11 is not just a verse for Instagram. It is the lived reality of a God who declared purpose over your life before you were born — and He has never once revised that declaration. His plans for you, for hope and for a future, are not cancelled by your delay. They are not cancelled by your failures. They are not cancelled by how you feel today.</p>
+ <p>Jeremiah 29:11 is not just a verse for Instagram. It is the lived reality of a God who declared purpose over your life before you were born — and He has never once revised that declaration. His plans for you, for hope and for a future, are not cancelled by your delay. They are not cancelled by your failures. They are not cancelled by how you feel today.</p>
 
-      <p><strong>Hold on. The appointed time is coming. And it will not be late.</strong></p>
+ <p><strong>Hold on. The appointed time is coming. And it will not be late.</strong></p>
 
-      <div class="article-callout">
-        <span class="article-callout-label">✦ Something To Think About</span>
-        <p style="margin-bottom: 0.75rem !important; color: rgba(255,255,255,0.6) !important; font-size: 0.85rem !important; font-style: italic;">Take a moment with these questions. Be honest. God can handle it.</p>
-        <ul>
-          <li>What promise or dream have you quietly stopped believing in because the wait has been so long?</li>
-          <li>What would it look like to hand it back to God today — not to abandon it, but to trust Him with it?</li>
-          <li>In what ways might God be doing something in you during this season that you have been too frustrated to notice? What might the roots look like that He is building right now?</li>
-          <li>If a close friend came to you with the exact situation you are in, what would you tell them about God's faithfulness? Can you extend that same grace to yourself today?</li>
-        </ul>
-      </div>
+ <div class="article-callout">
+ <span class="article-callout-label">Something To Think About</span>
+ <p style="margin-bottom: 0.75rem !important; color: rgba(255,255,255,0.6) !important; font-size: 0.85rem !important; font-style: italic;">Take a moment with these questions. Be honest. God can handle it.</p>
+ <ul>
+ <li>What promise or dream have you quietly stopped believing in because the wait has been so long?</li>
+ <li>What would it look like to hand it back to God today — not to abandon it, but to trust Him with it?</li>
+ <li>In what ways might God be doing something in you during this season that you have been too frustrated to notice? What might the roots look like that He is building right now?</li>
+ <li>If a close friend came to you with the exact situation you are in, what would you tell them about God's faithfulness? Can you extend that same grace to yourself today?</li>
+ </ul>
+ </div>
 
-      <div class="article-prayer">
-        <span class="article-prayer-label">✦ A Prayer For The Waiting</span>
-        <p>Lord, I will be honest. The wait has been hard. Some days I have not understood You, and some days I have been angry. But today I choose to believe that You have not forgotten about me. I choose to trust that what You have promised is still on its way. Renew my strength in this season, Oh Lord — build my faith in the silence, and help me hold on just a little longer. Your plans for me are good and I will not give up on them, because You have never given up on me. Amen!</p>
-      </div>
+ <div class="article-prayer">
+ <span class="article-prayer-label">A Prayer For The Waiting</span>
+ <p>Lord, I will be honest. The wait has been hard. Some days I have not understood You, and some days I have been angry. But today I choose to believe that You have not forgotten about me. I choose to trust that what You have promised is still on its way. Renew my strength in this season, Oh Lord — build my faith in the silence, and help me hold on just a little longer. Your plans for me are good and I will not give up on them, because You have never given up on me. Amen!</p>
+ </div>
 
-      <div class="article-challenge">
-        <span class="article-challenge-label">✦ Your Challenge This Week</span>
-        <p><strong>Write it down.</strong> Find a quiet moment this week and write down the promise or dream you have been waiting on. Then write Habakkuk 2:3 underneath it. Put it somewhere you will see it every day — your mirror, your phone screen, your journal. Let it be your daily reminder that the vision is for an appointed time. It has not been cancelled. It has not been forgotten. It is simply not yet time — and not yet is not the same as never.</p>
-      </div>
+ <div class="article-challenge">
+ <span class="article-challenge-label">Your Challenge This Week</span>
+ <p><strong>Write it down.</strong> Find a quiet moment this week and write down the promise or dream you have been waiting on. Then write Habakkuk 2:3 underneath it. Put it somewhere you will see it every day — your mirror, your phone screen, your journal. Let it be your daily reminder that the vision is for an appointed time. It has not been cancelled. It has not been forgotten. It is simply not yet time — and not yet is not the same as never.</p>
+ </div>
 
-      <hr class="article-divider">
+ <hr class="article-divider">
 
-      <div class="article-share">
-        <p>✦ Share this post with someone who needs to hear it today.</p>
-        <button class="btn btn-primary" onclick="navigate('prayer')" style="font-size:0.8rem; padding: 0.65rem 1.4rem;">Submit a Prayer Request →</button>
-      </div>
+ <div class="article-share">
+ <p> Share this post with someone who needs to hear it today.</p>
+ <button class="btn btn-primary" onclick="navigate('prayer')" style="font-size:0.8rem; padding: 0.65rem 1.4rem;">Submit a Prayer Request →</button>
+ </div>
 
-    </div>
-  </article>
+ </div>
+ </article>
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <h3>Mavel's <span>Corner</span></h3>
-          <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
-          <div class="footer-teal-line"></div>
-        </div>
-        <div class="footer-col">
-          <h4>Navigate</h4>
-          <ul>
-            <li><a onclick="navigate('home')">Home</a></li>
-            <li><a onclick="navigate('about')">About</a></li>
-            <li><a onclick="navigate('blog')">Blog</a></li>
-            <li><a onclick="navigate('prayer')">Prayer Request</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Support</h4>
-          <ul>
-            <li><a onclick="navigate('donate')">Donate</a></li>
-            <li><a onclick="navigate('contact')">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Categories</h4>
-          <ul>
-            <li><a onclick="navigate('blog')">Faith &amp; Discipleship</a></li>
-            <li><a onclick="navigate('blog')">Christian Living</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Mavel's Corner. All rights reserved.</span>
-        <span>Built with love and faith.</span>
-      </div>
-    </div>
-  </footer>
+ <footer>
+ <div class="footer-inner">
+ <div class="footer-top">
+ <div class="footer-brand">
+ <h3>Mavel's <span>Corner</span></h3>
+ <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
+ <div class="footer-teal-line"></div>
+ </div>
+ <div class="footer-col">
+ <h4>Navigate</h4>
+ <ul>
+ <li><a onclick="navigate('home')">Home</a></li>
+ <li><a onclick="navigate('about')">About</a></li>
+ <li><a onclick="navigate('blog')">Blog</a></li>
+ <li><a onclick="navigate('prayer')">Prayer Request</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h4>Support</h4>
+ <ul>
+ <li><a onclick="navigate('contact')">Contact</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h4>Categories</h4>
+ <ul>
+ <li><a onclick="navigate('blog')">Faith &amp; Discipleship</a></li>
+ <li><a onclick="navigate('blog')">Christian Living</a></li>
+ </ul>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <span>© 2026 Mavel's Corner. All rights reserved.</span>
+ <span>Built with love and faith.</span>
+ </div>
+ </div>
+ </footer>
 
 </div>
 
 <!-- ══════════════════════════════════════════════
-     PAGE: POST 002 — He Is A Mountain Moving God
+ PAGE: POST 002 — He Is A Mountain Moving God
 ══════════════════════════════════════════════ -->
 <div class="page" id="page-post002">
 
-  <section class="post-page-hero">
-    <div class="post-page-hero-inner">
-      <button class="post-back-btn" onclick="navigate('blog')">← Back to Blog</button>
-      <div class="post-meta-row">
-        <span class="post-category">Faith &amp; Discipleship</span>
-        <span class="post-meta-date">Blog Post No. 002 &nbsp;·&nbsp; 2026</span>
-      </div>
-      <h1>He Is A Mountain Moving God</h1>
-      <p class="post-subtitle">Faith for the Season That Is Testing Everything in You</p>
-    </div>
-  </section>
+ <section class="post-page-hero">
+ <div class="post-page-hero-inner">
+ <button class="post-back-btn" onclick="navigate('blog')">← Back to Blog</button>
+ <div class="post-meta-row">
+ <span class="post-category">Faith &amp; Discipleship</span>
+ <span class="post-meta-date">Blog Post No. 002 &nbsp;·&nbsp; 2026</span>
+ </div>
+ <h1>He Is A Mountain Moving God</h1>
+ <p class="post-subtitle">Faith for the Season That Is Testing Everything in You</p>
+ </div>
+ </section>
 
-  <article class="article-body">
-    <div class="article-inner">
+ <article class="article-body">
+ <div class="article-inner">
 
-      <p>You know that thing you have been praying about for longer than you want to admit? The situation that was supposed to have changed by now. The door that was supposed to have opened. The relationship that was supposed to have been restored, the debt that was supposed to have been cleared, the healing that was supposed to have come. You have watched other people get their breakthrough. You have sat in rooms where people testified about what God did for them, and you clapped and you celebrated — but somewhere quietly on the inside, a small voice whispered, <em>"What about me?"</em></p>
+ <p>You know that thing you have been praying about for longer than you want to admit? The situation that was supposed to have changed by now. The door that was supposed to have opened. The relationship that was supposed to have been restored, the debt that was supposed to have been cleared, the healing that was supposed to have come. You have watched other people get their breakthrough. You have sat in rooms where people testified about what God did for them, and you clapped and you celebrated — but somewhere quietly on the inside, a small voice whispered, <em>"What about me?"</em></p>
 
-      <p>I am not going to pretend that question is not real. It is one of the most honest things a person can feel. And if that is where you are today, I want you to know you are in good company — and more than that, you are not forgotten.</p>
+ <p>I am not going to pretend that question is not real. It is one of the most honest things a person can feel. And if that is where you are today, I want you to know you are in good company — and more than that, you are not forgotten.</p>
 
-      <p>Because the God we serve, He moves mountains. Not sometimes. Not only for certain people. He moves mountains for you and I too — and the fact that yours is still standing does not mean He has stopped working.</p>
+ <p>Because the God we serve, He moves mountains. Not sometimes. Not only for certain people. He moves mountains for you and I too — and the fact that yours is still standing does not mean He has stopped working.</p>
 
-      <div class="article-scripture">
-        <p>"Truly I tell you, if you have faith as small as a mustard seed, you can say to this mountain, 'Move from here to there,' and it will move. Nothing will be impossible for you."</p>
-        <cite>Matthew 17:20</cite>
-      </div>
+ <div class="article-scripture">
+ <p>"Truly I tell you, if you have faith as small as a mustard seed, you can say to this mountain, 'Move from here to there,' and it will move. Nothing will be impossible for you."</p>
+ <cite>Matthew 17:20</cite>
+ </div>
 
-      <p>Now I want you to sit with this scripture for a moment, because what Jesus is <em>not</em> saying is just as important as what He is saying. He is not saying you need a giant, unshakeable, never-wobbled-a-day-in-your-life kind of faith. He is saying a seed. The smallest possible version — the kind of faith that is barely holding on, that showed up anyway, that still whispered a prayer at midnight even when it did not feel like anything was getting through.</p>
+ <p>Now I want you to sit with this scripture for a moment, because what Jesus is <em>not</em> saying is just as important as what He is saying. He is not saying you need a giant, unshakeable, never-wobbled-a-day-in-your-life kind of faith. He is saying a seed. The smallest possible version — the kind of faith that is barely holding on, that showed up anyway, that still whispered a prayer at midnight even when it did not feel like anything was getting through.</p>
 
-      <p><strong>That is enough. You are enough. What you have in you right now — trembling and tired and real — it is enough for God to work with.</strong></p>
+ <p><strong>That is enough. You are enough. What you have in you right now — trembling and tired and real — it is enough for God to work with.</strong></p>
 
-      <h2>Let Me Make This Personal</h2>
+ <h2>Let Me Make This Personal</h2>
 
-      <p>Maybe you are at a point in your life where you have done everything you were told to do. You got the degree. You applied for the jobs. You kept yourself together even when everything around you was falling apart — and you are still waiting. Still sleeping in the same room you grew up in. Still watching your bank account say things that make you question your vision. Still wondering if the version of your life you believed God for is ever actually going to materialise.</p>
+ <p>Maybe you are at a point in your life where you have done everything you were told to do. You got the degree. You applied for the jobs. You kept yourself together even when everything around you was falling apart — and you are still waiting. Still sleeping in the same room you grew up in. Still watching your bank account say things that make you question your vision. Still wondering if the version of your life you believed God for is ever actually going to materialise.</p>
 
-      <p>Maybe your mountain does not even have a name you can put on it neatly. It may be a heaviness — a feeling that your life is not progressing, that the version of yourself you were becoming has gone quiet, and you do not know how to put those broken pieces together again.</p>
+ <p>Maybe your mountain does not even have a name you can put on it neatly. It may be a heaviness — a feeling that your life is not progressing, that the version of yourself you were becoming has gone quiet, and you do not know how to put those broken pieces together again.</p>
 
-      <p>I want to speak directly into all of that and say: <strong>this is exactly where God meets people.</strong> Not when everything is sorted. Not when you have finally figured it all out. But right in the middle of the confusion — He glorifies His Name.</p>
+ <p>I want to speak directly into all of that and say: <strong>this is exactly where God meets people.</strong> Not when everything is sorted. Not when you have finally figured it all out. But right in the middle of the confusion — He glorifies His Name.</p>
 
-      <div class="article-scripture">
-        <p>"Forget the former things; do not dwell on the past. See, I am doing a new thing! Now it springs up; do you not perceive it? I am making a way in the wilderness and streams in the wasteland."</p>
-        <cite>Isaiah 43:18–19</cite>
-      </div>
+ <div class="article-scripture">
+ <p>"Forget the former things; do not dwell on the past. See, I am doing a new thing! Now it springs up; do you not perceive it? I am making a way in the wilderness and streams in the wasteland."</p>
+ <cite>Isaiah 43:18–19</cite>
+ </div>
 
-      <p>He is the same God who parted the Red Sea for the Israelites to walk through on bare land. Who provided water from a rock through His servant Moses. God is not describing a comfortable, ideal environment — He is describing your exact situation, the dry place, the place that looks like it should not produce anything — and saying, <em>I am building something new here. The water is already coming. You just cannot see the stream yet.</em></p>
+ <p>He is the same God who parted the Red Sea for the Israelites to walk through on bare land. Who provided water from a rock through His servant Moses. God is not describing a comfortable, ideal environment — He is describing your exact situation, the dry place, the place that looks like it should not produce anything — and saying, <em>I am building something new here. The water is already coming. You just cannot see the stream yet.</em></p>
 
-      <p>That phrase — <em>"do you not perceive it"</em> — is God's way of asking you to look again. To look at that situation from His point of view, not yours. To trust that what He is doing behind the scenes of your life is already in motion, even when your eyes have not seen it yet.</p>
+ <p>That phrase — <em>"do you not perceive it"</em> — is God's way of asking you to look again. To look at that situation from His point of view, not yours. To trust that what He is doing behind the scenes of your life is already in motion, even when your eyes have not seen it yet.</p>
 
-      <h2>Hannah: When God Remembered</h2>
+ <h2>Hannah: When God Remembered</h2>
 
-      <p>There is a woman in the Bible named Hannah whose story I return to again and again when I am talking about waiting, immovable mountains, and a God who remembers. Hannah wanted a child more than she could put into words. Year after year, nothing — she remained barren and watched others around her receive what her arms were empty of. In 1 Samuel 1, she goes to God with a grief so raw that the priest watching her thought she was drunk.</p>
+ <p>There is a woman in the Bible named Hannah whose story I return to again and again when I am talking about waiting, immovable mountains, and a God who remembers. Hannah wanted a child more than she could put into words. Year after year, nothing — she remained barren and watched others around her receive what her arms were empty of. In 1 Samuel 1, she goes to God with a grief so raw that the priest watching her thought she was drunk.</p>
 
-      <p>She was not drunk. She was desperate. And God, in that place of raw desperation, heard her cry.</p>
+ <p>She was not drunk. She was desperate. And God, in that place of raw desperation, heard her cry.</p>
 
-      <div class="article-scripture">
-        <p>"The Lord remembered her."</p>
-        <cite>1 Samuel 1:19</cite>
-      </div>
+ <div class="article-scripture">
+ <p>"The Lord remembered her."</p>
+ <cite>1 Samuel 1:19</cite>
+ </div>
 
-      <p>Three words that carry the weight of the whole story. After all the years. After all the tears. After every moment of sitting with empty arms and a full heart — the Lord remembered her. And what followed was the answer she had been waiting for.</p>
+ <p>Three words that carry the weight of the whole story. After all the years. After all the tears. After every moment of sitting with empty arms and a full heart — the Lord remembered her. And what followed was the answer she had been waiting for.</p>
 
-      <p><strong>Friend, the Lord remembers you.</strong> He has not lost track of your name or your pain or the specific promise He placed in your heart. The wait you are in is not evidence that He has forgotten. It is often the space where He is doing the deepest work — both in your situation and in you.</p>
+ <p><strong>Friend, the Lord remembers you.</strong> He has not lost track of your name or your pain or the specific promise He placed in your heart. The wait you are in is not evidence that He has forgotten. It is often the space where He is doing the deepest work — both in your situation and in you.</p>
 
-      <p>God has not given up on you and your story is not finished. The chapter you are in right now is not the last one, and the mountain in front of you is not bigger than the God behind you. He is the One who parts waters, raises the dead, and turns mourning into something you did not know was possible. He is a mountain moving God — and I am here to remind you that He has not changed.</p>
+ <p>God has not given up on you and your story is not finished. The chapter you are in right now is not the last one, and the mountain in front of you is not bigger than the God behind you. He is the One who parts waters, raises the dead, and turns mourning into something you did not know was possible. He is a mountain moving God — and I am here to remind you that He has not changed.</p>
 
-      <p>Keep speaking to that mountain. Keep showing up. Keep bringing your mustard seed faith to the God who can do everything with it that you cannot do alone.</p>
+ <p>Keep speaking to that mountain. Keep showing up. Keep bringing your mustard seed faith to the God who can do everything with it that you cannot do alone.</p>
 
-      <div class="article-callout">
-        <span class="article-callout-label">✦ Something To Think About</span>
-        <ul>
-          <li>What is the mountain you have been standing in front of for so long that some part of you has started to treat it as permanent? What would it feel like to speak to it out loud this week instead of around it?</li>
-          <li>Has this season of waiting changed you in ways that surprised you? If so, could some of those changes be exactly what God wanted for you?</li>
-          <li>What is one small sign that God has been at work in your story even during the season that felt most silent? Is it possible He has been moving in ways you have not yet stopped to name?</li>
-        </ul>
-      </div>
+ <div class="article-callout">
+ <span class="article-callout-label">Something To Think About</span>
+ <ul>
+ <li>What is the mountain you have been standing in front of for so long that some part of you has started to treat it as permanent? What would it feel like to speak to it out loud this week instead of around it?</li>
+ <li>Has this season of waiting changed you in ways that surprised you? If so, could some of those changes be exactly what God wanted for you?</li>
+ <li>What is one small sign that God has been at work in your story even during the season that felt most silent? Is it possible He has been moving in ways you have not yet stopped to name?</li>
+ </ul>
+ </div>
 
-      <div class="article-prayer">
-        <span class="article-prayer-label">✦ A Prayer</span>
-        <p>God, I am tired and I am not going to pretend otherwise. The mountain is still there and some days I genuinely do not know how to keep going. But I choose today to trust You anyway — not because I have it all together, but because You have never once let me go. I believe You remember me. I believe the promise You placed in my heart is still alive. Move in my life, God, in whatever way You see fit, and give me the strength to hold on until I see it — in Jesus' mighty name, Amen.</p>
-      </div>
+ <div class="article-prayer">
+ <span class="article-prayer-label">A Prayer</span>
+ <p>God, I am tired and I am not going to pretend otherwise. The mountain is still there and some days I genuinely do not know how to keep going. But I choose today to trust You anyway — not because I have it all together, but because You have never once let me go. I believe You remember me. I believe the promise You placed in my heart is still alive. Move in my life, God, in whatever way You see fit, and give me the strength to hold on until I see it — in Jesus' mighty name, Amen.</p>
+ </div>
 
-      <div class="article-challenge">
-        <span class="article-challenge-label">✦ Your Challenge This Week</span>
-        <p>Pick one specific thing you have been afraid to pray out loud about because it feels too big or too far gone. This week, pray it out loud every day — just once a day, with whatever faith you have in that moment. You do not need the right words. You do not need to feel it fully. Just say it out loud and trust that the God who hears is already listening — and He will answer.</p>
-      </div>
+ <div class="article-challenge">
+ <span class="article-challenge-label">Your Challenge This Week</span>
+ <p>Pick one specific thing you have been afraid to pray out loud about because it feels too big or too far gone. This week, pray it out loud every day — just once a day, with whatever faith you have in that moment. You do not need the right words. You do not need to feel it fully. Just say it out loud and trust that the God who hears is already listening — and He will answer.</p>
+ </div>
 
-      <hr class="article-divider">
+ <hr class="article-divider">
 
-      <div class="article-share">
-        <p>✦ Written with love for every soul that is still standing.</p>
-        <button class="btn btn-primary" onclick="navigate('prayer')" style="font-size:0.8rem; padding: 0.65rem 1.4rem;">Submit a Prayer Request →</button>
-      </div>
+ <div class="article-share">
+ <p> Written with love for every soul that is still standing.</p>
+ <button class="btn btn-primary" onclick="navigate('prayer')" style="font-size:0.8rem; padding: 0.65rem 1.4rem;">Submit a Prayer Request →</button>
+ </div>
 
-    </div>
-  </article>
+ </div>
+ </article>
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <h3>Mavel's <span>Corner</span></h3>
-          <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
-          <div class="footer-teal-line"></div>
-        </div>
-        <div class="footer-col">
-          <h4>Navigate</h4>
-          <ul>
-            <li><a onclick="navigate('home')">Home</a></li>
-            <li><a onclick="navigate('about')">About</a></li>
-            <li><a onclick="navigate('blog')">Blog</a></li>
-            <li><a onclick="navigate('prayer')">Prayer Request</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Support</h4>
-          <ul>
-            <li><a onclick="navigate('donate')">Donate</a></li>
-            <li><a onclick="navigate('contact')">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Categories</h4>
-          <ul>
-            <li><a onclick="navigate('blog')">Faith &amp; Discipleship</a></li>
-            <li><a onclick="navigate('blog')">Christian Living</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Mavel's Corner. All rights reserved.</span>
-        <span>Built with love and faith.</span>
-      </div>
-    </div>
-  </footer>
+ <footer>
+ <div class="footer-inner">
+ <div class="footer-top">
+ <div class="footer-brand">
+ <h3>Mavel's <span>Corner</span></h3>
+ <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
+ <div class="footer-teal-line"></div>
+ </div>
+ <div class="footer-col">
+ <h4>Navigate</h4>
+ <ul>
+ <li><a onclick="navigate('home')">Home</a></li>
+ <li><a onclick="navigate('about')">About</a></li>
+ <li><a onclick="navigate('blog')">Blog</a></li>
+ <li><a onclick="navigate('prayer')">Prayer Request</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h4>Support</h4>
+ <ul>
+ <li><a onclick="navigate('contact')">Contact</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h4>Categories</h4>
+ <ul>
+ <li><a onclick="navigate('blog')">Faith &amp; Discipleship</a></li>
+ <li><a onclick="navigate('blog')">Christian Living</a></li>
+ </ul>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <span>© 2026 Mavel's Corner. All rights reserved.</span>
+ <span>Built with love and faith.</span>
+ </div>
+ </div>
+ </footer>
 
 </div>
 
 <!-- ══════════════════════════════════════════════
-     PAGE: PRAYER
+ PAGE: PRAYER
 ══════════════════════════════════════════════ -->
 <div class="page" id="page-prayer">
 
-  <section class="prayer-hero">
-    <div style="position: relative;">
-      <span class="section-label" style="color: var(--gold);">We Are Listening</span>
-      <h1 style="margin-top: 1rem;">Share Your Prayer Request</h1>
-      <p style="margin-top: 1rem; max-width: 580px; margin-left: auto; margin-right: auto;">You don't have to carry this alone. Whatever is weighing on your heart — big or small, eloquent or broken — bring it here. We will stand with you in prayer, believing that the God who hears us is also the God who answers.</p>
-    </div>
-  </section>
+ <section class="prayer-hero">
+ <div style="position: relative;">
+ <span class="section-label" style="color: var(--gold);">We Are Listening</span>
+ <h1 style="margin-top: 1rem;">Share Your Prayer Request</h1>
+ <p style="margin-top: 1rem; max-width: 580px; margin-left: auto; margin-right: auto;">You don't have to carry this alone. Whatever is weighing on your heart — big or small, eloquent or broken — bring it here. We will stand with you in prayer, believing that the God who hears us is also the God who answers.</p>
+ </div>
+ </section>
 
-  <section class="prayer-form-section">
-    <div style="max-width: 680px; margin: 0 auto;">
-      <div class="prayer-form-wrap">
-        <div class="prayer-note">
-          <strong>🔒 Kept in Confidence</strong> — All prayer requests received here are treated with complete confidentiality. Your name and request will never be shared publicly. You are safe to be honest here.
-        </div>
+ <section class="prayer-form-section">
+ <div style="max-width: 680px; margin: 0 auto;">
+ <div class="prayer-form-wrap">
+ <div class="prayer-note">
+ <strong> Kept in Confidence</strong> — All prayer requests received here are treated with complete confidentiality. Your name and request will never be shared publicly. You are safe to be honest here.
+ </div>
 
-        <form>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="prayerFirstName">First Name *</label>
-              <input type="text" id="prayerFirstName" placeholder="Your first name" required>
-            </div>
-            <div class="form-group">
-              <label for="prayerEmail">Email (optional)</label>
-              <input type="email" id="prayerEmail" placeholder="For a follow-up if you'd like">
-            </div>
-          </div>
+ <form>
+ <div class="form-row">
+ <div class="form-group">
+ <label for="prayerFirstName">First Name *</label>
+ <input type="text" id="prayerFirstName" placeholder="Your first name" required>
+ </div>
+ <div class="form-group">
+ <label for="prayerEmail">Email (optional)</label>
+ <input type="email" id="prayerEmail" placeholder="For a follow-up if you'd like">
+ </div>
+ </div>
 
-          <div class="form-group">
-            <label for="prayerCategory">Prayer Category *</label>
-            <select id="prayerCategory" required>
-              <option value="" disabled selected>Select a category</option>
-              <option>Healing & Health</option>
-              <option>Mental Health & Suicidal Thoughts</option>
-              <option>Relationships & Family</option>
-              <option>Purpose & Direction</option>
-              <option>Finances & Provision</option>
-              <option>Faith & Spiritual Growth</option>
-              <option>Grief & Loss</option>
-              <option>Other</option>
-            </select>
-          </div>
+ <div class="form-group">
+ <label for="prayerCategory">Prayer Category *</label>
+ <select id="prayerCategory" required>
+ <option value="" disabled selected>Select a category</option>
+ <option>Healing & Health</option>
+ <option>Mental Health & Suicidal Thoughts</option>
+ <option>Relationships & Family</option>
+ <option>Purpose & Direction</option>
+ <option>Finances & Provision</option>
+ <option>Faith & Spiritual Growth</option>
+ <option>Grief & Loss</option>
+ <option>Other</option>
+ </select>
+ </div>
 
-          <div class="form-group">
-            <label for="prayerRequest">Your Prayer Request *</label>
-            <textarea id="prayerRequest" placeholder="Share as much or as little as you'd like. This is a safe place..." required style="min-height: 180px;"></textarea>
-          </div>
+ <div class="form-group">
+ <label for="prayerRequest">Your Prayer Request *</label>
+ <textarea id="prayerRequest" placeholder="Share as much or as little as you'd like. This is a safe place..." required style="min-height: 180px;"></textarea>
+ </div>
 
-          <div class="form-group">
-            <label for="prayerPrivacy">Privacy Preference</label>
-            <select id="prayerPrivacy">
-              <option>Keep my request completely private</option>
-              <option>You may share my request anonymously for group prayer</option>
-            </select>
-          </div>
+ <div class="form-group">
+ <label for="prayerPrivacy">Privacy Preference</label>
+ <select id="prayerPrivacy">
+ <option>Keep my request completely private</option>
+ <option>You may share my request anonymously for group prayer</option>
+ </select>
+ </div>
 
-          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 0.9rem; padding: 1rem;">🙏 Submit My Prayer Request</button>
-        </form>
+ <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 0.9rem; padding: 1rem;"> Submit My Prayer Request</button>
+ </form>
 
-        <div style="margin-top: 2rem; text-align: center; padding: 1.5rem; background: var(--cream); border-radius: 8px;">
-          <p style="font-family: 'Playfair Display', serif; font-style: italic; color: var(--navy); font-size: 1.05rem; line-height: 1.7; margin-bottom: 0.5rem;">"The prayer of a righteous person is powerful and effective."</p>
-          <cite style="font-size: 0.75rem; color: var(--gold); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;">James 5:16</cite>
-        </div>
-      </div>
+ <div style="margin-top: 2rem; text-align: center; padding: 1.5rem; background: var(--cream); border-radius: 8px;">
+ <p style="font-family: 'Playfair Display', serif; font-style: italic; color: var(--navy); font-size: 1.05rem; line-height: 1.7; margin-bottom: 0.5rem;">"The prayer of a righteous person is powerful and effective."</p>
+ <cite style="font-size: 0.75rem; color: var(--gold); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;">James 5:16</cite>
+ </div>
+ </div>
 
-      <p style="text-align: center; margin-top: 2rem; font-size: 0.875rem; color: var(--text-light); line-height: 1.7;">
-        If you are in crisis or having thoughts of self-harm, please reach out to a crisis line in your country immediately. <strong style="color: var(--teal);">You matter. Your life has value. God is not done with you.</strong>
-      </p>
-    </div>
-  </section>
+ <p style="text-align: center; margin-top: 2rem; font-size: 0.875rem; color: var(--text-light); line-height: 1.7;">
+ If you are in crisis or having thoughts of self-harm, please reach out to a crisis line in your country immediately. <strong style="color: var(--teal);">You matter. Your life has value. God is not done with you.</strong>
+ </p>
+ </div>
+ </section>
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <h3>Mavel's <span>Corner</span></h3>
-          <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
-          <div class="footer-teal-line"></div>
-        </div>
-        <div class="footer-col">
-          <h4>Navigate</h4>
-          <ul>
-            <li><a onclick="navigate('home')">Home</a></li>
-            <li><a onclick="navigate('about')">About</a></li>
-            <li><a onclick="navigate('blog')">Blog</a></li>
-            <li><a onclick="navigate('prayer')">Prayer Request</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Support</h4>
-          <ul>
-            <li><a onclick="navigate('donate')">Donate</a></li>
-            <li><a onclick="navigate('contact')">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Categories</h4>
-          <ul>
-            <li><a onclick="navigate('blog')">Faith & Discipleship</a></li>
-            <li><a onclick="navigate('blog')">Christian Living</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Mavel's Corner. All rights reserved.</span>
-        <span>Built with love and faith.</span>
-      </div>
-    </div>
-  </footer>
-
-</div>
-
-<!-- ══════════════════════════════════════════════
-     PAGE: DONATE
-══════════════════════════════════════════════ -->
-<div class="page" id="page-donate">
-
-  <section class="donate-hero">
-    <div style="position: relative; max-width: 680px; margin: 0 auto; text-align: center;">
-      <span class="section-label" style="color: var(--gold);">Partner With Us</span>
-      <h1 style="margin-top: 1rem;">Help Us Keep the Light On</h1>
-      <p style="margin-top: 1rem;">Every post written here is a seed planted in someone's desperate season. Your support helps us reach more broken people with the truth that God has not forgotten them. Every gift matters. Every dollar carries a message of hope.</p>
-    </div>
-  </section>
-
-  <section class="section tiers-section">
-    <div class="section-inner">
-      <div style="text-align: center; margin-bottom: 1rem;">
-        <span class="section-label">Choose Your Impact</span>
-        <h2 class="section-title">Donation Tiers</h2>
-        <p class="section-subtitle" style="margin: 0 auto;">Choose the level that feels right for you. No amount is too small when it is given from a generous heart.</p>
-      </div>
-      <div class="tiers-grid" style="margin-top: 3rem;">
-        <div class="tier-card">
-          <div class="tier-amount">$10</div>
-          <div class="tier-name">The Seed</div>
-          <p>Helps us keep the blog active and published — covering hosting and content creation for one week of consistent, hope-filled content.</p>
-          <button class="btn btn-outline" style="width: 100%; color: var(--teal); border-color: var(--teal);" onclick="document.getElementById('donateAmount').value='10'">Choose This</button>
-        </div>
-        <div class="tier-card">
-          <div class="tier-amount">$25</div>
-          <div class="tier-name">Sustain</div>
-          <p>Sustains the platform for a full month — ensuring the prayer request inbox is monitored and every person who reaches out receives a response.</p>
-          <button class="btn btn-outline" style="width: 100%; color: var(--teal); border-color: var(--teal);" onclick="document.getElementById('donateAmount').value='25'">Choose This</button>
-        </div>
-        <div class="tier-card featured">
-          <div class="tier-amount" style="margin-top: 1rem;">$50</div>
-          <div class="tier-name">Strengthen</div>
-          <p>Funds the creation of deeper resources — devotionals, guides, and tools designed to walk someone from hopelessness into purpose over time.</p>
-          <button class="btn btn-gold" style="width: 100%;" onclick="document.getElementById('donateAmount').value='50'">Choose This</button>
-        </div>
-        <div class="tier-card">
-          <div class="tier-amount">$100</div>
-          <div class="tier-name">Champion</div>
-          <p>Becomes a pillar of this ministry — covering expanded outreach, social media amplification, and reaching thousands more who need this message.</p>
-          <button class="btn btn-outline" style="width: 100%; color: var(--teal); border-color: var(--teal);" onclick="document.getElementById('donateAmount').value='100'">Choose This</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="donate-form-section">
-    <div class="section-inner">
-      <div style="text-align: center; margin-bottom: 2.5rem;">
-        <span class="section-label">Make Your Gift</span>
-        <h2 class="section-title">Complete Your Donation</h2>
-      </div>
-      <div class="donate-form-wrap">
-        <form>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="donateName">Full Name *</label>
-              <input type="text" id="donateName" placeholder="Your name" required>
-            </div>
-            <div class="form-group">
-              <label for="donateEmail">Email Address *</label>
-              <input type="email" id="donateEmail" placeholder="For your receipt" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="donateAmount">Donation Amount (USD) *</label>
-            <input type="number" id="donateAmount" placeholder="Enter amount e.g. 25" min="1" required>
-          </div>
-          <div class="form-group">
-            <label for="donateMessage">A Note (optional)</label>
-            <textarea id="donateMessage" placeholder="Share what moved you to give, if you'd like..." style="min-height: 100px;"></textarea>
-          </div>
-          <button type="submit" class="btn btn-gold" style="width: 100%; font-size: 0.9rem; padding: 1rem;">💛 Complete Donation</button>
-        </form>
-        <div class="payment-note">
-          <strong>🔐 Secure Payment Coming Soon</strong><br>
-          PayPal and Flutterwave (Ghana Mobile Money) will be connected to this form. Your generosity is safe and appreciated.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <h3>Mavel's <span>Corner</span></h3>
-          <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
-          <div class="footer-teal-line"></div>
-        </div>
-        <div class="footer-col">
-          <h4>Navigate</h4>
-          <ul>
-            <li><a onclick="navigate('home')">Home</a></li>
-            <li><a onclick="navigate('about')">About</a></li>
-            <li><a onclick="navigate('blog')">Blog</a></li>
-            <li><a onclick="navigate('prayer')">Prayer Request</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Support</h4>
-          <ul>
-            <li><a onclick="navigate('donate')">Donate</a></li>
-            <li><a onclick="navigate('contact')">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Categories</h4>
-          <ul>
-            <li><a onclick="navigate('blog')">Faith & Discipleship</a></li>
-            <li><a onclick="navigate('blog')">Christian Living</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Mavel's Corner. All rights reserved.</span>
-        <span>Built with love and faith.</span>
-      </div>
-    </div>
-  </footer>
+ <footer>
+ <div class="footer-inner">
+ <div class="footer-top">
+ <div class="footer-brand">
+ <h3>Mavel's <span>Corner</span></h3>
+ <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
+ <div class="footer-teal-line"></div>
+ </div>
+ <div class="footer-col">
+ <h4>Navigate</h4>
+ <ul>
+ <li><a onclick="navigate('home')">Home</a></li>
+ <li><a onclick="navigate('about')">About</a></li>
+ <li><a onclick="navigate('blog')">Blog</a></li>
+ <li><a onclick="navigate('prayer')">Prayer Request</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h4>Support</h4>
+ <ul>
+ <li><a onclick="navigate('contact')">Contact</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h4>Categories</h4>
+ <ul>
+ <li><a onclick="navigate('blog')">Faith & Discipleship</a></li>
+ <li><a onclick="navigate('blog')">Christian Living</a></li>
+ </ul>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <span>© 2026 Mavel's Corner. All rights reserved.</span>
+ <span>Built with love and faith.</span>
+ </div>
+ </div>
+ </footer>
 
 </div>
 
 <!-- ══════════════════════════════════════════════
-     PAGE: CONTACT
+ PAGE: CONTACT
 ══════════════════════════════════════════════ -->
 <div class="page" id="page-contact">
 
-  <section class="contact-hero" style="position: relative; overflow: hidden;">
-    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 60% 40%, rgba(27,154,170,0.12) 0%, transparent 60%);"></div>
-    <div style="position: relative; max-width: 600px; margin: 0 auto; text-align: center;">
-      <span class="section-label" style="color: var(--teal-light);">Get in Touch</span>
-      <h1 style="margin-top: 1rem;">We'd Love to Hear from You</h1>
-      <p style="margin-top: 1rem;">Whether you have a question, a testimony, a collaboration idea, or just need someone to talk to — our inbox is always open. You are never a bother here.</p>
-    </div>
-  </section>
+ <section class="contact-hero" style="position: relative; overflow: hidden;">
+ <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 60% 40%, rgba(27,154,170,0.12) 0%, transparent 60%);"></div>
+ <div style="position: relative; max-width: 600px; margin: 0 auto; text-align: center;">
+ <span class="section-label" style="color: var(--teal-light);">Get in Touch</span>
+ <h1 style="margin-top: 1rem;">We'd Love to Hear from You</h1>
+ <p style="margin-top: 1rem;">Whether you have a question, a testimony, a collaboration idea, or just need someone to talk to — our inbox is always open. You are never a bother here.</p>
+ </div>
+ </section>
 
-  <section class="contact-section">
-    <div class="contact-grid">
+ <section class="contact-section">
+ <div class="contact-grid">
 
-      <div class="contact-info">
-        <h3>Ways to Reach Us</h3>
+ <div class="contact-info">
+ <h3>Ways to Reach Us</h3>
 
-        <div class="contact-info-item">
-          <div class="contact-info-icon">✉️</div>
-          <div class="contact-info-text">
-            <strong>Email</strong>
-            <span>hello@mavelscorner.com<br><em style="font-size:0.8rem; color: var(--text-light);">(Placeholder — update before launch)</em></span>
-          </div>
-        </div>
+ <div class="contact-info-item">
+ <div class="contact-info-icon">
+ <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;">
+ <rect x="2" y="4" width="20" height="16" rx="2"/>
+ <polyline points="2,4 12,13 22,4"/>
+ </svg>
+ </div>
+ <div class="contact-info-text">
+ <strong>Email</strong>
+ <span>
+ <a href="mailto:mavelscorner@outlook.com" class="contact-info-link">mavelscorner@outlook.com</a>
+ </span>
+ </div>
+ </div>
 
-        <div class="contact-info-item">
-          <div class="contact-info-icon">📱</div>
-          <div class="contact-info-text">
-            <strong>Social Media</strong>
-            <span>Instagram & Facebook<br><em style="font-size:0.8rem; color: var(--text-light);">@mavelscorner (update handles)</em></span>
-          </div>
-        </div>
+ <div class="contact-info-item">
+ <div class="contact-info-icon">
+ <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;">
+ <rect x="2" y="2" width="20" height="20" rx="5"/>
+ <circle cx="12" cy="12" r="4"/>
+ <circle cx="17.5" cy="6.5" r="0.5" fill="var(--teal)" stroke="none"/>
+ </svg>
+ </div>
+ <div class="contact-info-text">
+ <strong>Instagram</strong>
+ <span>
+ <a href="https://www.instagram.com/mavelscorner" target="_blank" class="contact-info-link">@mavelscorner</a>
+ </span>
+ </div>
+ </div>
 
-        <div class="contact-info-item">
-          <div class="contact-info-icon">⏰</div>
-          <div class="contact-info-text">
-            <strong>Response Time</strong>
-            <span>We aim to reply within 48 hours. Prayer requests are prioritised.</span>
-          </div>
-        </div>
+ <div class="contact-info-item">
+ <div class="contact-info-icon">
+ <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;">
+ <circle cx="12" cy="12" r="10"/>
+ <polyline points="12,6 12,12 16,14"/>
+ </svg>
+ </div>
+ <div class="contact-info-text">
+ <strong>Response Time</strong>
+ <span>We aim to reply within 48 hours. Prayer requests are prioritised.</span>
+ </div>
+ </div>
 
-        <div style="margin-top: 2.5rem; padding: 1.5rem; background: var(--navy); border-radius: 8px;">
-          <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: var(--white); line-height: 1.7; margin-bottom: 0.5rem;">"Cast all your anxiety on him because he cares for you."</p>
-          <cite style="font-size: 0.75rem; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">1 Peter 5:7</cite>
-        </div>
-      </div>
+ <div class="contact-info-item">
+ <div class="contact-info-icon">
+ <!-- WhatsApp SVG icon -->
+ <svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:var(--teal);stroke:none;">
+ <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+ </svg>
+ </div>
+ <div class="contact-info-text">
+ <strong>WhatsApp</strong>
+ <span>Prefer to chat? Message us directly.</span>
+ <a href="https://wa.me/233XXXXXXXXX?text=Hello%20Mavel's%20Corner%2C%20I%20came%20across%20your%20blog%20and%20would%20love%20to%20connect." target="_blank" class="whatsapp-btn">
+ <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+ Chat on WhatsApp
+ </a>
+ </div>
+ </div>
 
-      <div class="contact-form-wrap">
-        <h3 style="font-size: 1.3rem; color: var(--navy); margin-bottom: 1.75rem;">Send Us a Message</h3>
-        <form>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="contactName">Name *</label>
-              <input type="text" id="contactName" placeholder="Your name" required>
-            </div>
-            <div class="form-group">
-              <label for="contactEmail">Email *</label>
-              <input type="email" id="contactEmail" placeholder="Your email" required>
-            </div>
-          </div>
+ <div style="margin-top: 2.5rem; padding: 1.5rem; background: var(--navy); border-radius: 8px;">
+ <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: var(--white); line-height: 1.7; margin-bottom: 0.5rem;">"Cast all your anxiety on him because he cares for you."</p>
+ <cite style="font-size: 0.75rem; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">1 Peter 5:7</cite>
+ </div>
+ </div>
 
-          <div class="form-group">
-            <label for="contactSubject">Subject</label>
-            <select id="contactSubject">
-              <option value="" disabled selected>What's this about?</option>
-              <option>General Enquiry</option>
-              <option>Prayer Request Follow-Up</option>
-              <option>Collaboration / Partnership</option>
-              <option>Share a Testimony</option>
-              <option>Blog Contribution</option>
-              <option>Technical Issue</option>
-              <option>Other</option>
-            </select>
-          </div>
+ <div class="contact-form-wrap">
+ <h3 style="font-size: 1.3rem; color: var(--navy); margin-bottom: 0.5rem;">Send Us a Message</h3>
+ <p style="font-size:0.85rem; color:var(--text-light); margin-bottom:1.5rem;">Every message goes straight to our inbox. We read every one.</p>
 
-          <div class="form-group">
-            <label for="contactMessage">Message *</label>
-            <textarea id="contactMessage" placeholder="Write your message here... we are listening." required style="min-height: 160px;"></textarea>
-          </div>
+ <!-- ─────────────────────────────────────────────────────────
+ FORMSPREE: replace YOUR_FORM_ID with your Formspree ID
+ Sign up free at formspree.io → New Form → copy the ID
+ Example: action="https://formspree.io/f/abcd1234"
+ ──────────────────────────────────────────────────────────── -->
+ <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+ <div class="form-row">
+ <div class="form-group">
+ <label for="contactName">Name *</label>
+ <input type="text" id="contactName" name="name" placeholder="Your name" required>
+ </div>
+ <div class="form-group">
+ <label for="contactEmail">Email *</label>
+ <input type="email" id="contactEmail" name="email" placeholder="Your email" required>
+ </div>
+ </div>
 
-          <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 0.9rem; padding: 1rem;">Send Message →</button>
-        </form>
-      </div>
+ <div class="form-group">
+ <label for="contactSubject">Subject</label>
+ <select id="contactSubject" name="subject">
+ <option value="" disabled selected>What's this about?</option>
+ <option>General Enquiry</option>
+ <option>Prayer Request Follow-Up</option>
+ <option>Collaboration / Partnership</option>
+ <option>Share a Testimony</option>
+ <option>Blog Contribution</option>
+ <option>Technical Issue</option>
+ <option>Other</option>
+ </select>
+ </div>
 
-    </div>
-  </section>
+ <div class="form-group">
+ <label for="contactMessage">Message *</label>
+ <textarea id="contactMessage" name="message" placeholder="Write your message here... we are listening." required style="min-height: 160px;"></textarea>
+ </div>
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <h3>Mavel's <span>Corner</span></h3>
-          <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
-          <div class="footer-teal-line"></div>
-        </div>
-        <div class="footer-col">
-          <h4>Navigate</h4>
-          <ul>
-            <li><a onclick="navigate('home')">Home</a></li>
-            <li><a onclick="navigate('about')">About</a></li>
-            <li><a onclick="navigate('blog')">Blog</a></li>
-            <li><a onclick="navigate('prayer')">Prayer Request</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Support</h4>
-          <ul>
-            <li><a onclick="navigate('donate')">Donate</a></li>
-            <li><a onclick="navigate('contact')">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Categories</h4>
-          <ul>
-            <li><a onclick="navigate('blog')">Faith & Discipleship</a></li>
-            <li><a onclick="navigate('blog')">Christian Living</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Mavel's Corner. All rights reserved.</span>
-        <span>Built with love and faith.</span>
-      </div>
-    </div>
-  </footer>
+ <!-- Hidden redirect field — Formspree sends user here after submit -->
+ <input type="hidden" name="_next" value="https://mavelscorner.blog/contact">
+ <input type="hidden" name="_subject" value="New message from Mavel's Corner website">
+
+ <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 0.9rem; padding: 1rem;">Send Message →</button>
+
+ <div id="formSuccess" style="display:none; margin-top:1rem; padding:1rem; background:rgba(27,154,170,0.1); border-radius:6px; border-left:3px solid var(--teal); font-size:0.9rem; color:var(--teal);">
+ Your message has been sent. We will get back to you within 48 hours. God bless you.
+ </div>
+ </form>
+ </div>
+
+ </div>
+ </section>
+
+ <footer>
+ <div class="footer-inner">
+ <div class="footer-top">
+ <div class="footer-brand">
+ <h3>Mavel's <span>Corner</span></h3>
+ <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
+ <div class="footer-teal-line"></div>
+ </div>
+ <div class="footer-col">
+ <h4>Navigate</h4>
+ <ul>
+ <li><a onclick="navigate('home')">Home</a></li>
+ <li><a onclick="navigate('about')">About</a></li>
+ <li><a onclick="navigate('blog')">Blog</a></li>
+ <li><a onclick="navigate('prayer')">Prayer Request</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h4>Support</h4>
+ <ul>
+ <li><a onclick="navigate('contact')">Contact</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h4>Categories</h4>
+ <ul>
+ <li><a onclick="navigate('blog')">Faith & Discipleship</a></li>
+ <li><a onclick="navigate('blog')">Christian Living</a></li>
+ </ul>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <span>© 2026 Mavel's Corner. All rights reserved.</span>
+ <span>Built with love and faith.</span>
+ </div>
+ </div>
+ </footer>
 
 </div>
 
 <script>
+  // ── SLUG MAP — page ID → clean URL slug & reverse ──
+  const SLUG_TO_PAGE = {
+    '':                                    'home',
+    'home':                                'home',
+    'about':                               'about',
+    'blog':                                'blog',
+    'still-waiting-so-was-abraham':        'post001',
+    'he-is-a-mountain-moving-god':         'post002',
+    'prayer-request':                      'prayer',
+    'contact':                             'contact',
+  };
+
+  const PAGE_TO_SLUG = {
+    'home':    '/',
+    'about':   '/about',
+    'blog':    '/blog',
+    'post001': '/still-waiting-so-was-abraham',
+    'post002': '/he-is-a-mountain-moving-god',
+    'prayer':  '/prayer-request',
+    'contact': '/contact',
+  };
+
   // ── NAVIGATION ──
   function navigate(page) {
-    // Hide all pages
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-
-    // Show target
     const target = document.getElementById('page-' + page);
     if (target) target.classList.add('active');
 
-    // Update nav active state (post pages highlight 'blog')
     const navPage = page.startsWith('post') ? 'blog' : page;
     document.querySelectorAll('.nav-links a').forEach(a => {
       a.classList.toggle('active', a.dataset.page === navPage);
     });
-
     document.querySelectorAll('[data-mobile-page]').forEach(a => {
       a.classList.toggle('active', a.dataset.mobilePage === navPage);
     });
 
-    // Close mobile menu
     document.getElementById('mobileMenu').classList.remove('open');
-
-    // Scroll to top
+    const slug = PAGE_TO_SLUG[page] || '/';
+    history.pushState({ page }, '', slug);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  // ── ROUTE FROM PATH — reads URL and shows the right page ──
+  function routeFromPath() {
+    const raw = window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
+    const page = SLUG_TO_PAGE[raw] || 'home';
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + page);
+    if (target) target.classList.add('active');
+    const navPage = page.startsWith('post') ? 'blog' : page;
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.classList.toggle('active', a.dataset.page === navPage);
+    });
+    document.querySelectorAll('[data-mobile-page]').forEach(a => {
+      a.classList.toggle('active', a.dataset.mobilePage === navPage);
+    });
+    window.scrollTo({ top: 0 });
+  }
+
+  window.addEventListener('popstate', routeFromPath);
 
   // ── HAMBURGER ──
   function toggleMenu() {
@@ -2912,7 +2888,6 @@
   function filterPosts(btn, category) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-
     document.querySelectorAll('#blogGrid .post-card').forEach(card => {
       if (category === 'all') {
         card.style.display = '';
@@ -2924,8 +2899,38 @@
     });
   }
 
-  // ── INIT ──
-  navigate('home');
+  // ── CONTACT FORM — Formspree AJAX ──
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = contactForm.querySelector('button[type="submit"]');
+      const successMsg = document.getElementById('formSuccess');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      try {
+        const res = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          contactForm.reset();
+          successMsg.style.display = 'block';
+          btn.textContent = 'Sent!';
+        } else {
+          btn.textContent = 'Error — try again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Error — try again';
+        btn.disabled = false;
+      }
+    });
+  }
+
+  // ── INIT — route based on URL the visitor landed on ──
+  routeFromPath();
 </script>
 
 </body>
