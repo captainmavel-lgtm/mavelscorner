@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mavel's Corner — Hope for the Broken. Truth for the Searching. Grace for the Waiting.</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+<meta property="og:title" content="Mavel's Corner — Hope for the Broken. Truth for the Searching. Grace for the Waiting.">
+<meta property="og:description" content="A faith-inspired space for the broken, the searching, and the waiting. Rooted in Scripture. Reaching the lost.">
+<meta property="og:image" content="/og-square.png">
+<meta property="og:url" content="https://mavelscorner.blog">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mavel's Corner">
+<meta name="twitter:description" content="Hope for the broken. Truth for the searching. Grace for the waiting.">
+<meta name="twitter:image" content="/og-square.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
@@ -1742,7 +1753,7 @@
 <!-- NAV -->
 <nav id="mainNav">
  <div class="nav-brand" onclick="navigate('home')">
- Mavel's <span>Corner</span>
+ <img src="/og-square.png" alt="Mavel's Corner" style="height:44px;width:auto;filter:brightness(0) invert(1);">
  </div>
  <ul class="nav-links">
  <li><a onclick="navigate('home')" data-page="home">Home</a></li>
@@ -1877,25 +1888,30 @@
  </div>
  </section>
 
- <!-- NEWSLETTER -->
- <section class="newsletter">
- <div class="newsletter-inner">
- <span class="section-label" style="color: var(--gold);">Stay Connected</span>
- <h2>Words of Hope, Straight to Your Inbox</h2>
- <p>Join a growing community of believers finding their footing again. No spam — just honest, life-giving words delivered when you need them most.</p>
- <div class="newsletter-form">
- <input type="email" placeholder="Your email address">
- <button class="btn btn-gold">Subscribe</button>
- </div>
- </div>
- </section>
+  <!-- FAITH STATEMENT (replaces newsletter) -->
+  <section style="background: var(--navy); padding: 4rem 2rem; text-align: center; position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 0%, rgba(27,154,170,0.12) 0%, transparent 60%);"></div>
+    <div style="max-width: 720px; margin: 0 auto; position: relative;">
+      <span class="section-label" style="color: var(--gold);">Our Promise to Every Reader</span>
+      <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--white); margin: 1rem 0; font-weight: 800; line-height: 1.2;">You Were Brought Here<br><em style="color: var(--teal-light); font-style: italic;">for a Reason.</em></h2>
+      <p style="color: rgba(255,255,255,0.65); font-size: 1.05rem; line-height: 1.9; margin-bottom: 2rem;">God has not forgotten your name. He has not cancelled your purpose. And He has not given up on the plans He spoke over your life before the foundations of the earth. Whatever brought you here today — pain, questions, hope, or all three — you are exactly where you are supposed to be. Welcome to Mavel's Corner.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <button class="btn btn-primary" onclick="navigate('blog')" style="font-size:0.875rem;">Read the Blog</button>
+        <button class="btn btn-outline" onclick="navigate('prayer')" style="font-size:0.875rem; color: var(--white); border-color: rgba(255,255,255,0.4);">Submit a Prayer Request</button>
+      </div>
+      <div style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08);">
+        <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 0.5rem;">"For the vision is yet for an appointed time; but at the end it will speak, and it will not lie."</p>
+        <cite style="font-size: 0.75rem; color: var(--gold); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;">Habakkuk 2:3</cite>
+      </div>
+    </div>
+  </section>
 
  <!-- FOOTER -->
  <footer>
  <div class="footer-inner">
  <div class="footer-top">
  <div class="footer-brand">
- <h3>Mavel's <span>Corner</span></h3>
+ <img src="/og-square.png" alt="Mavel's Corner" style="height:52px;width:auto;display:block;margin-bottom:0.75rem;filter:brightness(0) invert(1);">
  <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
  <div class="footer-teal-line"></div>
  </div>
@@ -2042,7 +2058,7 @@
  <div class="footer-inner">
  <div class="footer-top">
  <div class="footer-brand">
- <h3>Mavel's <span>Corner</span></h3>
+ <img src="/og-square.png" alt="Mavel's Corner" style="height:52px;width:auto;display:block;margin-bottom:0.75rem;filter:brightness(0) invert(1);">
  <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
  <div class="footer-teal-line"></div>
  </div>
@@ -2173,23 +2189,29 @@
  </div>
  </section>
 
- <section class="newsletter">
- <div class="newsletter-inner">
- <span class="section-label" style="color: var(--gold);">Never Miss a Word</span>
- <h2>Words of Hope, Straight to Your Inbox</h2>
- <p>Join a growing community of believers finding their footing again. No spam — just honest, life-giving words when you need them most.</p>
- <div class="newsletter-form">
- <input type="email" placeholder="Your email address">
- <button class="btn btn-gold">Subscribe</button>
- </div>
- </div>
- </section>
+  <!-- FAITH STATEMENT (replaces newsletter) -->
+  <section style="background: var(--navy); padding: 4rem 2rem; text-align: center; position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 0%, rgba(27,154,170,0.12) 0%, transparent 60%);"></div>
+    <div style="max-width: 720px; margin: 0 auto; position: relative;">
+      <span class="section-label" style="color: var(--gold);">Our Promise to Every Reader</span>
+      <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--white); margin: 1rem 0; font-weight: 800; line-height: 1.2;">You Were Brought Here<br><em style="color: var(--teal-light); font-style: italic;">for a Reason.</em></h2>
+      <p style="color: rgba(255,255,255,0.65); font-size: 1.05rem; line-height: 1.9; margin-bottom: 2rem;">God has not forgotten your name. He has not cancelled your purpose. And He has not given up on the plans He spoke over your life before the foundations of the earth. Whatever brought you here today — pain, questions, hope, or all three — you are exactly where you are supposed to be. Welcome to Mavel's Corner.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <button class="btn btn-primary" onclick="navigate('blog')" style="font-size:0.875rem;">Read the Blog</button>
+        <button class="btn btn-outline" onclick="navigate('prayer')" style="font-size:0.875rem; color: var(--white); border-color: rgba(255,255,255,0.4);">Submit a Prayer Request</button>
+      </div>
+      <div style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08);">
+        <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 0.5rem;">"For the vision is yet for an appointed time; but at the end it will speak, and it will not lie."</p>
+        <cite style="font-size: 0.75rem; color: var(--gold); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;">Habakkuk 2:3</cite>
+      </div>
+    </div>
+  </section>
 
  <footer>
  <div class="footer-inner">
  <div class="footer-top">
  <div class="footer-brand">
- <h3>Mavel's <span>Corner</span></h3>
+ <img src="/og-square.png" alt="Mavel's Corner" style="height:52px;width:auto;display:block;margin-bottom:0.75rem;filter:brightness(0) invert(1);">
  <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
  <div class="footer-teal-line"></div>
  </div>
@@ -2339,7 +2361,7 @@
  <div class="footer-inner">
  <div class="footer-top">
  <div class="footer-brand">
- <h3>Mavel's <span>Corner</span></h3>
+ <img src="/og-square.png" alt="Mavel's Corner" style="height:52px;width:auto;display:block;margin-bottom:0.75rem;filter:brightness(0) invert(1);">
  <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
  <div class="footer-teal-line"></div>
  </div>
@@ -2479,7 +2501,7 @@
  <div class="footer-inner">
  <div class="footer-top">
  <div class="footer-brand">
- <h3>Mavel's <span>Corner</span></h3>
+ <img src="/og-square.png" alt="Mavel's Corner" style="height:52px;width:auto;display:block;margin-bottom:0.75rem;filter:brightness(0) invert(1);">
  <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
  <div class="footer-teal-line"></div>
  </div>
@@ -2535,21 +2557,21 @@
  <strong> Kept in Confidence</strong> — All prayer requests received here are treated with complete confidentiality. Your name and request will never be shared publicly. You are safe to be honest here.
  </div>
 
- <form>
+ <form id="prayerForm" action="https://formspree.io/f/xzdyqgra" method="POST">
  <div class="form-row">
  <div class="form-group">
  <label for="prayerFirstName">First Name *</label>
- <input type="text" id="prayerFirstName" placeholder="Your first name" required>
+ <input type="text" id="prayerFirstName" name="firstName" placeholder="Your first name" required>
  </div>
  <div class="form-group">
  <label for="prayerEmail">Email (optional)</label>
- <input type="email" id="prayerEmail" placeholder="For a follow-up if you'd like">
+ <input type="email" id="prayerEmail" name="email" placeholder="For a follow-up if you'd like">
  </div>
  </div>
 
  <div class="form-group">
  <label for="prayerCategory">Prayer Category *</label>
- <select id="prayerCategory" required>
+ <select id="prayerCategory" name="category" required>
  <option value="" disabled selected>Select a category</option>
  <option>Healing & Health</option>
  <option>Mental Health & Suicidal Thoughts</option>
@@ -2564,12 +2586,12 @@
 
  <div class="form-group">
  <label for="prayerRequest">Your Prayer Request *</label>
- <textarea id="prayerRequest" placeholder="Share as much or as little as you'd like. This is a safe place..." required style="min-height: 180px;"></textarea>
+ <textarea id="prayerRequest" name="prayerRequest" placeholder="Share as much or as little as you'd like. This is a safe place..." required style="min-height: 180px;"></textarea>
  </div>
 
  <div class="form-group">
  <label for="prayerPrivacy">Privacy Preference</label>
- <select id="prayerPrivacy">
+ <select id="prayerPrivacy" name="privacy">
  <option>Keep my request completely private</option>
  <option>You may share my request anonymously for group prayer</option>
  </select>
@@ -2594,7 +2616,7 @@
  <div class="footer-inner">
  <div class="footer-top">
  <div class="footer-brand">
- <h3>Mavel's <span>Corner</span></h3>
+ <img src="/og-square.png" alt="Mavel's Corner" style="height:52px;width:auto;display:block;margin-bottom:0.75rem;filter:brightness(0) invert(1);">
  <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
  <div class="footer-teal-line"></div>
  </div>
@@ -2726,7 +2748,7 @@
  Sign up free at formspree.io → New Form → copy the ID
  Example: action="https://formspree.io/f/abcd1234"
  ──────────────────────────────────────────────────────────── -->
- <form id="contactForm" action="https://formspree.io/f/maqazjyj" method="POST">
+ <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
  <div class="form-row">
  <div class="form-group">
  <label for="contactName">Name *</label>
@@ -2776,7 +2798,7 @@
  <div class="footer-inner">
  <div class="footer-top">
  <div class="footer-brand">
- <h3>Mavel's <span>Corner</span></h3>
+ <img src="/og-square.png" alt="Mavel's Corner" style="height:52px;width:auto;display:block;margin-bottom:0.75rem;filter:brightness(0) invert(1);">
  <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
  <div class="footer-teal-line"></div>
  </div>
@@ -2930,6 +2952,25 @@
   }
 
   // ── INIT — route based on URL the visitor landed on ──
+  // Prayer form AJAX
+  const prayerForm = document.getElementById('prayerForm');
+  if (prayerForm) {
+    prayerForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('prayerSubmitBtn');
+      const success = document.getElementById('prayerSuccess');
+      btn.textContent = 'Sending...'; btn.disabled = true;
+      try {
+        const res = await fetch(prayerForm.action, {
+          method: 'POST', body: new FormData(prayerForm),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) { prayerForm.reset(); success.style.display = 'block'; btn.textContent = 'Sent!'; }
+        else { btn.textContent = 'Error — try again'; btn.disabled = false; }
+      } catch { btn.textContent = 'Error — try again'; btn.disabled = false; }
+    });
+  }
+
   routeFromPath();
 </script>
 
