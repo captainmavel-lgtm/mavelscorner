@@ -1,0 +1,292 @@
+---
+permalink: /blog/index.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Blog | Mavel's Corner</title>
+  <meta name="description" content="Honest, Scripture-rooted words for the broken, the waiting, and the searching."/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    :root {
+      --teal:#1B9AAA; --teal-light:#22b8cc; --teal-dark:#157a87;
+      --white:#FFFFFF; --navy:#0D2B30; --navy-light:#163b42;
+      --gold:#C8973A; --gold-light:#d9ac55; --cream:#FBF8F3;
+      --text-dark:#1a1a2e; --text-mid:#3d4f52; --text-light:#6b7c7f;
+      --border:rgba(27,154,170,0.15);
+      --shadow-sm:0 2px 12px rgba(13,43,48,0.08);
+      --shadow-md:0 8px 32px rgba(13,43,48,0.12);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:'Lato',sans-serif;color:var(--text-dark);background:var(--cream);line-height:1.7}
+    h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.25}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(13,43,48,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(200,151,58,0.2);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:68px}
+    .nav-brand{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:0.01em}
+    .nav-brand span{color:var(--gold)}
+    .nav-links{display:flex;align-items:center;gap:0.25rem;list-style:none}
+    .nav-links a{display:block;padding:0.45rem 0.85rem;color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.875rem;font-weight:400;letter-spacing:0.04em;text-transform:uppercase;border-radius:4px;transition:color 0.2s,background 0.2s}
+    .nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.08)}
+    .nav-links a.active{color:var(--gold);background:rgba(200,151,58,0.12)}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+    .hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px}
+    .mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:var(--navy);padding:1.5rem 2rem;z-index:998;border-bottom:2px solid var(--gold);flex-direction:column;gap:0.5rem}
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:1rem;letter-spacing:0.05em;text-transform:uppercase;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.08);transition:color 0.2s}
+    .mobile-menu a:hover,.mobile-menu a.active{color:var(--gold)}
+    @media(max-width:700px){.nav-links{display:none}.hamburger{display:flex}}
+
+    /* ── HERO ── */
+    .blog-hero{background:var(--navy);padding:7rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+    .blog-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(27,154,170,0.12) 0%,transparent 60%)}
+    .section-label{display:inline-block;font-family:'Lato',sans-serif;font-size:1.2rem;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal-light);margin-bottom:1rem;position:relative}
+    .blog-hero h1{font-size:clamp(2rem,5vw,3.5rem);color:var(--white);margin:1rem 0;position:relative}
+    .blog-hero p{color:rgba(255,255,255,0.6);max-width:540px;margin:0 auto;font-size:1rem;line-height:1.8;position:relative}
+
+    /* ── FILTERS ── */
+    .blog-filters{padding:1.75rem 2rem;background:var(--white);border-bottom:1px solid var(--border)}
+    .blog-filters-inner{max-width:1100px;margin:0 auto;display:flex;gap:0.75rem;flex-wrap:wrap}
+    .filter-btn{padding:0.45rem 1rem;border-radius:40px;border:1.5px solid var(--border);background:transparent;font-family:'Lato',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.06em;color:var(--text-mid);cursor:pointer;transition:all 0.2s}
+    .filter-btn.active,.filter-btn:hover{background:var(--teal);border-color:var(--teal);color:var(--white)}
+
+    /* ── GRID ── */
+    .blog-grid-section{padding:4rem 2rem 6rem;background:var(--cream)}
+    .blog-grid-inner{max-width:1100px;margin:0 auto}
+
+    /* Featured post */
+    .featured-wrap{margin-bottom:3.5rem}
+    .featured-label{font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:block}
+    .featured-card{background:var(--white);border-radius:10px;overflow:hidden;box-shadow:var(--shadow-md);border:1px solid rgba(200,151,58,0.2);display:grid;grid-template-columns:1fr 1fr;transition:transform 0.3s,box-shadow 0.3s}
+    .featured-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(13,43,48,0.18)}
+    @media(max-width:768px){.featured-card{grid-template-columns:1fr}}
+    .featured-accent{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);min-height:300px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .featured-accent::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 30% 50%,rgba(27,154,170,0.25) 0%,transparent 65%)}
+    .featured-accent-symbol{font-family:'Playfair Display',serif;font-size:6rem;color:rgba(200,151,58,0.15);position:absolute;right:2rem;bottom:-1rem;line-height:1;user-select:none}
+    .featured-accent-cross{font-size:3.5rem;color:rgba(200,151,58,0.4);position:relative;z-index:1}
+    .featured-body{padding:2.5rem}
+    .post-category-badge{display:inline-block;font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);background:rgba(27,154,170,0.1);padding:0.25rem 0.65rem;border-radius:2px;margin-bottom:0.85rem}
+    .featured-body h2{font-size:clamp(1.5rem,3vw,2rem);color:var(--navy);margin-bottom:0.5rem;font-weight:700;line-height:1.25}
+    .featured-body .post-subtitle{font-style:italic;color:var(--text-light);font-family:'Playfair Display',serif;font-size:0.95rem;margin-bottom:1rem}
+    .post-scripture-line{font-size:0.82rem;color:var(--gold);font-style:italic;margin-bottom:1rem;font-family:'Playfair Display',serif}
+    .post-excerpt{font-size:0.92rem;color:var(--text-mid);line-height:1.75;margin-bottom:1.5rem}
+    .post-meta-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
+    .post-date{font-size:0.75rem;color:var(--text-light);letter-spacing:0.05em}
+    .read-more-btn{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);text-decoration:none;transition:gap 0.2s}
+    .read-more-btn:hover{gap:0.7rem}
+
+    /* Post grid */
+    .posts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.75rem}
+    .post-card{background:var(--white);border-radius:8px;overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--border);transition:transform 0.3s,box-shadow 0.3s;display:flex;flex-direction:column}
+    .post-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}
+    .card-accent{height:5px;background:linear-gradient(90deg,var(--teal),var(--gold))}
+    .card-body{padding:1.75rem;flex:1;display:flex;flex-direction:column}
+    .card-body h3{font-size:1.15rem;color:var(--navy);margin-bottom:0.5rem;font-weight:600;line-height:1.4}
+    .card-body .post-excerpt{font-size:0.88rem;flex:1;margin-bottom:1.25rem}
+    .card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:1rem;border-top:1px solid var(--border)}
+
+    /* Tags */
+    .tag-chip{display:inline-block;font-size:0.65rem;background:rgba(27,154,170,0.08);color:var(--teal);border:1px solid rgba(27,154,170,0.2);padding:0.15rem 0.5rem;border-radius:2px;margin-right:0.3rem;margin-bottom:0.3rem}
+
+    /* Empty state */
+    .empty-state{text-align:center;padding:5rem 2rem;color:var(--text-light)}
+    .empty-state h3{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--navy);margin:1rem 0 0.5rem}
+
+    /* ── FOOTER ── */
+    footer{background:#070f11;padding:3.5rem 2rem 2rem;color:rgba(255,255,255,0.5);font-size:0.875rem}
+    .footer-inner{max-width:1100px;margin:0 auto}
+    .footer-top{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:2.5rem;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.07)}
+    @media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.footer-top{grid-template-columns:1fr}}
+    .footer-brand h3{font-family:'Playfair Display',serif;color:var(--white);font-size:1.2rem;margin-bottom:0.75rem}
+    .footer-brand h3 span{color:var(--gold)}
+    .footer-brand p{font-style:italic;color:rgba(255,255,255,0.4);font-size:0.85rem;line-height:1.8;margin-bottom:1.25rem}
+    .footer-teal-line{width:40px;height:2px;background:var(--teal)}
+    .footer-col h4{font-family:'Lato',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:1.25rem}
+    .footer-col ul{list-style:none}
+    .footer-col ul li{margin-bottom:0.6rem}
+    .footer-col ul li a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:0.875rem;transition:color 0.2s;cursor:pointer}
+    .footer-col ul li a:hover{color:var(--teal-light)}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:0.8rem}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .fade-in{animation:fadeUp 0.7s ease forwards}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="/" class="nav-brand">Mavel's <span>Corner</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about" onclick="goSPA('about')">About</a></li>
+    <li><a href="/blog/" class="active">Blog</a></li>
+    <li><a href="/#prayer" onclick="goSPA('prayer')">Prayer</a></li>
+    <li><a href="/#contact" onclick="goSPA('contact')">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/">Home</a>
+  <a href="/#about" onclick="goSPA('about')">About</a>
+  <a href="/blog/" class="active">Blog</a>
+  <a href="/#prayer" onclick="goSPA('prayer')">Prayer</a>
+  <a href="/#contact" onclick="goSPA('contact')">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="blog-hero">
+  <span class="section-label">Words for the Journey</span>
+  <h1>The Blog</h1>
+  <p>Honest, Scripture-rooted words for the broken, the waiting, and the searching. Written for you, in love.</p>
+</section>
+
+<!-- FILTERS -->
+<div class="blog-filters">
+  <div class="blog-filters-inner">
+    <button class="filter-btn active" onclick="filterPosts('all',this)">All Posts</button>
+    <button class="filter-btn" onclick="filterPosts('Faith and Discipleship',this)">Faith &amp; Discipleship</button>
+    <button class="filter-btn" onclick="filterPosts('Christian Living and Lifestyle',this)">Christian Living &amp; Lifestyle</button>
+  </div>
+</div>
+
+<!-- BLOG GRID -->
+<div class="blog-grid-section">
+  <div class="blog-grid-inner">
+
+    {%- set allPosts = collections.post | reverse -%}
+
+    {% if allPosts.length === 0 %}
+    <div class="empty-state">
+      <div style="font-size:3rem;color:var(--gold);opacity:0.3">✝</div>
+      <h3>New posts are on the way</h3>
+      <p>Check back soon — new reflections are published twice a week.</p>
+    </div>
+
+    {% else %}
+
+    {%- set featured = allPosts[0] -%}
+    {%- set rest = allPosts | slice(1) -%}
+
+    <!-- Featured post -->
+    <div class="featured-wrap fade-in" id="featuredWrap" data-category="{{ featured.data.category }}">
+      <span class="featured-label">✦ Latest Post</span>
+      <div class="featured-card">
+        <div class="featured-accent">
+          <span class="featured-accent-cross">✝</span>
+          <span class="featured-accent-symbol">"</span>
+        </div>
+        <div class="featured-body">
+          <span class="post-category-badge">{{ featured.data.category }}</span>
+          <h2>{{ featured.data.title }}</h2>
+          {% if featured.data.subtitle %}<p class="post-subtitle">{{ featured.data.subtitle }}</p>{% endif %}
+          <p class="post-scripture-line">{{ featured.data.scripture }} — "{{ featured.data.scripture_text }}"</p>
+          <p class="post-excerpt">{{ featured.data.excerpt }}</p>
+          <div class="post-meta-row">
+            <span class="post-date">{{ featured.data.date | readableDate }}</span>
+            <a href="{{ featured.url }}" class="read-more-btn">Read Full Post →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rest of posts -->
+    {% if rest.length > 0 %}
+    <div class="posts-grid" id="postsGrid">
+      {% for post in rest %}
+      <article class="post-card fade-in" data-category="{{ post.data.category }}" style="animation-delay:{{ loop.index0 * 0.1 }}s">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <span class="post-category-badge">{{ post.data.category }}</span>
+          <h3>{{ post.data.title }}</h3>
+          <p class="post-scripture-line">{{ post.data.scripture }} — "{{ post.data.scripture_text }}"</p>
+          <p class="post-excerpt">{{ post.data.excerpt }}</p>
+          <div class="card-footer">
+            <span class="post-date">{{ post.data.date | readableDate }}</span>
+            <a href="{{ post.url }}" class="read-more-btn">Read →</a>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% endif %}
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>Mavel's <span>Corner</span></h3>
+        <p>Hope for the broken. Truth for the searching. Grace for the waiting.</p>
+        <div class="footer-teal-line"></div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#about" onclick="goSPA('about')">About</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/#prayer" onclick="goSPA('prayer')">Prayer Request</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul><li><a href="/#contact" onclick="goSPA('contact')">Contact</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="/blog/">Faith &amp; Discipleship</a></li>
+          <li><a href="/blog/">Christian Living</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mavel's Corner. All rights reserved.</span>
+      <span>Built with love and faith.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+  window.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>20)})
+
+  // Navigate back to SPA pages
+  function goSPA(page){
+    sessionStorage.setItem('mavelPage', page);
+  }
+
+  function filterPosts(category, btn){
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const featured = document.getElementById('featuredWrap');
+    const cards = document.querySelectorAll('#postsGrid .post-card');
+    if(category==='all'){
+      if(featured) featured.style.display='';
+      cards.forEach(c=>c.style.display='');
+    } else {
+      if(featured) featured.style.display = featured.dataset.category===category ? '' : 'none';
+      cards.forEach(c=>c.style.display = c.dataset.category===category ? '' : 'none');
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "src/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "src/_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+
+      - label: "Subtitle"
+        name: "subtitle"
+        widget: "string"
+        required: false
+        hint: "Optional — a short italic line shown below the title"
+
+      - label: "Publication Date"
+        name: "date"
+        widget: "datetime"
+
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - "Faith and Discipleship"
+          - "Christian Living and Lifestyle"
+
+      - label: "Scripture Reference"
+        name: "scripture"
+        widget: "string"
+        hint: "e.g. Jeremiah 29:11"
+
+      - label: "Scripture Text"
+        name: "scripture_text"
+        widget: "string"
+        hint: "The verse text shown as a preview — e.g. For I know the plans I have for you"
+
+      - label: "Featured Image"
+        name: "featured_image"
+        widget: "image"
+        required: false
+
+      - label: "Post Excerpt"
+        name: "excerpt"
+        widget: "string"
+        pattern: ['.{0,200}', "Keep to 200 characters or fewer"]
+        hint: "A short summary shown on the blog listing page (max 200 characters)"
+
+      - label: "Post Body"
+        name: "body"
+        widget: "markdown"
+
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+        default: ["post"]
+        hint: "Add tags separated by pressing Enter — e.g. faith, grace, prayer"
