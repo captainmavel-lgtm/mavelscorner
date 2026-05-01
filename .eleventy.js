@@ -1,10 +1,9 @@
 module.exports = function(eleventyConfig) {
 
-  // Pass these through untouched — Netlify and browser need them
   eleventyConfig.addPassthroughCopy("src/admin");
   eleventyConfig.addPassthroughCopy("src/images");
+  eleventyConfig.addPassthroughCopy("src/_redirects");
 
-  // Date filter: "2026-04-22" → "April 22, 2026"
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     const d = new Date(dateObj);
     return d.toLocaleDateString("en-GB", {
@@ -12,7 +11,6 @@ module.exports = function(eleventyConfig) {
     });
   });
 
-  // Truncate filter for excerpts
   eleventyConfig.addFilter("truncate", (str, len) =>
     str && str.length > len ? str.slice(0, len) + "…" : str
   );
