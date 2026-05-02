@@ -10,7 +10,8 @@ module.exports = function(eleventyConfig) {
       day: "numeric", month: "long", year: "numeric"
     });
   });
-
+  
+  eleventyConfig.addFilter("skip", (array, n) => array.slice(n));
   eleventyConfig.addFilter("truncate", (str, len) =>
     str && str.length > len ? str.slice(0, len) + "…" : str
   );

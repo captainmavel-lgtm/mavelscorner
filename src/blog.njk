@@ -177,7 +177,7 @@ permalink: /blog/index.html
     {% else %}
 
     {%- set featured = allPosts[0] -%}
-    {%- set rest = allPosts | slice(1) -%}
+    {%- set rest = allPosts | skip(1) -%}
 
     <!-- Featured post -->
     <div class="featured-wrap fade-in" id="featuredWrap" data-category="{{ featured.data.category }}">
