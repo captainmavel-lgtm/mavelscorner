@@ -4,7 +4,7 @@ excerpt: You were going to be further along by now. The waiting is starting to
 post_number: "001"
 title: Still Waiting? So Was Abraham.
 subtitle: Why Delays From God Are Never Denials
-date: 2026-04-26T14:28:34.302Z
+date: 2026-01-01T14:28:34.302Z
 category: Faith and Discipleship
 scripture: Habakkuk 2:3
 scripture_text: Though it tarries, wait for it; it will surely come.

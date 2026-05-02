@@ -4,7 +4,7 @@ excerpt: You have watched others get their breakthrough and quietly wondered —
 post_number: "002"
 title: He Is A Mountain Moving God
 subtitle: Faith for the Season That Is Testing Everything in You
-date: 2026-05-01T09:36:26.013Z
+date: 2026-01-15T09:36:26.013Z
 category: Faith and Discipleship
 scripture: Matthew 17:20
 scripture_text: Nothing will be impossible for you.
