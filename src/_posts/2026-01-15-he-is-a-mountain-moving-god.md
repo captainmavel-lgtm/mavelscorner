@@ -1,12 +1,13 @@
 ---
-title: "He Is A Mountain Moving God"
-subtitle: "Faith for the Season That Is Testing Everything in You"
-date: 2026-01-15
-category: "Faith and Discipleship"
-scripture: "Matthew 17:20"
-scripture_text: "Nothing will be impossible for you."
-excerpt: "You have watched others get their breakthrough and quietly wondered — what about me? The mountain is still there. But so is the God who moves it."
+excerpt: You have watched others get their breakthrough and quietly wondered —
+  what about me? The mountain is still there. But so is the God who moves it.
 post_number: "002"
+title: He Is A Mountain Moving God
+subtitle: Faith for the Season That Is Testing Everything in You
+date: 2026-05-02T01:36:26.013Z
+category: Faith and Discipleship
+scripture: Matthew 17:20
+scripture_text: Nothing will be impossible for you.
 tags:
   - post
   - faith
