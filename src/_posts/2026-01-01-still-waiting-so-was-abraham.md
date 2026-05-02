@@ -1,12 +1,13 @@
 ---
-title: "Still Waiting? So Was Abraham."
-subtitle: "Why Delays From God Are Never Denials"
-date: 2026-01-01
-category: "Faith and Discipleship"
-scripture: "Habakkuk 2:3"
-scripture_text: "Though it tarries, wait for it; it will surely come."
-excerpt: "You were going to be further along by now. The waiting is starting to feel less like a season and more like a sentence. A delay is not a denial."
+excerpt: You were going to be further along by now. The waiting is starting to
+  feel less like a season and more like a sentence. A delay is not a denial.
 post_number: "001"
+title: Still Waiting? So Was Abraham.
+subtitle: Why Delays From God Are Never Denials
+date: 2026-04-26T04:58:00.000Z
+category: Faith and Discipleship
+scripture: Habakkuk 2:3
+scripture_text: Though it tarries, wait for it; it will surely come.
 tags:
   - post
   - faith
