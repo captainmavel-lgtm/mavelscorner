@@ -15,7 +15,7 @@ tags:
   - Abraham
   - purpose
 ---
-You had a plan. Maybe you still do. Somewhere underneath all the disappointment, it is still there, folded up quietly in the corner of your heart. You were going to launch that business by twenty-five. You were going to be married by now. You were going to be further along in life, further along in your healing journey, further along in your Christian faith — but here you are, still waiting. And the waiting is starting to feel less like a season and more like a sentence.
+## You had a plan. Maybe you still do. Somewhere underneath all the disappointment, it is still there, folded up quietly in the corner of your heart. You were going to launch that business by twenty-five. You were going to be married by now. You were going to be further along in life, further along in your healing journey, further along in your Christian faith — but here you are, still waiting. And the waiting is starting to feel less like a season and more like a sentence.
 
 If that is where you are right now, feeling exhausted by waiting, tempted to give up, wondering whether God even remembers you — this post is written for you. Not to give you a five-step formula. Not to minimise how heavy this feels — but to tell you the truth that the devil and his cohorts does not want you to believe: in yourself and in your God.
 
@@ -68,13 +68,13 @@ Jeremiah 29:11 is not just a verse for Instagram. It is the lived reality of a G
 
 **Hold on. The appointed time is coming. And it will not be late.**
 
-<!--\[if gte mso 9]><xml>
+<!--\\[if gte mso 9]><xml>
  <o:OfficeDocumentSettings>
   <o:AllowPNG/>
  </o:OfficeDocumentSettings>
-</xml><!\[endif]-->
+</xml><!\\[endif]-->
 
-<!--\[if gte mso 9]><xml>
+<!--\\[if gte mso 9]><xml>
  <w:WordDocument>
   <w:View>Normal</w:View>
   <w:Zoom>0</w:Zoom>
@@ -113,9 +113,9 @@ Jeremiah 29:11 is not just a verse for Instagram. It is the lived reality of a G
    <m:intLim m:val="subSup"/>
    <m:naryLim m:val="undOvr"/>
   </m:mathPr></w:WordDocument>
-</xml><!\[endif]-->
+</xml><!\\[endif]-->
 
-<!--\[if gte mso 9]><xml>
+<!--\\[if gte mso 9]><xml>
  <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="false"
   DefSemiHidden="false" DefQFormat="false" DefPriority="99"
   LatentStyleCount="376">
@@ -694,9 +694,9 @@ Jeremiah 29:11 is not just a verse for Instagram. It is the lived reality of a G
   <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
    Name="Smart Link"/>
  </w:LatentStyles>
-</xml><!\[endif]-->
+</xml><!\\[endif]-->
 
-<!--\[if gte mso 10]>
+<!--\\[if gte mso 10]>
 <style>
  /* Style Definitions */
  table.MsoNormalTable
@@ -723,7 +723,7 @@ Jeremiah 29:11 is not just a verse for Instagram. It is the lived reality of a G
 	mso-ligatures:standardcontextual;
 	mso-fareast-language:EN-US;}
 </style>
-<!\[endif]-->
+<!\\[endif]-->
 
 <!--StartFragment-->
 
@@ -732,21 +732,15 @@ Jeremiah 29:11 is not just a verse for Instagram. It is the lived reality of a G
 |     |
 |     |
 
- 
-
 |     |
 | --- |
 |     |
 |     |
 
- 
-
 |     |
 | --- |
 |     |
 |     |
-
- 
 
 <!--EndFragment-->
 
