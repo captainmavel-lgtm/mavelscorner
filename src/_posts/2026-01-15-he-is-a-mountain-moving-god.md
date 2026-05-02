@@ -60,7 +60,7 @@ God has not given up on you and your story is not finished. The chapter you are 
 
 Keep speaking to that mountain. Keep showing up. Keep bringing your mustard seed faith to the God who can do everything with it that you cannot do alone.
 
-**Something To Think About**
+## **Something To Think About**
 
 What is the mountain you have been standing in front of for so long that some part of you has started to treat it as permanent? What would it feel like to speak to it out loud this week instead of around it?
 
@@ -68,13 +68,11 @@ Has this season of waiting changed you in ways that surprised you? If so, could 
 
  What is one small sign that God has been at work in your story even during the season that felt most silent? Is it possible He has been moving in ways you have not yet stopped to name?
 
- 
-
-**A Prayer**
+##  **A Prayer**
 
 *God, I am tired and I am not going to pretend otherwise. The mountain is still there and some days I genuinely do not know how to keep going. But I choose today to trust You anyway, not because I have it all together but because You have never once let me go. I believe You remember me. I believe the promise You placed in my heart is still alive. Move in my life, God, in whatever way You see fit, and give me the strength to hold on until I see it in Jesus’ mighty name, Amen.*
 
-**Your Challenge This Week**
+## **Your Challenge This Week**
 
 Pick one specific thing you have been afraid to pray out loud to God about because it feels too big or too far gone. This week, pray it out loud every day, just once a day, with whatever faith you have in that moment. You do not need the right words. You do not need to feel it fully. Just say it out loud and trust that the God who hears is already listening and He will answer.
 
