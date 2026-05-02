@@ -4,7 +4,7 @@ excerpt: You have watched others get their breakthrough and quietly wondered —
 post_number: "002"
 title: He Is A Mountain Moving God
 subtitle: Faith for the Season That Is Testing Everything in You
-date: 2026-01-01T10:36:26.013Z
+date: 2026-05-01T09:36:26.013Z
 category: Faith and Discipleship
 scripture: Matthew 17:20
 scripture_text: Nothing will be impossible for you.
@@ -75,8 +75,6 @@ Has this season of waiting changed you in ways that surprised you? If so, could 
 ## **Your Challenge This Week**
 
 Pick one specific thing you have been afraid to pray out loud to God about because it feels too big or too far gone. This week, pray it out loud every day, just once a day, with whatever faith you have in that moment. You do not need the right words. You do not need to feel it fully. Just say it out loud and trust that the God who hears is already listening and He will answer.
-
-<!--EndFragment-->
 
 - - -
 
