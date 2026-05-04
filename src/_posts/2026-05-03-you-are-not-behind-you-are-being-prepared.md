@@ -26,15 +26,14 @@ You are not ungrateful and you know this. Genuinely, you want good things for th
 
 That feeling is more common than anyone admits and whether it feels like it right now or not, it is one of the most important crossroads you will ever face. Why? Because what you do with that feeling, and more specifically who you talk about it, will shape everything that comes next.
 
-## 
 The World Offers Answers That Do Not Last
 
 When we feel behind, the world hands us a list of solutions: work harder, optimise your routine, find a better strategy. Compare yourself to successful people and reverse engineer what they did and to be fair, none of those things are entirely wrong. Hard work matters, likewise discipline but here is what nobody tells you when you are grinding at midnight trying to close the gap between your reality and your goals. None of those strategies can touch the deeper question underneath the striving. The question is not really how do I get to where I want to be. The real question, the one keeping you up at two in the morning, is: does my life have a purpose, and is that purpose still accessible to me after everything I have been through?
 
 **That question does not have a productivity answer. It has only one answer, and that answer is God.**
 
-"You will seek me and find me when you seek me with all your heart."
-— Jeremiah 29:13
+> "You will seek me and find me when you seek me with all your heart."
+> — Jeremiah 29:13
 
 ## What It Actually Means to Seek God
 
@@ -52,8 +51,8 @@ Joseph was seventeen when God gave him a dream. He was thirty when that dream fi
 
 You are not behind Joseph's timeline. You are not behind anyone's timeline. You are on yours and yours was designed by Someone who does not make scheduling errors, and that Person is GOD - Governor Over Destinies.
 
-"But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint."
-— Isaiah 40:31
+> "But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint."
+> — Isaiah 40:31
 
 ## The Thing That Changes When God Becomes Your Answer
 
@@ -65,15 +64,14 @@ But seeking God in that season, really seeking Him, tends to reveal things that 
 
 None of these shows up on Instagram but all of it matters more than the highlights that do.
 
-"Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight."
-— Proverbs 3:5 to 6
+> "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight."
+> — Proverbs 3:5 to 6
 
 The path He makes straight is not always the fastest one but it is the one that gets you where you were actually created to go, fully formed and fully ready, rather than arriving early and unprepared for what was waiting.
 
 Seek Him not as a last resort after everything else has failed, not as a religious duty that earns you better circumstances. Seek Him because He is the only one who knows the full picture of your life and loves you completely within it. Seek Him because the answers He carries are the only ones that will actually hold when the pressure comes. Seek Him because you are not behind. Know that you are being prepared and what He is preparing you for is worth every day of the process.
 
 ## Something To Think About
-
 
 Take a quiet moment with these. No performance required. Just honesty.
 •	When life feels stuck or slow, where do you naturally turn first? What does that pattern reveal about where you are actually placing your trust?
@@ -82,11 +80,9 @@ Take a quiet moment with these. No performance required. Just honesty.
 
 ## A Prayer For the One Who Feels Stuck
 
-
 God, I am going to be honest with You. I have been feeling behind and I have been carrying that weight on my own for too long. Today I choose to seek You first, not because I have figured everything out but because I trust that You have. Help me to stop measuring my progress by everyone else's highlight reel and start trusting the preparation You are doing in me right now. I believe that what You have promised for my life is still on its way. And I choose to keep walking toward it with You. Amen.
 
 ## Your Challenge This Week
-
 
 **Seek before you scroll.**
 Every morning this week, before you open any social media app, spend five minutes with God first. It does not have to be structured or long. Talk to Him about the day ahead. Read one verse. Sit quietly for a moment and let Him be the first voice you give your attention to. Do this for seven days and pay attention to what shifts in how you see your life and your season. God does not compete for your attention. But when He gets it first, everything else tends to find its proper size.
