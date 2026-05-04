@@ -26,7 +26,7 @@ You are not ungrateful and you know this. Genuinely, you want good things for th
 
 That feeling is more common than anyone admits and whether it feels like it right now or not, it is one of the most important crossroads you will ever face. Why? Because what you do with that feeling, and more specifically who you talk about it, will shape everything that comes next.
 
-The World Offers Answers That Do Not Last
+## The World Offers Answers That Do Not Last
 
 When we feel behind, the world hands us a list of solutions: work harder, optimise your routine, find a better strategy. Compare yourself to successful people and reverse engineer what they did and to be fair, none of those things are entirely wrong. Hard work matters, likewise discipline but here is what nobody tells you when you are grinding at midnight trying to close the gap between your reality and your goals. None of those strategies can touch the deeper question underneath the striving. The question is not really how do I get to where I want to be. The real question, the one keeping you up at two in the morning, is: does my life have a purpose, and is that purpose still accessible to me after everything I have been through?
 
