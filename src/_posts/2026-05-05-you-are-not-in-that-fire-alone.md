@@ -83,5 +83,3 @@ Take a moment with these questions. Be honest with yourself and with God.
 
 **Name The Fourth Man in your fire.**
 This week, find a quiet moment and write down the specific thing that feels like your furnace right now. Be honest and specific. Then write this underneath it: the fourth man is in here with me. Read Isaiah 43:2 over that situation out loud. Not because saying it out loud is magic but because there is something powerful about giving voice to a truth that your circumstances are working hard to drown. Let God's Word speak louder than the heat this week. He is already in the fire. You just need to look for Him there.
-
-***If this message blessed you, do not keep it to yourself, share it with someone today!***
