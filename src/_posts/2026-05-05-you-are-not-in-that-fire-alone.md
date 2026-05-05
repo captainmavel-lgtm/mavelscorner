@@ -70,7 +70,6 @@ Look at what happened when Shadrach, Meshach and Abednego came out of that furna
 
 ## Something To Think About
 
-
 Take a moment with these questions. Be honest with yourself and with God.
 •	When you are in the middle of a painful or overwhelming season, what does your first instinct tell you about where God is? Does it match what Scripture actually says about His presence in the fire?
 •	Shadrach, Meshach and Abednego said they would trust God even if He did not rescue them the way they hoped. Is there a situation in your life right now where you are waiting for God to show up in a specific way? What would it look like to trust Him even if His answer looks different from what you expected?
@@ -78,15 +77,13 @@ Take a moment with these questions. Be honest with yourself and with God.
 
 ## A Prayer For the One in the Fire
 
-
 *God, I will not pretend this is not hard. This season has been one of the most difficult things I have ever faced and some days I have genuinely wondered where You are in the middle of it. But today I choose to believe what Your Word says: that You are in this fire with me, that You have not left, and that what is meant to destroy me does not get to have the final say. Give me the kind of faith that trusts You even when I cannot see what You are doing. And remind me, in the hardest moments, that I am not in here alone. Amen.*
 
 ## Your Challenge This Week
 
-
 **Name The Fourth Man in your fire.**
 This week, find a quiet moment and write down the specific thing that feels like your furnace right now. Be honest and specific. Then write this underneath it: the fourth man is in here with me. Read Isaiah 43:2 over that situation out loud. Not because saying it out loud is magic but because there is something powerful about giving voice to a truth that your circumstances are working hard to drown. Let God's Word speak louder than the heat this week. He is already in the fire. You just need to look for Him there.
 
+***If this message blessed you, do not keep it to yourself, share it with someone today!***
 
-
-If this message blessed you, do not keep it to yourself, share it with someone today!
+![]()
