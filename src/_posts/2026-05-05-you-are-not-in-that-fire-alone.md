@@ -9,7 +9,7 @@ scripture_text: "\"If we are thrown into the blazing furnace, the God we serve
   is able to deliver us from it, and He will deliver us from Your Majesty's
   hand. But even if He does not, we want you to know, Your Majesty, that we will
   not serve your gods or worship the image of gold you have set up.\""
-featured_image: /images/uploads/chatgpt-image-may-7-2026-11_41_21-pm.png
+featured_image: ""
 excerpt: There are seasons in life that feel less like seasons and more like
   furnaces. You did not choose them neither did you see them coming.
 tags:
