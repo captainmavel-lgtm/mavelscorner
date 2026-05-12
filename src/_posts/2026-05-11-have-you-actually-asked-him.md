@@ -82,19 +82,19 @@ Ask, keep asking and trust that The One who made the promise to you is more than
 
 ## Something To Think About
 
-
 *Take a quiet moment with these before you move on.*
-•	Is there a request you have quietly stopped bringing to God because you got tired of not seeing an answer? What would it take for you to bring it back to Him honestly today?
-•	When you think about persistent prayer, does it feel like faith or does it feel futile? Where did that feeling come from and does it line up with what Jesus actually said in Matthew 7?
-•	What is the one thing you most need from God right now that you have not fully and honestly asked Him for?
+
+• Is there a request you have quietly stopped bringing to God because you got tired of not seeing an answer? What would it take for you to bring it back to Him honestly today?
+
+• When you think about persistent prayer, does it feel like faith or does it feel futile? Where did that feeling come from and does it line up with what Jesus actually said in Matthew 7?
+
+• What is the one thing you most need from God right now that you have not fully and honestly asked Him for?
 
 ## A Prayer For the One Who Stopped Asking
-
 
 *God, I have to be honest. I stopped asking because it started to feel pointless, and I did not want to keep getting my hopes up. But today I am choosing to bring it back to You, all of it, the things I stopped saying out loud and the things I never had the courage to say at all. I trust that You hear me and that You are good even when I cannot see what You are doing. Help me to keep knocking even when the door looks closed. Amen!*
 
 ## Your Challenge This Week
-
 
 **Write the request you stopped making.**
 This week, find a quiet moment and write down the one thing you have stopped asking God for. The dream you set aside, the need you stopped voicing, the door you stopped knocking on. Write it down specifically and then pray it out loud, exactly as it is, without cleaning it up or making it sound more spiritual than it feels. Do this every day for seven days. You are not pestering God. You are practicing the persistent faith He invited you into. Keep knocking. The door is not as closed as it looks.
