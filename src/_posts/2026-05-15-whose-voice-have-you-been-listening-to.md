@@ -30,8 +30,8 @@ That question is so cleverly constructed it is worth slowing down to look at it 
 
 That is still exactly how the enemy operates today. He rarely shows up with something obviously false. He shows up with a question, a suggestion, a small reframing of what God has said or done that makes His goodness look suspicious and His promises to look unreliable.
 
-> "Now the serpent was more crafty than any of the wild animals the Lord God had made. He said to the woman, 'Did God really say, you must not eat from any tree in the garden?'"
-> — Genesis 3:1
+> *"Now the serpent was more crafty than any of the wild animals the Lord God had made. He said to the woman, 'Did God really say, you must not eat from any tree in the garden?'"
+> — Genesis 3:1*
 
 ## What Your Garden of Eden Looks Like Today
 
@@ -43,8 +43,8 @@ Think about a young man who felt clearly called by God to something. He stepped 
 
 Think about a young woman who has come back to God after a season of walking away. She knows in her heart she is forgiven but there is a voice that keeps revisiting her past. Did God really say there is no condemnation for those in Christ? Because look at what you did. Look at how long you were away. Look at who you were when you were not living for Him. These are not new lies, they are ancient ones wearing a modern face and the answer to them has not changed either.
 
-> "The thief comes only to steal and kill and destroy; I have come that they may have life, and have it to the full."
-> — John 10:10
+> *"The thief comes only to steal and kill and destroy; I have come that they may have life, and have it to the full."
+> — John 10:10*
 
 ## How to Know Which Voice You Are Listening To
 
@@ -56,8 +56,8 @@ The enemy has no new material and he has been running the same playbook since Ge
 
 Here is the thing about Adam and Eve's story that we do not talk about enough. God came looking for them after the fall. He called out into the garden asking where are you, not because He did not know but because He was giving them a chance to come back to Him. That is still what He is doing today. He is calling into whatever garden you are hiding in right now, asking where you are, not to condemn you but to come and find you.
 
-> "Therefore, there is now no condemnation for those who are in Christ Jesus."
-> — Romans 8:1
+> *"Therefore, there is now no condemnation for those who are in Christ Jesus."
+> — Romans 8:1*
 
 No condemnation. Not less condemnation than you deserve. Not condemnation with exceptions for the really serious stuff. No condemnation. That is God's voice speaking over your story. That is the word He wants to be louder in your life than every accusing, doubt-planting, shame-recycling word the enemy has whispered in your ear.
 
@@ -69,7 +69,6 @@ The question is not whether God is speaking. The question is which voice you hav
 
 ## Something To Think About
 
-
 Take a quiet moment with these. Be honest about what you have been hearing.
 
 • What is the voice you hear most often about yourself and your life? When you trace it back honestly, does it line up with what God's Word actually says about you or does it sound more like the serpent's reframing?
@@ -80,11 +79,9 @@ Take a quiet moment with these. Be honest about what you have been hearing.
 
 ## A Prayer For the One Listening to the Wrong Voice
 
-
 *God, I want to be honest with You about the voices I have been letting speak loudest in my life, and most of them have not been Yours. I have believed things about myself and about Your feelings toward me that I am starting to realise do not line up with Your Word. Today I am asking You to help me recognise Your voice above every other one. Remind me of who You say I am, not who my failures say I am. I choose to believe that Your words over my life are truer than anything the enemy has whispered in my ear in Jesus mighty name, Amen.*
 
 ## Your Challenge This Week
-
 
 **Write God's voice down and read it back to yourself.**
 This week, take one lie you have been believing about yourself or about God's feelings toward you and find the Scripture that directly contradicts it. Write both of them down side by side. The lie on one side. God's Word on the other. Read God's Word out loud over yourself every morning before your day starts. You are not doing this to conjure a feeling, you are doing it to reorient your mind toward God’s truth concerning His promises over your life. Do this for seven days and pay attention to what starts to shift. The voice you rehearse is the voice that grows. Make sure it is the right one.
