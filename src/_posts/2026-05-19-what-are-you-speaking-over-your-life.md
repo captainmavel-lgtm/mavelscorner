@@ -10,8 +10,13 @@ excerpt: "Think about the last time life knocked you completely flat. Not just a
   first thought that arrives before your feet even touch the floor is something
   like, here we go again. "
 tags:
-  - "#SpeakLife #MindYourWords #FaithDeclares #DefeatingNegativeThoughts
-    #ChristianMindset #WordsHavePower #DisciplesThinkDifferently"
+  - SpeakLife
+  - MindYourWords
+  - FaithDeclares
+  - DefeatingNegativeThoughts
+  - ChristianMindset
+  - WordsHavePower
+  - DisciplesThinkDifferently
 ---
 Think about the last time life knocked you completely flat. Not just a rough afternoon but a real season. The kind where you wake up and the very first thought that arrives before your feet even touch the floor is something like, here we go again. It could be those jobs that never came through after months of applications, the relationship that quietly fell apart and left you more confused than angry or the dream that keeps sliding further away no matter how hard you reach for it.
 
