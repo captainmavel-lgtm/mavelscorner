@@ -1,6 +1,6 @@
 ---
 title: Jesus, The ONLY Saviour of The World.
-subtitle: The Reason Jesus Came and Why It Changes Everything for You Today
+subtitle: The Reason Jesus Came and Why This Changes Everything for You Today
 date: 2026-05-22T16:21:19.059Z
 category: Faith and Discipleship
 scripture: Luke 19:10
