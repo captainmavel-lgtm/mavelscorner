@@ -110,6 +110,12 @@
 
     @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
     .article-inner{animation:fadeUp 0.8s ease forwards}
+
+    /* ── MavelogxDigital Credit ── */
+    @keyframes mavelog-sweep{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+    .mavelog-credit{text-decoration:none;opacity:.8;transition:opacity .25s ease;font-size:.8rem;color:rgba(255,255,255,.5)}
+    .mavelog-credit:hover{opacity:1}
+    .mavelog-brand{font-weight:700;background:linear-gradient(90deg,#E85C6E,#F5A825,#7070BB,#3BBFA0,#4A9DC4,#F47820,#E85C6E);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:mavelog-sweep 4s linear infinite}
   </style>
 </head>
 <body>
@@ -212,7 +218,7 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 Mavel's Corner. All rights reserved.</span>
-      <span>Built with love and faith.</span>
+      <a href="https://mavelogxdigital.com/" target="_blank" rel="noopener noreferrer" class="mavelog-credit">Website designed by <span class="mavelog-brand">MavelogxDigital</span></a>
     </div>
   </div>
 </footer>
