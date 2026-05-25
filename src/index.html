@@ -6,15 +6,69 @@
 <title>Mavel's Corner - Hope for the Broken. Truth for the Searching. Grace for the Waiting.</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-<meta property="og:title" content="Mavel's Corner - Hope for the Broken. Truth for the Searching. Grace for the Waiting.">
-<meta property="og:description" content="A faith-inspired space for the broken, the searching, and the waiting. Rooted in Scripture. Reaching the lost.">
-<meta property="og:image" content="/og-image.png">
+<!-- ── PRIMARY SEO META TAGS ── -->
+<meta name="description" content="Mavel's Corner is a faith-inspired blog for the broken, the searching, and the waiting. Rooted in Scripture. Real hope for young adults and millennials navigating pain, purpose, and God's promises.">
+<meta name="keywords" content="faith blog, Christian blog, hope for the broken, Scripture, spiritual growth, prayer, young adults faith, millennials and Christianity, God's promises, Christian living, faith and discipleship, Mavel's Corner">
+<meta name="author" content="Mavel's Corner">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="theme-color" content="#0D2B30">
+<link rel="canonical" href="https://mavelscorner.blog">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp) ── -->
+<meta property="og:title" content="Mavel's Corner — Hope for the Broken. Truth for the Searching. Grace for the Waiting.">
+<meta property="og:description" content="A faith-inspired space for the broken, the searching, and the waiting. Rooted in Scripture. Real hope for young adults navigating pain, purpose, and God's promises.">
+<meta property="og:image" content="https://mavelscorner.blog/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mavel's Corner — Hope for the Broken. Truth for the Searching. Grace for the Waiting.">
 <meta property="og:url" content="https://mavelscorner.blog">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Mavel's Corner">
+<meta property="og:locale" content="en_GB">
+
+<!-- ── TWITTER / X CARD ── -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mavel's Corner">
-<meta name="twitter:description" content="Hope for the broken. Truth for the searching. Grace for the waiting.">
-<meta name="twitter:image" content="/twitter-image.png">
+<meta name="twitter:site" content="@mavelscorner">
+<meta name="twitter:creator" content="@mavelscorner">
+<meta name="twitter:title" content="Mavel's Corner — Hope for the Broken. Truth for the Searching. Grace for the Waiting.">
+<meta name="twitter:description" content="A faith-inspired space for the broken, the searching, and the waiting. Rooted in Scripture. Real hope for young adults and millennials.">
+<meta name="twitter:image" content="https://mavelscorner.blog/og-image.png">
+<meta name="twitter:image:alt" content="Mavel's Corner — Faith blog for the broken, the searching, and the waiting.">
+
+<!-- ── STRUCTURED DATA (JSON-LD) ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Mavel's Corner",
+  "description": "A faith-inspired blog for the broken, the searching, and the waiting. Rooted in Scripture. Real hope for young adults and millennials.",
+  "url": "https://mavelscorner.blog",
+  "inLanguage": "en",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Mavel's Corner",
+    "url": "https://mavelscorner.blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://mavelscorner.blog/favicon.svg"
+    },
+    "sameAs": [
+      "https://instagram.com/mavelscorner",
+      "https://tiktok.com/@mavelscorner",
+      "https://facebook.com/mavelscorner",
+      "https://x.com/mavelscorner"
+    ]
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://mavelscorner.blog/blog?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
@@ -1263,25 +1317,43 @@
  .contact-section { background: var(--cream); padding: 5rem 2rem; }
 
  .contact-grid {
- display: grid;
- grid-template-columns: 1fr 1.6fr;
- gap: 3rem;
- max-width: 960px;
+ max-width: 1000px;
  margin: 0 auto;
  }
 
- .contact-info h3 {
- font-size: 1.3rem;
- color: var(--navy);
- margin-bottom: 1.5rem;
+ .contact-info-items-row {
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: 1.75rem;
+ margin-bottom: 2.5rem;
  }
 
  .contact-info-item {
  display: flex;
  gap: 1rem;
- margin-bottom: 1.5rem;
  align-items: flex-start;
+ background: var(--white);
+ border-radius: 10px;
+ padding: 1.5rem;
+ border: 1px solid var(--border);
+ box-shadow: var(--shadow-sm);
+ transition: box-shadow 0.25s;
  }
+
+ .contact-info-item:hover {
+ box-shadow: var(--shadow-md);
+ }
+
+ .contact-info h3,
+ .contact-info-heading {
+ font-family: 'Playfair Display', serif;
+ font-size: 1.3rem;
+ color: var(--navy);
+ margin-bottom: 1.5rem;
+ font-weight: 700;
+ }
+
+
 
  .contact-info-icon {
  width: 46px;
@@ -1322,8 +1394,17 @@
  }
 
   /* ── CONTACT PAGE SOCIAL ICONS ── */
-  .contact-socials { margin-top: 1.25rem; }
-  .contact-socials-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.6rem; }
+  .contact-socials { margin-top: 1.75rem; }
+  .contact-socials-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.85rem;
+    text-transform: none;
+    letter-spacing: normal;
+    display: block;
+  }
   .contact-socials-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
   .contact-social-btn { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: rgba(27,154,170,0.1); text-decoration: none; transition: background 0.2s; flex-shrink: 0; }
   .contact-social-btn:hover { background: rgba(27,154,170,0.2); }
@@ -1423,12 +1504,11 @@
  .footer-top {
  grid-template-columns: 1fr 1fr;
  }
-
- .contact-grid {
+ .contact-info-items-row {
  grid-template-columns: 1fr;
  }
- }
-
+ } 
+ 
  @media (max-width: 700px) {
  .nav-links { display: none; }
  .hamburger { display: flex; }
@@ -1450,8 +1530,7 @@
  .hero-scroll { display: none; }
 
  .prayer-form-wrap,
- .donate-form-wrap,
- .contact-form-wrap {
+ .donate-form-wrap {
  padding: 1.75rem;
  }
  }
@@ -2672,8 +2751,12 @@
  </select>
  </div>
 
- <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 0.9rem; padding: 1rem;"> Submit My Prayer Request</button>
+ <button type="submit" id="prayerSubmitBtn" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 0.9rem; padding: 1rem;"> Submit My Prayer Request</button>
  </form>
+
+ <div id="prayerSuccess" style="display:none; margin-top:1.25rem; padding:1rem 1.25rem; background:rgba(27,154,170,0.1); border-radius:8px; border-left:3px solid var(--teal); font-size:0.9rem; color:var(--teal); line-height:1.7;">
+ Your prayer request has been received. We will be standing with you in prayer. God sees you and He has not forgotten you.
+ </div>
 
  <div style="margin-top: 2rem; text-align: center; padding: 1.5rem; background: var(--cream); border-radius: 8px;">
  <p style="font-family: 'Playfair Display', serif; font-style: italic; color: var(--navy); font-size: 1.05rem; line-height: 1.7; margin-bottom: 0.5rem;">"The prayer of a righteous person is powerful and effective."</p>
@@ -2743,9 +2826,9 @@
 
  <section class="contact-section">
  <div class="contact-grid">
+ <h3 class="contact-info-heading">Ways to Reach Us</h3>
 
- <div class="contact-info">
- <h3>Ways to Reach Us</h3>
+ <div class="contact-info-items-row">
 
  <div class="contact-info-item">
  <div class="contact-info-icon">
@@ -2777,7 +2860,6 @@
 
  <div class="contact-info-item">
  <div class="contact-info-icon">
- <!-- WhatsApp SVG icon -->
  <svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:var(--teal);stroke:none;">
  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
  </svg>
@@ -2792,6 +2874,8 @@
  </div>
  </div>
 
+ </div><!-- end contact-info-items-row -->
+
  <div class="contact-socials">
  <p class="contact-socials-label">Find us on social media</p>
  <div class="contact-socials-row">
@@ -2800,68 +2884,15 @@
    <a href="https://facebook.com/mavelscorner" target="_blank" rel="noopener noreferrer" class="contact-social-btn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
    <a href="https://x.com/mavelscorner" target="_blank" rel="noopener noreferrer" class="contact-social-btn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg></a>
    <a href="https://whatsapp.com/channel/0029VbCMDgCEKyZGWwHWds3w" target="_blank" rel="noopener noreferrer" class="contact-social-btn" aria-label="WhatsApp Channel"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
- </div>
- </div>
+ </div><!-- end contact-socials-row -->
+ </div><!-- end contact-socials -->
 
- <div style="margin-top: 2.5rem; padding: 1.5rem; background: var(--navy); border-radius: 8px;">
+ <div style="margin-top: 2.5rem; padding: 1.75rem 2rem; background: var(--navy); border-radius: 8px; text-align: center;">
  <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: var(--white); line-height: 1.7; margin-bottom: 0.5rem;">"Cast all your anxiety on him because he cares for you."</p>
  <cite style="font-size: 0.75rem; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">1 Peter 5:7</cite>
  </div>
- </div>
 
- <div class="contact-form-wrap">
- <h3 style="font-size: 1.3rem; color: var(--navy); margin-bottom: 0.5rem;">Send Us a Message</h3>
- <p style="font-size:0.85rem; color:var(--text-light); margin-bottom:1.5rem;">Every message goes straight to our inbox. We read every one.</p>
-
- <!-- ─────────────────────────────────────────────────────────
- FORMSPREE: replace YOUR_FORM_ID with your Formspree ID
- Sign up free at formspree.io → New Form → copy the ID
- Example: action="https://formspree.io/f/abcd1234"
- ──────────────────────────────────────────────────────────── -->
- <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
- <div class="form-row">
- <div class="form-group">
- <label for="contactName">Name *</label>
- <input type="text" id="contactName" name="name" placeholder="Your name" required>
- </div>
- <div class="form-group">
- <label for="contactEmail">Email *</label>
- <input type="email" id="contactEmail" name="email" placeholder="Your email" required>
- </div>
- </div>
-
- <div class="form-group">
- <label for="contactSubject">Subject</label>
- <select id="contactSubject" name="subject">
- <option value="" disabled selected>What's this about?</option>
- <option>General Enquiry</option>
- <option>Prayer Request Follow-Up</option>
- <option>Collaboration / Partnership</option>
- <option>Share a Testimony</option>
- <option>Blog Contribution</option>
- <option>Technical Issue</option>
- <option>Other</option>
- </select>
- </div>
-
- <div class="form-group">
- <label for="contactMessage">Message *</label>
- <textarea id="contactMessage" name="message" placeholder="Write your message here... we are listening." required style="min-height: 160px;"></textarea>
- </div>
-
- <!-- Hidden redirect field - Formspree sends user here after submit -->
- <input type="hidden" name="_next" value="https://mavelscorner.blog/contact">
- <input type="hidden" name="_subject" value="New message from Mavel's Corner website">
-
- <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 0.9rem; padding: 1rem;">Send Message →</button>
-
- <div id="formSuccess" style="display:none; margin-top:1rem; padding:1rem; background:rgba(27,154,170,0.1); border-radius:6px; border-left:3px solid var(--teal); font-size:0.9rem; color:var(--teal);">
- Your message has been sent. We will get back to you within 48 hours. God bless you.
- </div>
- </form>
- </div>
-
- </div>
+ </div><!-- end contact-grid -->
  </section>
 
  <footer>
@@ -2987,36 +3018,6 @@
         card.style.display = card.dataset.category === 'faith' ? '' : 'none';
       } else if (category === 'living') {
         card.style.display = card.dataset.category === 'living' ? '' : 'none';
-      }
-    });
-  }
-
-  // ── CONTACT FORM - Formspree AJAX ──
-  const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const btn = contactForm.querySelector('button[type="submit"]');
-      const successMsg = document.getElementById('formSuccess');
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
-      try {
-        const res = await fetch(contactForm.action, {
-          method: 'POST',
-          body: new FormData(contactForm),
-          headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) {
-          contactForm.reset();
-          successMsg.style.display = 'block';
-          btn.textContent = 'Sent!';
-        } else {
-          btn.textContent = 'Error - try again';
-          btn.disabled = false;
-        }
-      } catch {
-        btn.textContent = 'Error - try again';
-        btn.disabled = false;
       }
     });
   }
