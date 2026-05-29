@@ -71,9 +71,12 @@ Look at what happened when Shadrach, Meshach and Abednego came out of that furna
 ## Something To Think About
 
 Take a moment with these questions. Be honest with yourself and with God.
-•	When you are in the middle of a painful or overwhelming season, what does your first instinct tell you about where God is? Does it match what Scripture actually says about His presence in the fire?
-•	Shadrach, Meshach and Abednego said they would trust God even if He did not rescue them the way they hoped. Is there a situation in your life right now where you are waiting for God to show up in a specific way? What would it look like to trust Him even if His answer looks different from what you expected?
-•	They came out of the furnace without the smell of smoke on them. What would it mean for your current season if you believed that God could bring you through it without the damage lasting forever?
+
+• When you are in the middle of a painful or overwhelming season, what does your first instinct tell you about where God is? Does it match what Scripture actually says about His presence in the fire?
+
+• Shadrach, Meshach and Abednego said they would trust God even if He did not rescue them the way they hoped. Is there a situation in your life right now where you are waiting for God to show up in a specific way? What would it look like to trust Him even if His answer looks different from what you expected?
+
+• They came out of the furnace without the smell of smoke on them. What would it mean for your current season if you believed that God could bring you through it without the damage lasting forever?
 
 ## A Prayer For the One in the Fire
 
