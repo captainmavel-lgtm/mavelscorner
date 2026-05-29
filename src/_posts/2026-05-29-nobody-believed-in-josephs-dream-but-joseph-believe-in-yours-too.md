@@ -9,7 +9,17 @@ excerpt: "You remember the day it hit you. The day the idea that felt too big to
   ignore, the vision that kept you awake all night, the dream that made you feel
   like may be, just may be, you were made for something purposeful. "
 tags:
-  - post
+  - MavelsCorner
+  - BelieveThePromise
+  - GodHasNotForgottenYou
+  - FromPitToPalace
+  - JosephAndTheDream
+  - HoldOnToYourDream
+  - ChristianMillennials
+  - FaithOverFear
+  - GodsTimingIsPerfect
+  - YourStoryIsNotOver
+  - ChristianLiving
 ---
 You remember the day it hit you. The day the idea that felt too big to ignore, the vision that kept you awake all night, the dream that made you feel like may be, just may be, you were made for something purposeful. But somewhere between that first spark and today, life happened, people happened as well as disappointment, and slowly, quietly, the dream that once felt so alive started to feel like something you imagined, something foolish, something you should probably stop talking about.
 
