@@ -300,8 +300,10 @@
       isPlaying = true;
       isPaused  = false;
       updatePlayUI(true);
-      if (!startTime) {
-        startTime = Date.now() - (elapsedSecs * 1000);
+      if (!timerInterval) {
+        if (!startTime) {
+          startTime = Date.now() - (elapsedSecs * 1000);
+        }
         startTimer();
       }
     };
