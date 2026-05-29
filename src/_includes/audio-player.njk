@@ -1,0 +1,138 @@
+{# ============================================================
+   MAVEL'S CORNER — AUDIO PLAYER PARTIAL
+   File: src/_includes/audio-player.njk
+
+   Drop this include at the BOTTOM of your post layout,
+   just before </body>. Example usage in your post layout:
+
+     {% include "audio-player.njk" %}
+
+   It renders:
+   1. A floating FAB trigger button (bottom-right)
+   2. A floating player panel (bottom-center)
+   ============================================================ #}
+
+<!-- ── AUDIO PLAYER CSS ── -->
+<link rel="stylesheet" href="/assets/css/audio-player.css">
+
+<!-- ── FAB TRIGGER BUTTON ── -->
+<button
+  id="mc-audio-trigger"
+  aria-label="Open read aloud player"
+  aria-expanded="false"
+  aria-controls="mc-audio-player"
+  title="Listen to this post"
+>
+  <span class="ap-fab-icon" aria-hidden="true">
+    <!-- Headphones icon -->
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M12 3C7.03 3 3 7.03 3 12v5a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H5v-1a7 7 0 0 1 14 0v1h-1a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-5c0-4.97-4.03-9-9-9z"/>
+    </svg>
+  </span>
+  <span class="ap-fab-label" id="ap-fab-label">Listen</span>
+</button>
+
+<!-- ── FLOATING PLAYER PANEL ── -->
+<div
+  id="mc-audio-player"
+  role="region"
+  aria-label="Read aloud audio player"
+  aria-live="polite"
+>
+
+  <!-- Header -->
+  <div class="ap-header">
+    <div class="ap-icon-wrap" aria-hidden="true">
+      <!-- Sound wave icon -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2"  y="9"  width="2" height="6" rx="1"/>
+        <rect x="6"  y="6"  width="2" height="12" rx="1"/>
+        <rect x="10" y="3"  width="2" height="18" rx="1"/>
+        <rect x="14" y="6"  width="2" height="12" rx="1"/>
+        <rect x="18" y="9"  width="2" height="6"  rx="1"/>
+      </svg>
+    </div>
+    <div class="ap-meta">
+      <div class="ap-label">Now Reading</div>
+      <div class="ap-title" id="ap-post-title">{{ title if title else "This Post" }}</div>
+      <div class="ap-author">by Emmanuel &mdash; Mavel's Corner</div>
+    </div>
+    <button class="ap-close" id="ap-close" aria-label="Close player">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6"  y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Waveform visualiser -->
+  <div class="ap-wave" id="ap-wave" aria-hidden="true">
+    <div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="ap-progress-wrap">
+    <div class="ap-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="ap-progress-fill" id="ap-progress-fill"></div>
+    </div>
+    <div class="ap-time-row">
+      <span id="ap-time-elapsed">0:00</span>
+      <span id="ap-time-duration">--:--</span>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="ap-controls">
+
+    <!-- Stop -->
+    <button class="ap-btn-icon" id="ap-btn-stop" aria-label="Stop">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="4" width="16" height="16" rx="2"/>
+      </svg>
+    </button>
+
+    <!-- Play / Pause (main) -->
+    <button class="ap-btn-play" id="ap-btn-play" aria-label="Play">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="5,3 19,12 5,21"/>
+      </svg>
+    </button>
+
+    <!-- Speed: 0.8x -->
+    <button class="ap-speed-btn" data-rate="0.8" aria-label="Speed 0.8x">0.8x</button>
+    <!-- Speed: 1x (default active) -->
+    <button class="ap-speed-btn ap-active" data-rate="1" aria-label="Speed 1x">1x</button>
+    <!-- Speed: 1.25x -->
+    <button class="ap-speed-btn" data-rate="1.25" aria-label="Speed 1.25x">1.25x</button>
+    <!-- Speed: 1.5x -->
+    <button class="ap-speed-btn" data-rate="1.5" aria-label="Speed 1.5x">1.5x</button>
+
+  </div>
+
+  <!-- Footer: status + voice selector -->
+  <div class="ap-footer">
+    <span class="ap-status" id="ap-status">Tap play to listen to this post.</span>
+    <select class="ap-voice-select" id="ap-voice-select" aria-label="Select reading voice">
+      <option>Loading voices...</option>
+    </select>
+  </div>
+
+</div>
+
+<!-- ── AUDIO PLAYER SCRIPT ── -->
+<script src="/assets/js/audio-player.js" defer></script>

@@ -1,0 +1,476 @@
+/* ============================================================
+   MAVEL'S CORNER — AUDIO PLAYER
+   Floating read-aloud player for blog posts
+   Placement: src/assets/css/audio-player.css
+   ============================================================ */
+
+:root {
+  --ap-navy:       #0D2B30;
+  --ap-teal:       #1B9AAA;
+  --ap-teal-glow:  rgba(27,154,170,0.22);
+  --ap-teal-light: #22c5d8;
+  --ap-gold:       #C8973A;
+  --ap-gold-dim:   rgba(200,151,58,0.18);
+  --ap-white:      #FFFFFF;
+  --ap-mist:       rgba(255,255,255,0.06);
+  --ap-border:     rgba(27,154,170,0.20);
+  --ap-shadow:     0 8px 40px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.28);
+  --ap-radius:     18px;
+  --ap-font-body:  'Lato', sans-serif;
+}
+
+/* ── TRIGGER BUTTON (bottom-right FAB) ── */
+#mc-audio-trigger {
+  position: fixed;
+  bottom: 28px;
+  right: 24px;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 20px 12px 14px;
+  background: var(--ap-navy);
+  border: 1.5px solid var(--ap-teal);
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: var(--ap-shadow), 0 0 0 0 var(--ap-teal-glow);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  font-family: var(--ap-font-body);
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#mc-audio-trigger:hover {
+  transform: translateY(-2px);
+  border-color: var(--ap-teal-light);
+  box-shadow: var(--ap-shadow), 0 0 18px var(--ap-teal-glow);
+}
+
+#mc-audio-trigger .ap-fab-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ap-teal) 0%, #0f7080 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+#mc-audio-trigger:hover .ap-fab-icon {
+  transform: scale(1.08);
+}
+
+#mc-audio-trigger .ap-fab-icon svg {
+  width: 15px;
+  height: 15px;
+  fill: #fff;
+}
+
+#mc-audio-trigger .ap-fab-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ap-teal-light);
+  white-space: nowrap;
+}
+
+/* playing state — pulse ring */
+#mc-audio-trigger.ap-playing {
+  animation: ap-fab-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes ap-fab-pulse {
+  0%, 100% { box-shadow: var(--ap-shadow), 0 0 0 0 var(--ap-teal-glow); }
+  50%       { box-shadow: var(--ap-shadow), 0 0 0 10px rgba(27,154,170,0); }
+}
+
+/* ── PLAYER PANEL ── */
+#mc-audio-player {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  z-index: 9100;
+  width: min(520px, calc(100vw - 32px));
+  background: linear-gradient(160deg, #0f2f35 0%, #091f23 100%);
+  border: 1.5px solid var(--ap-border);
+  border-radius: var(--ap-radius);
+  box-shadow: var(--ap-shadow), inset 0 1px 0 rgba(255,255,255,0.05);
+  padding: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34,1.3,0.64,1);
+  font-family: var(--ap-font-body);
+}
+
+#mc-audio-player.ap-open {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Teal top accent bar */
+#mc-audio-player::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--ap-teal) 30%, var(--ap-teal-light) 60%, var(--ap-gold) 100%);
+}
+
+/* ── PLAYER HEADER ── */
+.ap-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid var(--ap-mist);
+}
+
+.ap-icon-wrap {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--ap-teal) 0%, #0b6070 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ap-icon-wrap svg {
+  width: 18px;
+  height: 18px;
+  fill: #fff;
+}
+
+.ap-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.ap-label {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ap-teal);
+  margin-bottom: 3px;
+}
+
+.ap-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ap-white);
+  line-height: 1.35;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-bottom: 2px;
+}
+
+.ap-author {
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  font-style: italic;
+}
+
+.ap-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--ap-mist);
+  border: 1px solid rgba(255,255,255,0.08);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.18s, transform 0.18s;
+  outline: none;
+  margin-top: -2px;
+}
+
+.ap-close:hover {
+  background: rgba(255,255,255,0.12);
+  transform: scale(1.1);
+}
+
+.ap-close svg {
+  width: 11px;
+  height: 11px;
+  stroke: rgba(255,255,255,0.6);
+  stroke-width: 2;
+  fill: none;
+}
+
+/* ── WAVEFORM VISUALISER ── */
+.ap-wave {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 36px;
+  padding: 0 18px;
+  overflow: hidden;
+}
+
+.ap-wave-bar {
+  width: 3px;
+  border-radius: 2px;
+  background: var(--ap-teal);
+  opacity: 0.35;
+  transition: opacity 0.2s;
+}
+
+/* animated bars when playing */
+.ap-wave.ap-wave-active .ap-wave-bar { opacity: 1; }
+
+.ap-wave-bar:nth-child(1)  { animation: none; height: 6px; }
+.ap-wave-bar:nth-child(2)  { animation: none; height: 10px; }
+.ap-wave-bar:nth-child(3)  { animation: none; height: 18px; }
+.ap-wave-bar:nth-child(4)  { animation: none; height: 24px; }
+.ap-wave-bar:nth-child(5)  { animation: none; height: 28px; }
+.ap-wave-bar:nth-child(6)  { animation: none; height: 24px; }
+.ap-wave-bar:nth-child(7)  { animation: none; height: 32px; }
+.ap-wave-bar:nth-child(8)  { animation: none; height: 20px; }
+.ap-wave-bar:nth-child(9)  { animation: none; height: 14px; }
+.ap-wave-bar:nth-child(10) { animation: none; height: 22px; }
+.ap-wave-bar:nth-child(11) { animation: none; height: 30px; }
+.ap-wave-bar:nth-child(12) { animation: none; height: 16px; }
+.ap-wave-bar:nth-child(13) { animation: none; height: 26px; }
+.ap-wave-bar:nth-child(14) { animation: none; height: 20px; }
+.ap-wave-bar:nth-child(15) { animation: none; height: 12px; }
+.ap-wave-bar:nth-child(16) { animation: none; height: 8px; }
+
+.ap-wave.ap-wave-active .ap-wave-bar:nth-child(1)  { animation: ap-wave 1.1s 0.00s ease-in-out infinite alternate; }
+.ap-wave.ap-wave-active .ap-wave-bar:nth-child(2)  { animation: ap-wave 0.9s 0.08s ease-in-out infinite alternate; }
+.ap-wave.ap-wave-active .ap-wave-bar:nth-child(3)  { animation: ap-wave 1.3s 0.16s ease-in-out infinite alternate; }
+.ap-wave.ap-wave-active .ap-wave-bar:nth-child(4)  { animation: ap-wave 0.8s 0.24s ease-in-out infinite alternate; }
+.ap-wave.ap-wave-active .ap-wave-bar:nth-child(5)  { animation: ap-wave 1.2s 0.10s ease-in-out infinite alternate; }
+.ap-wave.ap-wave-active .ap-wave-bar:nth-child(6)  { animation: ap-wave 1.0s 0.32s ease-in-out infinite alternate; }
+.ap-wave.ap-wave-active .ap-wave-bar:nth-child(7)  { animation: ap-wave 0.7s 0.18s ease-in-out infinite alternate; }
+.ap-wave.ap-wave-active .ap-wave-bar:nth-child(8)  { animation: ap-wave 1.4s 0.04s ease-in-out infinite alternate; }
+.ap-wave.ap-wave-active .ap-wave-bar:nth-child(9)  { animation: ap-wave 0.95s 0.28s ease-in-out infinite alternate; }
+.ap-wave.ap-wave-active .ap-wave-bar:nth-child(10) { animation: ap-wave 1.1s 0.36s ease-in-out infinite alternate; }
+.ap-wave.ap-wave-active .ap-wave-bar:nth-child(11) { animation: ap-wave 0.85s 0.12s ease-in-out infinite alternate; }
+.ap-wave.ap-wave-active .ap-wave-bar:nth-child(12) { animation: ap-wave 1.25s 0.20s ease-in-out infinite alternate; }
+.ap-wave.ap-wave-active .ap-wave-bar:nth-child(13) { animation: ap-wave 0.75s 0.40s ease-in-out infinite alternate; }
+.ap-wave.ap-wave-active .ap-wave-bar:nth-child(14) { animation: ap-wave 1.15s 0.06s ease-in-out infinite alternate; }
+.ap-wave.ap-wave-active .ap-wave-bar:nth-child(15) { animation: ap-wave 0.9s  0.30s ease-in-out infinite alternate; }
+.ap-wave.ap-wave-active .ap-wave-bar:nth-child(16) { animation: ap-wave 1.05s 0.44s ease-in-out infinite alternate; }
+
+@keyframes ap-wave {
+  from { transform: scaleY(0.3); opacity: 0.6; }
+  to   { transform: scaleY(1.0); opacity: 1.0; }
+}
+
+/* ── PROGRESS BAR ── */
+.ap-progress-wrap {
+  padding: 0 18px 4px;
+}
+
+.ap-progress-track {
+  position: relative;
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 99px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.ap-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--ap-teal) 0%, var(--ap-teal-light) 100%);
+  border-radius: 99px;
+  width: 0%;
+  transition: width 0.4s linear;
+  pointer-events: none;
+}
+
+.ap-time-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  font-size: 10px;
+  color: rgba(255,255,255,0.32);
+  letter-spacing: 0.04em;
+}
+
+/* ── CONTROLS ── */
+.ap-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 18px 14px;
+}
+
+/* play / pause main button */
+.ap-btn-play {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ap-teal) 0%, #0b6575 100%);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 18px var(--ap-teal-glow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.ap-btn-play:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px rgba(27,154,170,0.4);
+}
+
+.ap-btn-play:active { transform: scale(0.96); }
+
+.ap-btn-play svg {
+  width: 18px;
+  height: 18px;
+  fill: #fff;
+}
+
+/* secondary icon buttons */
+.ap-btn-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--ap-mist);
+  border: 1px solid rgba(255,255,255,0.07);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s, transform 0.18s;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.ap-btn-icon:hover {
+  background: rgba(255,255,255,0.10);
+  transform: scale(1.08);
+}
+
+.ap-btn-icon svg {
+  width: 14px;
+  height: 14px;
+  fill: rgba(255,255,255,0.55);
+}
+
+/* speed pill */
+.ap-speed-btn {
+  background: var(--ap-mist);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 30px;
+  padding: 5px 11px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.55);
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+  outline: none;
+  font-family: var(--ap-font-body);
+}
+
+.ap-speed-btn:hover,
+.ap-speed-btn.ap-active {
+  background: var(--ap-gold-dim);
+  color: var(--ap-gold);
+  border-color: rgba(200,151,58,0.3);
+}
+
+/* ── STATUS / VOICE ROW ── */
+.ap-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 18px 14px;
+  border-top: 1px solid var(--ap-mist);
+  gap: 10px;
+}
+
+.ap-status {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  font-style: italic;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ap-status.ap-status-active {
+  color: var(--ap-teal);
+}
+
+.ap-voice-select {
+  background: var(--ap-mist);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.45);
+  font-family: var(--ap-font-body);
+  cursor: pointer;
+  outline: none;
+  max-width: 130px;
+  transition: border-color 0.18s, color 0.18s;
+}
+
+.ap-voice-select:hover {
+  border-color: var(--ap-teal);
+  color: rgba(255,255,255,0.7);
+}
+
+.ap-voice-select option {
+  background: #0f2f35;
+  color: #fff;
+}
+
+/* ── BROWSER UNSUPPORTED ── */
+.ap-unsupported {
+  padding: 14px 18px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 560px) {
+  #mc-audio-player {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(20px);
+    width: 100%;
+    border-radius: var(--ap-radius) var(--ap-radius) 0 0;
+  }
+
+  #mc-audio-player.ap-open {
+    transform: translateY(0);
+  }
+
+  #mc-audio-trigger {
+    bottom: 20px;
+    right: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .ap-controls { gap: 7px; }
+  .ap-btn-play { width: 42px; height: 42px; }
+  .ap-btn-icon { width: 32px; height: 32px; }
+}
