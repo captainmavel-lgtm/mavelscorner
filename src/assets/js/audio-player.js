@@ -344,20 +344,20 @@
       startTime   = null;
       buildAndPlay();
     } else if (isPlaying && !isPaused) {
-      synth.pause();
-      isPaused = true;
+      synth.cancel();
+      isPaused  = true;
       isPlaying = false;
       updatePlayUI(false);
       stopTimer();
       setStatus('Paused.');
     } else if (isPaused) {
-      synth.resume();
+      /* Mobile-safe: restart from current chunk instead of resume() */
       isPaused  = false;
-      isPlaying = true;
-      startTime = Date.now() - (elapsedSecs * 1000);
-      startTimer();
-      updatePlayUI(true);
-      setStatus('Reading aloud...');
+      isPlaying = false;
+      startTime = null;
+      const resumeIdx = currentIdx > 0 ? currentIdx - 1 : 0;
+      currentIdx = resumeIdx;
+      speakFrom(currentIdx);
     }
   }
 
