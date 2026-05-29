@@ -11,7 +11,7 @@
   'use strict';
 
   /* ── Guard: only run on post pages ── */
-  const postContent = document.querySelector('.post-content, article.post, .blog-post-content, main article');
+  const postContent = document.querySelector('.article-inner, article.article-body, main article');
   if (!postContent) return;
 
   /* ── Guard: browser support ── */
