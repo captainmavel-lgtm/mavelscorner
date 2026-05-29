@@ -1,20 +1,14 @@
 /**
  * MAVEL'S CORNER — READ ALOUD PLAYER
  * File: src/assets/js/audio-player.js
- *
- * Uses the Web Speech API (SpeechSynthesis) — 100% free, zero subscriptions.
- * Extracts post content from the DOM, builds a clean reading script,
- * and drives the floating player UI injected by audio-player.njk.
  */
 
 (function () {
   'use strict';
 
-  /* ── Guard: only run on post pages ── */
   const postContent = document.querySelector('.article-inner, article.article-body, main article');
   if (!postContent) return;
 
-  /* ── Guard: browser support ── */
   const synth = window.speechSynthesis;
   if (!synth) {
     const trigger = document.getElementById('mc-audio-trigger');
@@ -22,65 +16,50 @@
     return;
   }
 
-  /* ══════════════════════════════════════════
-     1. DOM REFERENCES
-  ══════════════════════════════════════════ */
-  const trigger     = document.getElementById('mc-audio-trigger');
-  const player      = document.getElementById('mc-audio-player');
-  const btnPlay     = document.getElementById('ap-btn-play');
-  const btnStop     = document.getElementById('ap-btn-stop');
-  const btnClose    = document.getElementById('ap-close');
-  const wave        = document.getElementById('ap-wave');
-  const progressFill= document.getElementById('ap-progress-fill');
-  const timeElapsed = document.getElementById('ap-time-elapsed');
-  const timeDuration= document.getElementById('ap-time-duration');
-  const statusEl    = document.getElementById('ap-status');
-  const voiceSelect = document.getElementById('ap-voice-select');
-  const fabLabel    = document.getElementById('ap-fab-label');
-  const speedBtns   = document.querySelectorAll('.ap-speed-btn');
+  /* ── DOM REFERENCES ── */
+  const trigger      = document.getElementById('mc-audio-trigger');
+  const player       = document.getElementById('mc-audio-player');
+  const btnPlay      = document.getElementById('ap-btn-play');
+  const btnStop      = document.getElementById('ap-btn-stop');
+  const btnClose     = document.getElementById('ap-close');
+  const wave         = document.getElementById('ap-wave');
+  const progressFill = document.getElementById('ap-progress-fill');
+  const timeElapsed  = document.getElementById('ap-time-elapsed');
+  const timeDuration = document.getElementById('ap-time-duration');
+  const statusEl     = document.getElementById('ap-status');
+  const voiceSelect  = document.getElementById('ap-voice-select');
+  const fabLabel     = document.getElementById('ap-fab-label');
+  const speedBtns    = document.querySelectorAll('.ap-speed-btn');
 
   if (!trigger || !player || !btnPlay) return;
 
-  /* ══════════════════════════════════════════
-     2. STATE
-  ══════════════════════════════════════════ */
-  let utterances   = [];   // array of SpeechSynthesisUtterance
-  let currentIdx   = 0;
-  let isPlaying    = false;
-  let isPaused     = false;
-  let totalChunks  = 0;
-  let voices       = [];
-  let selectedVoice= null;
-  let currentRate  = 1.0;
-  let startTime    = null;
-  let elapsedSecs  = 0;
-  let timerInterval= null;
-  let estimatedDuration = 0; // in seconds, calculated from word count
+  /* ── STATE ── */
+  let utterances        = [];
+  let currentIdx        = 0;
+  let isPlaying         = false;
+  let isPaused          = false;
+  let totalChunks       = 0;
+  let voices            = [];
+  let selectedVoice     = null;
+  let currentRate       = 1.0;
+  let startTime         = null;
+  let elapsedSecs       = 0;
+  let timerInterval     = null;
+  let estimatedDuration = 0;
 
-  /* ══════════════════════════════════════════
-     3. CONTENT EXTRACTION
-     Reads post h1, scripture, body sections.
-     Strips hashtags, nav, footer, share buttons.
-  ══════════════════════════════════════════ */
+  /* ── CONTENT EXTRACTION ── */
   function extractReadingScript() {
     const parts = [];
 
-    /* Post title */
     const h1 = document.querySelector('h1');
     if (h1) parts.push(h1.innerText.trim());
 
-    /* Author + date intro */
-    const authorEl = document.querySelector('.post-author, [class*="author"], .byline');
-    const dateEl   = document.querySelector('.post-date, time, [class*="date"]');
-    let byline = 'Written by Emmanuel, on Mavel\'s Corner.';
+    const dateEl = document.querySelector('.post-date, time, [class*="date"]');
+    let byline = "Written by Emmanuel, on Mavel's Corner.";
     if (dateEl) byline += ' ' + dateEl.innerText.trim() + '.';
     parts.push(byline);
-
-    /* Pause */
     parts.push('');
 
-    /* Gather all meaningful text nodes in post body,
-       skipping: hashtag blocks, share buttons, footer, nav, prayer-form */
     const skipSelectors = [
       'nav', 'footer', '.tags', '.hashtags',
       '.share-buttons', '.share-row', '[class*="share"]',
@@ -89,22 +68,16 @@
     ];
 
     function shouldSkip(el) {
-      return skipSelectors.some(sel => el.closest(sel));
+      return skipSelectors.some(function(sel) { return el.closest(sel); });
     }
 
     function isHashtagLine(text) {
       return /^(#[A-Za-z]+\s*){3,}/.test(text.trim());
     }
 
-    /* Walk the post content element */
-    const walker = document.createTreeWalker(
-      postContent,
-      NodeFilter.SHOW_ELEMENT,
-      null,
-      false
-    );
-
+    const walker = document.createTreeWalker(postContent, NodeFilter.SHOW_ELEMENT, null, false);
     let node = walker.currentNode;
+
     while (node) {
       const tag = node.nodeName.toLowerCase();
       if (shouldSkip(node)) { node = walker.nextNode(); continue; }
@@ -112,20 +85,19 @@
       if (['h2','h3','h4'].includes(tag)) {
         const text = node.innerText.trim();
         if (text && !isHashtagLine(text)) {
-          parts.push(''); // breath pause
+          parts.push('');
           parts.push(text + '.');
           parts.push('');
         }
       } else if (tag === 'p') {
         const text = node.innerText.trim();
         if (text && !isHashtagLine(text)) {
-          /* Replace smart quotes / em-dashes for cleaner TTS */
-          const cleaned = text
-            .replace(/[\u2018\u2019]/g, "'")
-            .replace(/[\u201C\u201D]/g, '"')
-            .replace(/[\u2013\u2014]/g, ', ')
-            .replace(/\s+/g, ' ');
-          parts.push(cleaned);
+          parts.push(
+            text.replace(/[\u2018\u2019]/g, "'")
+                .replace(/[\u201C\u201D]/g, '"')
+                .replace(/[\u2013\u2014]/g, ', ')
+                .replace(/\s+/g, ' ')
+          );
         }
       } else if (tag === 'blockquote') {
         const text = node.innerText.trim();
@@ -142,23 +114,16 @@
       node = walker.nextNode();
     }
 
-    /* Closing sign-off */
     parts.push('');
-    parts.push('That is the end of this post. Thank you for reading along with Mavel\'s Corner. God bless you.');
-
-    return parts.filter(p => p !== undefined);
+    parts.push("That is the end of this post. Thank you for reading along with Mavel's Corner. God bless you.");
+    return parts.filter(function(p) { return p !== undefined; });
   }
 
-  /* ══════════════════════════════════════════
-     4. CHUNK TEXT FOR RELIABLE SPEECH SYNTHESIS
-     SpeechSynthesis has a ~200-char limit bug in some browsers.
-     We chunk by sentence, capped at ~180 chars.
-  ══════════════════════════════════════════ */
+  /* ── CHUNK TEXT ── */
   function chunkText(text, maxLen) {
     maxLen = maxLen || 180;
     if (text.length <= maxLen) return [text];
     const chunks = [];
-    /* split on sentence endings first */
     const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
     let current = '';
     sentences.forEach(function(s) {
@@ -177,15 +142,13 @@
     const all = [];
     script.forEach(function(part) {
       if (!part.trim()) {
-        /* empty = short pause via an utterance with a space */
         const pause = new SpeechSynthesisUtterance(' ');
         pause.volume = 0;
         pause.rate = rate;
         all.push(pause);
         return;
       }
-      const chunks = chunkText(part);
-      chunks.forEach(function(chunk) {
+      chunkText(part).forEach(function(chunk) {
         const u = new SpeechSynthesisUtterance(chunk);
         u.rate   = rate;
         u.pitch  = 1.0;
@@ -197,14 +160,10 @@
     return all;
   }
 
-  /* ══════════════════════════════════════════
-     5. ESTIMATED DURATION (word-count based)
-  ══════════════════════════════════════════ */
+  /* ── DURATION ── */
   function estimateDuration(script, rate) {
-    const fullText = script.join(' ');
-    const wordCount = fullText.trim().split(/\s+/).length;
-    /* average 150 wpm at rate=1, adjusted */
-    return Math.round((wordCount / (150 * rate)) * 60);
+    const wc = script.join(' ').trim().split(/\s+/).length;
+    return Math.round((wc / (150 * rate)) * 60);
   }
 
   function formatTime(secs) {
@@ -213,9 +172,7 @@
     return m + ':' + (s < 10 ? '0' : '') + s;
   }
 
-  /* ══════════════════════════════════════════
-     6. VOICE LOADING
-  ══════════════════════════════════════════ */
+  /* ── VOICES ── */
   function loadVoices() {
     voices = synth.getVoices();
     if (!voices.length) return;
@@ -226,13 +183,10 @@
   function populateVoiceSelect() {
     if (!voiceSelect) return;
     voiceSelect.innerHTML = '';
-    const englishVoices = voices.filter(function(v) {
-      return v.lang.startsWith('en');
-    });
-    const list = englishVoices.length ? englishVoices : voices;
-    list.forEach(function(v, i) {
+    const en = voices.filter(function(v) { return v.lang.startsWith('en'); });
+    const list = en.length ? en : voices;
+    list.forEach(function(v) {
       const opt = document.createElement('option');
-      opt.value = i;
       opt.textContent = v.name.replace('Google ', '').replace('Microsoft ', '').substring(0, 22);
       opt.dataset.idx = voices.indexOf(v);
       voiceSelect.appendChild(opt);
@@ -240,34 +194,18 @@
   }
 
   function selectDefaultVoice() {
-    /* Priority: female English voices */
-    const femaleKeywords = ['female', 'woman', 'girl', 'zira', 'samantha', 'victoria', 'fiona',
-                            'karen', 'moira', 'susan', 'veena', 'tessa', 'serena', 'alice',
-                            'allison', 'ava', 'joanna', 'aria', 'jenny', 'sonia', 'libby'];
-    const englishVoices = voices.filter(function(v) { return v.lang.startsWith('en'); });
-    const pool = englishVoices.length ? englishVoices : voices;
-
-    let best = pool.find(function(v) {
-      const name = v.name.toLowerCase();
-      return femaleKeywords.some(function(k) { return name.includes(k); });
-    });
-
-    if (!best) {
-      /* fallback: any en-GB or en-US */
-      best = pool.find(function(v) { return v.lang === 'en-GB' || v.lang === 'en-US'; });
-    }
+    const fk = ['female','woman','zira','samantha','victoria','fiona','karen','moira',
+                 'veena','tessa','serena','alice','allison','ava','joanna','aria','jenny','sonia','libby'];
+    const en = voices.filter(function(v) { return v.lang.startsWith('en'); });
+    const pool = en.length ? en : voices;
+    let best = pool.find(function(v) { return fk.some(function(k) { return v.name.toLowerCase().includes(k); }); });
+    if (!best) best = pool.find(function(v) { return v.lang === 'en-GB' || v.lang === 'en-US'; });
     if (!best) best = pool[0];
-
     selectedVoice = best || null;
-
-    /* sync select UI */
     if (voiceSelect && best) {
-      const allVoices = voices;
-      const targetIdx = allVoices.indexOf(best);
+      const ti = voices.indexOf(best);
       Array.from(voiceSelect.options).forEach(function(opt) {
-        if (parseInt(opt.dataset.idx) === targetIdx) {
-          opt.selected = true;
-        }
+        if (parseInt(opt.dataset.idx) === ti) opt.selected = true;
       });
     }
   }
@@ -275,9 +213,7 @@
   synth.onvoiceschanged = loadVoices;
   loadVoices();
 
-  /* ══════════════════════════════════════════
-     7. PLAYBACK ENGINE
-  ══════════════════════════════════════════ */
+  /* ── PLAYBACK ENGINE ── */
   function buildAndPlay() {
     synth.cancel();
     const script = extractReadingScript();
@@ -289,21 +225,29 @@
     speakFrom(0);
   }
 
+  function buildAndPlayFrom(idx) {
+    /* Rebuild utterances (e.g. after speed change) and start from a saved index */
+    synth.cancel();
+    const script = extractReadingScript();
+    estimatedDuration = estimateDuration(script, currentRate);
+    if (timeDuration) timeDuration.textContent = formatTime(estimatedDuration);
+    utterances  = buildUtterances(script, currentRate, selectedVoice);
+    totalChunks = utterances.length;
+    currentIdx  = (idx < totalChunks) ? idx : 0;
+    speakFrom(currentIdx);
+  }
+
   function speakFrom(idx) {
-    if (idx >= utterances.length) {
-      onPlaybackEnd();
-      return;
-    }
+    if (idx >= utterances.length) { onPlaybackEnd(); return; }
     const u = utterances[idx];
 
     u.onstart = function() {
       isPlaying = true;
       isPaused  = false;
       updatePlayUI(true);
+      /* Only start timer if not already running */
       if (!timerInterval) {
-        if (!startTime) {
-          startTime = Date.now() - (elapsedSecs * 1000);
-        }
+        if (!startTime) startTime = Date.now() - (elapsedSecs * 1000);
         startTimer();
       }
     };
@@ -315,15 +259,13 @@
     };
 
     u.onerror = function(e) {
-      /* skip interrupted errors (these are normal when pausing/stopping) */
       if (e.error === 'interrupted' || e.error === 'canceled') return;
-      setStatus('Voice error — trying to continue...');
       currentIdx = idx + 1;
       speakFrom(currentIdx);
     };
 
     synth.speak(u);
-    setStatus('Reading aloud...');
+    setStatus('Reading aloud...', true);
   }
 
   function onPlaybackEnd() {
@@ -338,7 +280,7 @@
     if (fabLabel) fabLabel.textContent = 'Listen Again';
   }
 
-  /* ── Play / Pause toggle ── */
+  /* ── TOGGLE PLAY / PAUSE ── */
   function togglePlay() {
     if (!isPlaying && !isPaused) {
       /* Fresh start */
@@ -346,15 +288,15 @@
       startTime   = null;
       buildAndPlay();
     } else if (isPlaying && !isPaused) {
+      /* Pause — cancel speech and save position */
       synth.cancel();
-      isPaused      = true;
-      isPlaying     = false;
-      /* Save exactly where we are so resume starts at same chunk */
+      isPaused  = true;
+      isPlaying = false;
       updatePlayUI(false);
       stopTimer();
       setStatus('Paused.');
     } else if (isPaused) {
-      /* Resume from the exact chunk that was playing when paused */
+      /* Resume from exact saved chunk, timer continues from saved elapsed */
       isPaused  = false;
       isPlaying = false;
       startTime = Date.now() - (elapsedSecs * 1000);
@@ -364,11 +306,11 @@
 
   function stopPlayback() {
     synth.cancel();
-    isPlaying = false;
-    isPaused  = false;
-    startTime = null;
+    isPlaying   = false;
+    isPaused    = false;
+    startTime   = null;
     elapsedSecs = 0;
-    currentIdx = 0;
+    currentIdx  = 0;
     stopTimer();
     updatePlayUI(false);
     updateProgress(0);
@@ -377,42 +319,30 @@
     if (fabLabel) fabLabel.textContent = 'Listen';
   }
 
-  /* ══════════════════════════════════════════
-     8. UI HELPERS
-  ══════════════════════════════════════════ */
+  /* ── UI HELPERS ── */
   function updatePlayUI(playing) {
-    /* swap play/pause icon */
     if (btnPlay) {
       btnPlay.innerHTML = playing
         ? '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>'
         : '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>';
       btnPlay.setAttribute('aria-label', playing ? 'Pause' : 'Play');
     }
-    /* wave animation */
     if (wave) wave.classList.toggle('ap-wave-active', playing);
-    /* trigger button pulse */
     if (trigger) trigger.classList.toggle('ap-playing', playing);
-    /* fab label */
-    if (fabLabel && !playing && !isPaused) {
-      /* keep current label unless fully stopped */
-    }
   }
 
   function updateProgress(force) {
     if (!progressFill) return;
-    const pct = (force !== undefined)
-      ? force
-      : (totalChunks > 0 ? currentIdx / totalChunks : 0);
+    const pct = (force !== undefined) ? force : (totalChunks > 0 ? currentIdx / totalChunks : 0);
     progressFill.style.width = (Math.min(pct, 1) * 100) + '%';
   }
 
   function setStatus(msg, active) {
     if (!statusEl) return;
     statusEl.textContent = msg;
-    statusEl.classList.toggle('ap-status-active', !!active || isPlaying);
+    statusEl.classList.toggle('ap-status-active', !!active);
   }
 
-  /* ── Timer ── */
   function startTimer() {
     stopTimer();
     timerInterval = setInterval(function() {
@@ -427,19 +357,15 @@
     if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
   }
 
-  /* ══════════════════════════════════════════
-     9. PLAYER OPEN / CLOSE
-  ══════════════════════════════════════════ */
+  /* ── PLAYER OPEN / CLOSE ── */
   function openPlayer() {
     player.classList.add('ap-open');
     trigger.setAttribute('aria-expanded', 'true');
-    /* Set post title in player header */
     const titleEl = document.getElementById('ap-post-title');
     if (titleEl) {
       const h1 = document.querySelector('h1');
       titleEl.textContent = h1 ? h1.innerText.trim() : document.title;
     }
-    /* Set duration estimate */
     const script = extractReadingScript();
     estimatedDuration = estimateDuration(script, currentRate);
     if (timeDuration) timeDuration.textContent = formatTime(estimatedDuration);
@@ -448,33 +374,18 @@
   function closePlayer() {
     player.classList.remove('ap-open');
     trigger.setAttribute('aria-expanded', 'false');
-    /* do NOT stop playback — reader can close panel and keep listening */
   }
 
-  /* ══════════════════════════════════════════
-     10. EVENT LISTENERS
-  ══════════════════════════════════════════ */
+  /* ── EVENT LISTENERS ── */
   trigger.addEventListener('click', function() {
-    if (player.classList.contains('ap-open')) {
-      closePlayer();
-    } else {
-      openPlayer();
-    }
+    player.classList.contains('ap-open') ? closePlayer() : openPlayer();
   });
 
-  if (btnClose) {
-    btnClose.addEventListener('click', closePlayer);
-  }
+  if (btnClose) btnClose.addEventListener('click', closePlayer);
+  if (btnPlay)  btnPlay.addEventListener('click', togglePlay);
+  if (btnStop)  btnStop.addEventListener('click', stopPlayback);
 
-  if (btnPlay) {
-    btnPlay.addEventListener('click', togglePlay);
-  }
-
-  if (btnStop) {
-    btnStop.addEventListener('click', stopPlayback);
-  }
-
-  /* Speed buttons */
+  /* Speed buttons — rebuild at new rate from current position */
   speedBtns.forEach(function(btn) {
     btn.addEventListener('click', function() {
       const rate = parseFloat(btn.dataset.rate);
@@ -482,21 +393,16 @@
       currentRate = rate;
       speedBtns.forEach(function(b) { b.classList.remove('ap-active'); });
       btn.classList.add('ap-active');
-      /* Rebuild utterances at new rate and resume from current position */
+
       if (isPlaying || isPaused) {
-        const savedIdx = currentIdx;
-        const savedElapsed = elapsedSecs;
-        synth.cancel();
+        var savedIdx     = currentIdx;
+        var savedElapsed = elapsedSecs;
         isPlaying = false;
         isPaused  = false;
         stopTimer();
-        const script = extractReadingScript();
-        utterances  = buildUtterances(script, currentRate, selectedVoice);
-        totalChunks = utterances.length;
-        currentIdx  = savedIdx < totalChunks ? savedIdx : 0;
         elapsedSecs = savedElapsed;
         startTime   = null;
-        speakFrom(currentIdx);
+        buildAndPlayFrom(savedIdx);
       }
     });
   });
@@ -507,29 +413,21 @@
       const idx = parseInt(voiceSelect.options[voiceSelect.selectedIndex].dataset.idx);
       selectedVoice = voices[idx] || null;
       if (isPlaying || isPaused) {
-        const wasIdx = currentIdx;
-        stopPlayback();
-        /* Brief delay then resume from scratch */
-        setTimeout(function() { buildAndPlay(); }, 80);
+        var savedIdx = currentIdx;
+        isPlaying = false;
+        isPaused  = false;
+        stopTimer();
+        startTime = null;
+        buildAndPlayFrom(savedIdx);
       }
     });
   }
 
-  /* ── Initial state ── */
+  /* Initial state */
   updatePlayUI(false);
   updateProgress(0);
   setStatus('Tap play to listen to this post.');
 
-  /* ── Cleanup on page hide (mobile browser tab switch) ── */
-  document.addEventListener('visibilitychange', function() {
-    if (document.hidden && isPlaying) {
-      /* keep playing — reader is on another tab, speech continues */
-    }
-  });
-
-  /* ── Stop speech if user navigates away ── */
-  window.addEventListener('beforeunload', function() {
-    synth.cancel();
-  });
+  window.addEventListener('beforeunload', function() { synth.cancel(); });
 
 })();
