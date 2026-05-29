@@ -482,10 +482,21 @@
       currentRate = rate;
       speedBtns.forEach(function(b) { b.classList.remove('ap-active'); });
       btn.classList.add('ap-active');
-      /* restart from beginning with new rate */
+      /* Rebuild utterances at new rate and resume from current position */
       if (isPlaying || isPaused) {
-        stopPlayback();
-        setTimeout(function() { togglePlay(); }, 100);
+        const savedIdx = currentIdx;
+        const savedElapsed = elapsedSecs;
+        synth.cancel();
+        isPlaying = false;
+        isPaused  = false;
+        stopTimer();
+        const script = extractReadingScript();
+        utterances  = buildUtterances(script, currentRate, selectedVoice);
+        totalChunks = utterances.length;
+        currentIdx  = savedIdx < totalChunks ? savedIdx : 0;
+        elapsedSecs = savedElapsed;
+        startTime   = null;
+        speakFrom(currentIdx);
       }
     });
   });
