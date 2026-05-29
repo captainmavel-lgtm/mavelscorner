@@ -15,7 +15,7 @@ tags:
   - Abraham
   - purpose
 ---
-## You had a plan. Maybe you still do. Somewhere underneath all the disappointment, it is still there, folded up quietly in the corner of your heart. You were going to launch that business by twenty-five. You were going to be married by now. You were going to be further along in life, further along in your healing journey, further along in your Christian faith — but here you are, still waiting. And the waiting is starting to feel less like a season and more like a sentence.
+You had a plan. Maybe you still do. Somewhere underneath all the disappointment, it is still there, folded up quietly in the corner of your heart. You were going to launch that business by twenty-five. You were going to be married by now. You were going to be further along in life, further along in your healing journey, further along in your Christian faith but here you are, still waiting. And the waiting is starting to feel less like a season and more like a sentence.
 
 If that is where you are right now, feeling exhausted by waiting, tempted to give up, wondering whether God even remembers you — this post is written for you. Not to give you a five-step formula. Not to minimise how heavy this feels — but to tell you the truth that the devil and his cohorts does not want you to believe: in yourself and in your God.
 
@@ -70,7 +70,6 @@ Jeremiah 29:11 is not just a verse for Instagram. It is the lived reality of a G
 
 ## Something To Think About
 
-
 Take a moment with these questions. Be honest. God can handle it.
 •	What promise or dream have you quietly stopped believing in because the wait has been so long? What would it look like to hand it back to God today, not to abandon it, but to trust Him with it?
 •	In what ways might God be doing something in you during this season that you have been too frustrated to notice? What might the roots look like that He is building right now?
@@ -78,14 +77,12 @@ Take a moment with these questions. Be honest. God can handle it.
 
 ## A Prayer For The Waiting
 
-
 Lord, I will be honest. The wait has been hard. Some days I have not understood You, and some days I have been angry. But today I choose to believe that You have not forgotten about me. I choose to trust that what You have promised is still on its way. Renew my strength in this season Oh Lord, build my faith in the silence, and help me hold on just a little longer. Your plans for me are good and I will not give up on them, because You have never given up on me. Amen!
 
 ## Your Challenge This Week
 
 Write it down.
 Find a quiet moment this week and write down the promise or dream you have been waiting on. Then write Habakkuk 2:3 underneath it. Put it somewhere you will see it every day, your mirror, your phone screen, your journal. Let it be your daily reminder that the vision is for an appointed time. It has not been cancelled. It has not been forgotten. It is simply not yet the time for God to manifest the blessing, and not yet is not the same as never.
-
 
 - - -
 
