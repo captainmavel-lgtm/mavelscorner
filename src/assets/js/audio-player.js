@@ -345,18 +345,17 @@
       buildAndPlay();
     } else if (isPlaying && !isPaused) {
       synth.cancel();
-      isPaused  = true;
-      isPlaying = false;
+      isPaused      = true;
+      isPlaying     = false;
+      /* Save exactly where we are so resume starts at same chunk */
       updatePlayUI(false);
       stopTimer();
       setStatus('Paused.');
     } else if (isPaused) {
-      /* Mobile-safe: restart from current chunk instead of resume() */
+      /* Resume from the exact chunk that was playing when paused */
       isPaused  = false;
       isPlaying = false;
-      startTime = null;
-      const resumeIdx = currentIdx > 0 ? currentIdx - 1 : 0;
-      currentIdx = resumeIdx;
+      startTime = Date.now() - (elapsedSecs * 1000);
       speakFrom(currentIdx);
     }
   }
