@@ -23,7 +23,7 @@ exports.handler = async function (event) {
     description: "A faith-based podcast for young adults and millennials exploring hope, Scripture, and the beauty of second chances. New episodes with every post from mavelscorner.blog",
     link:        SITE_URL,
     language:    'en',
-    author:      'Emmanuel, Mavel\'s Corner',
+    author:      'Emmanuel Avleshie',
     email:       'mavelscorner@outlook.com',
     category:    'Religion &amp; Spirituality',
     subcategory: 'Christianity',
@@ -32,15 +32,11 @@ exports.handler = async function (event) {
   };
 
   /* ── FETCH POSTS FROM SITE ── */
-  // We fetch the sitemap or a JSON feed to get post data.
-  // Eleventy generates posts at /blog/[slug]/index.html
-  // We use a static posts.json file that we generate at build time.
   let posts = [];
   try {
     const postsUrl = SITE_URL + '/posts.json';
     posts = await fetchJSON(postsUrl);
   } catch (e) {
-    // If posts.json not available, return empty feed
     posts = [];
   }
 
@@ -63,7 +59,7 @@ exports.handler = async function (event) {
       <pubDate>${pubDate}</pubDate>
       <enclosure url="${audioUrl}" length="${fileSize}" type="audio/mpeg"/>
       <itunes:title>${escapeXml(p.title)}</itunes:title>
-      <itunes:author>Emmanuel, Mavel's Corner</itunes:author>
+      <itunes:author>Emmanuel Avleshie</itunes:author>
       <itunes:summary>${escapeXml(p.excerpt || p.title)}</itunes:summary>
       <itunes:duration>${duration}</itunes:duration>
       <itunes:explicit>false</itunes:explicit>
