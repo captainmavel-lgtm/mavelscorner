@@ -7,7 +7,7 @@ permalink: /posts.json
     "title":   {{ post.data.title | dump | safe }},
     "slug":    {{ post.fileSlug | dump | safe }},
     "excerpt": {{ post.data.excerpt | dump | safe }},
-    "date":    "{{ post.date | date('yyyy-MM-dd') }}",
+    "date":    "{{ post.date | readableDate }}",
     "url":     "{{ post.url }}"
   }{% if not loop.last %},{% endif %}
 {% endfor %}
