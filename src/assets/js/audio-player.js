@@ -605,7 +605,7 @@
     if (!silentAudio.src || silentAudio.src === window.location.href) {
       silentAudio.src = buildSilentWav();
     }
-    silentAudio.volume = 0;
+    silentAudio.volume = 0.001; /* near-zero but non-zero — OS registers as active media session */
     silentAudio.loop   = true;
     silentAudio.play().catch(function () {});
   }
