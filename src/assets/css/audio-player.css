@@ -696,3 +696,39 @@
   .ap-btn-icon  { width: 32px; height: 32px; }
   .ap-gender-btn { padding: 4px 8px; font-size: 10px; }
 }
+
+/* ── LOADING SPINNER ── */
+@keyframes ap-spin {
+  to { transform: rotate(360deg); }
+}
+.ap-spin {
+  animation: ap-spin 0.9s linear infinite;
+  transform-origin: center;
+}
+
+/* ── DOWNLOAD BUTTON ── */
+.ap-btn-download {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--ap-mist);
+  border: 1px solid rgba(255,255,255,0.07);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s, transform 0.18s;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.ap-btn-download:hover {
+  background: rgba(255,255,255,0.10);
+  transform: scale(1.08);
+}
+
+.ap-btn-download svg {
+  width: 14px;
+  height: 14px;
+  fill: rgba(255,255,255,0.55);
+}

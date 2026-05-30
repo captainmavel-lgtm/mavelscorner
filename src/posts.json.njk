@@ -1,0 +1,14 @@
+---
+permalink: /posts.json
+---
+[
+{% for post in collections.post %}
+  {
+    "title":   {{ post.data.title | dump | safe }},
+    "slug":    {{ post.fileSlug | dump | safe }},
+    "excerpt": {{ post.data.excerpt | dump | safe }},
+    "date":    "{{ post.date | date('yyyy-MM-dd') }}",
+    "url":     "{{ post.url }}"
+  }{% if not loop.last %},{% endif %}
+{% endfor %}
+]

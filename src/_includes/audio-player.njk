@@ -1,13 +1,12 @@
 {# ============================================================
    MAVEL'S CORNER — AUDIO PLAYER PARTIAL
    File: src/_includes/audio-player.njk
-   v3.0 — Draggable progress, gender toggle, volume, keyboard, resume prompt
+   v4.0 — Azure TTS + R2 MP3 — true background playback
    ============================================================ #}
 
-<!-- ── AUDIO PLAYER CSS ── -->
 <link rel="stylesheet" href="/assets/css/audio-player.css">
 
-<!-- ── FAB TRIGGER BUTTON ── -->
+<!-- FAB TRIGGER -->
 <button
   id="mc-audio-trigger"
   aria-label="Open read aloud player"
@@ -23,7 +22,7 @@
   <span class="ap-fab-label" id="ap-fab-label">Listen</span>
 </button>
 
-<!-- ── FLOATING PLAYER PANEL ── -->
+<!-- PLAYER PANEL -->
 <div
   id="mc-audio-player"
   role="region"
@@ -31,7 +30,7 @@
   aria-live="polite"
 >
 
-  <!-- Resume prompt banner -->
+  <!-- Resume prompt -->
   <div class="ap-resume-prompt" id="ap-resume-prompt" aria-live="polite">
     <span class="ap-resume-text" id="ap-resume-text">Resume where you left off?</span>
     <div class="ap-resume-btns">
@@ -64,24 +63,16 @@
     </button>
   </div>
 
-  <!-- Waveform visualiser -->
+  <!-- Waveform -->
   <div class="ap-wave" id="ap-wave" aria-hidden="true">
-    <div class="ap-wave-bar"></div>
-    <div class="ap-wave-bar"></div>
-    <div class="ap-wave-bar"></div>
-    <div class="ap-wave-bar"></div>
-    <div class="ap-wave-bar"></div>
-    <div class="ap-wave-bar"></div>
-    <div class="ap-wave-bar"></div>
-    <div class="ap-wave-bar"></div>
-    <div class="ap-wave-bar"></div>
-    <div class="ap-wave-bar"></div>
-    <div class="ap-wave-bar"></div>
-    <div class="ap-wave-bar"></div>
-    <div class="ap-wave-bar"></div>
-    <div class="ap-wave-bar"></div>
-    <div class="ap-wave-bar"></div>
-    <div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div><div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div><div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div><div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div><div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div><div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div><div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div><div class="ap-wave-bar"></div>
+    <div class="ap-wave-bar"></div><div class="ap-wave-bar"></div>
   </div>
 
   <!-- Progress scrubber -->
@@ -107,54 +98,52 @@
 
   <!-- Controls -->
   <div class="ap-controls">
-    <!-- Stop -->
     <button class="ap-btn-icon" id="ap-btn-stop" aria-label="Stop">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="4" y="4" width="16" height="16" rx="2"/>
       </svg>
     </button>
 
-    <!-- Play / Pause -->
     <button class="ap-btn-play" id="ap-btn-play" aria-label="Play">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <polygon points="5,3 19,12 5,21"/>
       </svg>
     </button>
 
-    <!-- Speed -->
-    <button class="ap-speed-btn"          data-rate="0.8"  aria-label="Speed 0.8x">0.8x</button>
+    <!-- Download episode button -->
+    <a
+      id="ap-btn-download"
+      class="ap-btn-icon ap-btn-download"
+      aria-label="Download episode"
+      title="Download episode as MP3"
+      style="display:none;text-decoration:none"
+    >
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 16l-5-5h3V4h4v7h3l-5 5z"/>
+        <path d="M5 20h14v-2H5v2z"/>
+      </svg>
+    </a>
+
+    <button class="ap-speed-btn"           data-rate="0.8"  aria-label="Speed 0.8x">0.8x</button>
     <button class="ap-speed-btn ap-active" data-rate="1"    aria-label="Speed 1x">1x</button>
-    <button class="ap-speed-btn"          data-rate="1.25" aria-label="Speed 1.25x">1.25x</button>
-    <button class="ap-speed-btn"          data-rate="1.5"  aria-label="Speed 1.5x">1.5x</button>
+    <button class="ap-speed-btn"           data-rate="1.25" aria-label="Speed 1.25x">1.25x</button>
+    <button class="ap-speed-btn"           data-rate="1.5"  aria-label="Speed 1.5x">1.5x</button>
   </div>
 
-  <!-- Volume row -->
+  <!-- Volume -->
   <div class="ap-volume-row">
-    <!-- Speaker icon -->
     <svg class="ap-volume-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
     </svg>
-    <input
-      type="range"
-      class="ap-volume-slider"
-      id="ap-volume-slider"
-      min="0"
-      max="100"
-      value="100"
-      aria-label="Volume"
-      step="1"
-    >
+    <input type="range" class="ap-volume-slider" id="ap-volume-slider" min="0" max="100" value="100" aria-label="Volume" step="1">
     <span class="ap-volume-pct" id="ap-volume-pct">100%</span>
   </div>
 
-  <!-- Voice row: gender toggle + secondary dropdown -->
+  <!-- Voice row -->
   <div class="ap-voice-row">
     <span class="ap-voice-label">Voice</span>
-
-    <!-- Gender toggle -->
     <div class="ap-gender-toggle" role="group" aria-label="Voice gender">
       <button class="ap-gender-btn ap-active" data-gender="female" aria-pressed="true">
-        <!-- Female symbol -->
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <circle cx="12" cy="9" r="5" fill="none" stroke="currentColor" stroke-width="2"/>
           <line x1="12" y1="14" x2="12" y2="20" stroke="currentColor" stroke-width="2"/>
@@ -163,7 +152,6 @@
         Female
       </button>
       <button class="ap-gender-btn" data-gender="male" aria-pressed="false">
-        <!-- Male symbol -->
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <circle cx="10" cy="14" r="5" fill="none" stroke="currentColor" stroke-width="2"/>
           <line x1="14.5" y1="9.5" x2="20" y2="4" stroke="currentColor" stroke-width="2"/>
@@ -172,23 +160,17 @@
         Male
       </button>
     </div>
-
-    <!-- Secondary voice dropdown -->
     <select class="ap-voice-select" id="ap-voice-select" aria-label="Select specific voice">
       <option>Loading voices...</option>
     </select>
   </div>
 
-  <!-- Status footer -->
+  <!-- Footer -->
   <div class="ap-footer">
     <span class="ap-status" id="ap-status">Tap play to listen to this post.</span>
-    <span class="ap-kb-hint" aria-hidden="true">Space to play &middot; &larr;&rarr; to skip</span>
+    <span class="ap-kb-hint" aria-hidden="true">Space to play &middot; &larr;&rarr; to skip 10s</span>
   </div>
 
 </div>
 
-<!-- Silent keep-alive audio (Android screen lock fix) -->
-<audio id="ap-silent-audio" loop aria-hidden="true" style="display:none" preload="none"></audio>
-
-<!-- ── AUDIO PLAYER SCRIPT ── -->
 <script src="/assets/js/audio-player.js" defer></script>
