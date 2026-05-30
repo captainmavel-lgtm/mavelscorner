@@ -27,7 +27,7 @@ exports.handler = async function (event) {
     email:       'mavelscorner@outlook.com',
     category:    'Religion &amp; Spirituality',
     subcategory: 'Christianity',
-    image: SITE_URL + '/images/podcast-cover.jpg',
+    image:       SITE_URL + '/images/podcast-cover.jpg',
     explicit:    'false'
   };
 
@@ -44,11 +44,11 @@ exports.handler = async function (event) {
   const items = posts
     .filter(p => p.audioUrl || (R2_PUBLIC && p.slug))
     .map(p => {
-      const audioUrl   = p.audioUrl || (R2_PUBLIC + '/' + p.slug + '--en-ca-claraNeural.mp3');
-      const pubDate    = new Date(p.date).toUTCString();
-      const postUrl    = SITE_URL + '/blog/' + p.slug + '/';
-      const duration   = p.audioDuration || '00:00';
-      const fileSize   = p.audioSize || '0';
+      const audioUrl = p.audioUrl || (R2_PUBLIC + '/blog-' + p.slug + '--en-ca-claraNeural.mp3');
+      const pubDate  = new Date(p.date).toUTCString();
+      const postUrl  = SITE_URL + '/blog/' + p.slug + '/';
+      const duration = p.audioDuration || '00:00';
+      const fileSize = p.audioSize || '0';
 
       return `
     <item>
