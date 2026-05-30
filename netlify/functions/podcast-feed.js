@@ -27,7 +27,7 @@ exports.handler = async function (event) {
     email:       'mavelscorner@outlook.com',
     category:    'Religion &amp; Spirituality',
     subcategory: 'Christianity',
-    image:       SITE_URL + '/images/podcast-cover.jpg',
+    image: SITE_URL + '/images/podcast-cover.png',
     explicit:    'false'
   };
 
