@@ -8,17 +8,7 @@ scripture_text: Therefore you also be ready, for the Son of Man is coming at an
 excerpt: 'You know that feeling when your phone buzzes and it is a message that
   says "I am five minutes away," but you are still in your pyjamas, the place is
   a mess, and you thought you had more time? '
-tags:
-  - SecondComing
-  - MavelsCorner
-  - ChristianMillennials
-  - FaithAndPurpose
-  - JesusIsReturning
-  - HopeForTheSearching
-  - ChristianBlog
-  - FaithTok
-  - BiblicalTruth
-  - ReadyOrNot
+tags: []
 ---
 You know that feeling when your phone buzzes and it is a message that says "I am five minutes away," but you are still in your pyjamas, the place is a mess, and you thought you had more time? That quiet panic sets in so you start rushing, trying to look like you had it together all along. Now imagine that same feeling but a thousand times deeper not for a guest coming over, rather for a King who is returning again in His full glory and majesty.
 
