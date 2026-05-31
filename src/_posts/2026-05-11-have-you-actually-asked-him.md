@@ -9,27 +9,7 @@ scripture_text: Ask and it will be given to you; seek and you will find; knock
   who seeks finds; and to the one who knocks, the door will be opened.
 excerpt: There is a particular kind of exhaustion that comes from carrying
   something heavy for a long time without telling anyone.
-tags:
-  - MavelsCorner
-  - ChristianContent
-  - FaithJourney
-  - ChristianLiving
-  - PrayerChangesThings
-  - TrustGod
-  - FaithOverFear
-  - DailyEncouragement
-  - JesusFirst
-  - ChristianInspiration
-  - BibleBased
-  - WalkByFaith
-  - PrayerLife
-  - GodsTiming
-  - ChristianBlog
-  - SpiritualGrowth
-  - FaithTalk
-  - EncouragementDaily
-  - HopeInGod
-  - YoungChristians
+tags: []
 ---
 There is a particular kind of exhaustion that comes from carrying something heavy for a long time without telling anyone. You have been managing it, you have been keeping the pieces together from the outside while quietly falling apart on the inside and if someone asked you how you were doing, you would probably say fine because fine is easier than explaining everything that fine is covering up.
 
