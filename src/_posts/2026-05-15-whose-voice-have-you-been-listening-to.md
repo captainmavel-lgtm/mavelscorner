@@ -10,15 +10,7 @@ scripture_text: Now the serpent was more crafty than any of the wild animals the
 excerpt: "There is a voice that shows up at the worst possible moments of your
   life. It tends to arrive at a time when you cannot sleep, or in the middle of
   a day "
-tags:
-  - MavelsCorner
-  - SpiritualWarfare
-  - ChristianIdentity
-  - FaithAndDoubt
-  - BibleStudy
-  - MentalHealthAndFaith
-  - GodsVoice
-  - HopeForBelieverss
+tags: []
 ---
 There is a voice that shows up at the worst possible moments of your life. It tends to arrive at a time when you cannot sleep, or in the middle of a day when everyone around you seems to have their life together, or right after something good happens and you are waiting for it to fall apart. It sounds strangely familiar because it has been speaking to you for a long time that you stopped questioning whether it was telling the truth or not.
 
