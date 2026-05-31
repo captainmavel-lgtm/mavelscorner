@@ -29,13 +29,6 @@ const crypto = require('crypto');
 const DEFAULT_VOICE = 'en-CA-ClaraNeural';
 
 exports.handler = async function (event) {
-  /* ── SECURITY: verify secret header ── */
-  const secret   = process.env.AUTO_GENERATE_SECRET || '';
-  const provided = event.headers['x-webhook-secret'] || '';
-  if (secret && provided !== secret) {
-    return { statusCode: 401, body: 'Unauthorized' };
-  }
-
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method not allowed' };
   }
