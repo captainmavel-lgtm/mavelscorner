@@ -9,6 +9,9 @@
 [functions]
   node_bundler = "esbuild"
 
+[functions."auto-generate-audio"]
+  timeout = 300
+
 [[headers]]
   for = "/.netlify/functions/*"
   [headers.values]
