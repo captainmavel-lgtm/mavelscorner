@@ -1,0 +1,313 @@
+/**
+ * MAVEL'S CORNER — AUTO AUDIO GENERATION
+ * File: netlify/functions/auto-generate-audio.js
+ *
+ * Triggered automatically after every successful Netlify deploy via webhook.
+ * Fetches all posts from posts.json, checks R2 for existing audio, and
+ * generates missing MP3s using Azure TTS for the default voice only.
+ *
+ * Default voice: en-CA-ClaraNeural (Female, Canada)
+ *
+ * Environment variables required:
+ *   AZURE_SPEECH_KEY       — Azure Cognitive Services key
+ *   AZURE_SPEECH_REGION    — e.g. canadacentral
+ *   R2_ACCOUNT_ID          — Cloudflare account ID
+ *   R2_ACCESS_KEY_ID       — R2 API token access key ID
+ *   R2_SECRET_ACCESS_KEY   — R2 API token secret
+ *   R2_BUCKET_NAME         — mavels-corner-audio
+ *   R2_PUBLIC_URL          — https://pub-xxx.r2.dev
+ *   SITE_URL               — https://mavelscorner.blog
+ *   AUTO_GENERATE_SECRET   — a secret string to secure the webhook endpoint
+ */
+
+const https  = require('https');
+const crypto = require('crypto');
+
+const DEFAULT_VOICE = 'en-CA-ClaraNeural';
+
+exports.handler = async function (event) {
+  /* ── SECURITY: verify secret header ── */
+  const secret = process.env.AUTO_GENERATE_SECRET || '';
+  const provided = event.headers['x-webhook-secret'] || '';
+  if (secret && provided !== secret) {
+    return { statusCode: 401, body: 'Unauthorized' };
+  }
+
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, body: 'Method not allowed' };
+  }
+
+  const {
+    AZURE_SPEECH_KEY,
+    AZURE_SPEECH_REGION,
+    R2_ACCOUNT_ID,
+    R2_ACCESS_KEY_ID,
+    R2_SECRET_ACCESS_KEY,
+    R2_BUCKET_NAME,
+    R2_PUBLIC_URL,
+    SITE_URL
+  } = process.env;
+
+  const siteUrl   = (SITE_URL || 'https://mavelscorner.blog').replace(/\/$/, '');
+  const r2Public  = (R2_PUBLIC_URL || '').replace(/\/$/, '');
+
+  /* ── FETCH POSTS ── */
+  let posts = [];
+  try {
+    posts = await fetchJSON(siteUrl + '/posts.json');
+  } catch (e) {
+    console.error('Failed to fetch posts.json:', e.message);
+    return { statusCode: 500, body: 'Failed to fetch posts' };
+  }
+
+  if (!posts.length) {
+    return { statusCode: 200, body: 'No posts found' };
+  }
+
+  const results = [];
+
+  for (const post of posts) {
+    if (!post.slug) continue;
+
+    const safeSlug  = post.slug.replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').substring(0, 80);
+    const fileName  = 'blog-' + safeSlug + '--en-ca-claraNeural.mp3';
+    const publicUrl = r2Public + '/' + fileName;
+
+    /* ── CACHE CHECK: skip if already exists in R2 ── */
+    try {
+      const exists = await checkR2FileExists(
+        R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY,
+        R2_BUCKET_NAME, fileName
+      );
+      if (exists) {
+        console.log('Already exists, skipping:', fileName);
+        results.push({ slug: post.slug, status: 'cached', url: publicUrl });
+        continue;
+      }
+    } catch (e) {
+      console.warn('Cache check failed for', fileName, e.message);
+    }
+
+    /* ── FETCH POST CONTENT ── */
+    let postText = '';
+    try {
+      postText = await fetchPostText(siteUrl + '/blog/' + post.slug + '/');
+    } catch (e) {
+      console.warn('Could not fetch post text for', post.slug, e.message);
+      // Fall back to excerpt if full text unavailable
+      postText = post.excerpt || post.title;
+    }
+
+    if (!postText || postText.length < 10) {
+      postText = post.excerpt || post.title;
+    }
+
+    /* ── GENERATE AUDIO ── */
+    let mp3Buffer;
+    try {
+      mp3Buffer = await generateSpeech(
+        AZURE_SPEECH_KEY, AZURE_SPEECH_REGION, postText, DEFAULT_VOICE
+      );
+    } catch (e) {
+      console.error('TTS failed for', post.slug, e.message);
+      results.push({ slug: post.slug, status: 'tts-error', error: e.message });
+      continue;
+    }
+
+    /* ── UPLOAD TO R2 ── */
+    try {
+      await uploadToR2(
+        R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY,
+        R2_BUCKET_NAME, fileName, mp3Buffer
+      );
+      console.log('Generated and uploaded:', fileName);
+      results.push({ slug: post.slug, status: 'generated', url: publicUrl });
+    } catch (e) {
+      console.error('Upload failed for', post.slug, e.message);
+      results.push({ slug: post.slug, status: 'upload-error', error: e.message });
+    }
+  }
+
+  return {
+    statusCode: 200,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ processed: results.length, results })
+  };
+};
+
+/* ════════════════════════════════════════════════
+   FETCH POST TEXT FROM PUBLISHED PAGE
+════════════════════════════════════════════════ */
+function fetchPostText(url) {
+  return new Promise((resolve, reject) => {
+    https.get(url, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        // Strip HTML tags to get plain text for TTS
+        const text = data
+          .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+          .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
+          .replace(/<[^>]+>/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim()
+          .substring(0, 8000); // Azure TTS limit
+        resolve(text);
+      });
+    }).on('error', reject);
+  });
+}
+
+/* ════════════════════════════════════════════════
+   FETCH JSON
+════════════════════════════════════════════════ */
+function fetchJSON(url) {
+  return new Promise((resolve, reject) => {
+    https.get(url, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try { resolve(JSON.parse(data)); }
+        catch (e) { reject(e); }
+      });
+    }).on('error', reject);
+  });
+}
+
+/* ════════════════════════════════════════════════
+   AZURE TTS
+════════════════════════════════════════════════ */
+function generateSpeech(key, region, text, voiceName) {
+  return new Promise((resolve, reject) => {
+    const safe = text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+
+    const ssml = `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-CA">
+  <voice name="${voiceName}">
+    <prosody rate="0%" pitch="0%">
+      ${safe}
+    </prosody>
+  </voice>
+</speak>`;
+
+    const options = {
+      hostname: `${region}.tts.speech.microsoft.com`,
+      path:     '/cognitiveservices/v1',
+      method:   'POST',
+      headers:  {
+        'Ocp-Apim-Subscription-Key': key,
+        'Content-Type':              'application/ssml+xml',
+        'X-Microsoft-OutputFormat':  'audio-48khz-96kbitrate-mono-mp3',
+        'User-Agent':                'MavelsCorner'
+      }
+    };
+
+    const chunks = [];
+    const req = https.request(options, (res) => {
+      if (res.statusCode !== 200) {
+        let err = '';
+        res.on('data', d => err += d);
+        res.on('end', () => reject(new Error(`Azure TTS ${res.statusCode}: ${err}`)));
+        return;
+      }
+      res.on('data', chunk => chunks.push(chunk));
+      res.on('end', () => resolve(Buffer.concat(chunks)));
+    });
+
+    req.on('error', reject);
+    req.write(ssml);
+    req.end();
+  });
+}
+
+/* ════════════════════════════════════════════════
+   CLOUDFLARE R2 — AWS S3-COMPATIBLE API
+════════════════════════════════════════════════ */
+function hmac(key, data, encoding) {
+  return crypto.createHmac('sha256', key).update(data).digest(encoding);
+}
+
+function hash(data, encoding) {
+  return crypto.createHash('sha256').update(data).digest(encoding);
+}
+
+function signV4(method, url, headers, body, accessKeyId, secretKey, region, service, date) {
+  const parsedUrl    = new URL(url);
+  const dateStamp    = date.substring(0, 8);
+  const canonicalUri = parsedUrl.pathname;
+  const canonicalQS  = parsedUrl.searchParams.toString();
+
+  const signedHeaders    = Object.keys(headers).map(k => k.toLowerCase()).sort().join(';');
+  const canonicalHeaders = Object.keys(headers)
+    .map(k => k.toLowerCase() + ':' + headers[k].trim())
+    .sort()
+    .join('\n') + '\n';
+
+  const payloadHash      = hash(body || '', 'hex');
+  const canonicalRequest = [method, canonicalUri, canonicalQS, canonicalHeaders, signedHeaders, payloadHash].join('\n');
+  const credentialScope  = [dateStamp, region, service, 'aws4_request'].join('/');
+  const stringToSign     = ['AWS4-HMAC-SHA256', date, credentialScope, hash(canonicalRequest, 'hex')].join('\n');
+
+  const signingKey = hmac(
+    hmac(hmac(hmac('AWS4' + secretKey, dateStamp), region), service),
+    'aws4_request'
+  );
+  const signature = hmac(signingKey, stringToSign, 'hex');
+
+  return `AWS4-HMAC-SHA256 Credential=${accessKeyId}/${credentialScope}, SignedHeaders=${signedHeaders}, Signature=${signature}`;
+}
+
+function r2Request(method, accountId, accessKeyId, secretKey, bucket, key, body, extraHeaders) {
+  return new Promise((resolve, reject) => {
+    const endpoint = `https://${accountId}.r2.cloudflarestorage.com`;
+    const url      = `${endpoint}/${bucket}/${key}`;
+    const now      = new Date();
+    const amzDate  = now.toISOString().replace(/[:-]|\.\d{3}/g, '').substring(0, 15) + 'Z';
+    const parsed   = new URL(url);
+
+    const headers = {
+      'Host':                  parsed.hostname,
+      'x-amz-date':           amzDate,
+      'x-amz-content-sha256': hash(body || '', 'hex'),
+      ...extraHeaders
+    };
+
+    if (body) headers['Content-Length'] = Buffer.byteLength(body).toString();
+
+    headers['Authorization'] = signV4(method, url, headers, body, accessKeyId, secretKey, 'auto', 's3', amzDate);
+
+    const options = {
+      hostname: parsed.hostname,
+      path:     parsed.pathname,
+      method,
+      headers
+    };
+
+    const chunks = [];
+    const req = https.request(options, (res) => {
+      res.on('data', c => chunks.push(c));
+      res.on('end', () => resolve({ status: res.statusCode, body: Buffer.concat(chunks) }));
+    });
+
+    req.on('error', reject);
+    if (body) req.write(body);
+    req.end();
+  });
+}
+
+async function checkR2FileExists(accountId, accessKeyId, secretKey, bucket, key) {
+  const res = await r2Request('HEAD', accountId, accessKeyId, secretKey, bucket, key, null, {});
+  return res.status === 200;
+}
+
+async function uploadToR2(accountId, accessKeyId, secretKey, bucket, key, buffer) {
+  const res = await r2Request('PUT', accountId, accessKeyId, secretKey, bucket, key, buffer, {
+    'Content-Type': 'audio/mpeg'
+  });
+  if (res.status !== 200 && res.status !== 201 && res.status !== 204) {
+    throw new Error(`R2 PUT returned ${res.status}: ${res.body.toString()}`);
+  }
+}
