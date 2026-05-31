@@ -12,14 +12,7 @@ scripture_text: "\"If we are thrown into the blazing furnace, the God we serve
 featured_image: ""
 excerpt: There are seasons in life that feel less like seasons and more like
   furnaces. You did not choose them neither did you see them coming.
-tags:
-  - post
-  - fourthman
-  - jesus
-  - fire
-  - heisrisen
-  - God
-  - mavelscorner
+tags: []
 ---
 There are seasons in life that feel less like seasons and more like furnaces. You did not choose them neither did you see them coming. One day things were hard but manageable and then something shifted, a job loss, a relationship that collapsed, a health diagnosis, a betrayal from someone you trusted completely, and now you are in the middle of something so hot and so suffocating that you are not sure how much longer you can breathe in it.
 
