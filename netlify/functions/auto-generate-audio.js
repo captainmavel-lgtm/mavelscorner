@@ -139,16 +139,26 @@ function fetchPostText(url) {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
-        // Extract only the article-inner div — the actual post content
-        const match = data.match(/<div class="article-inner">([\s\S]*?)<hr>/i);
-        const raw = match ? match[1] : data;
+        // Skip the tags div and extract only the post body content up to the <hr>
+        // Tags div ends with </div> before the actual {{ content }} block
+        const articleMatch = data.match(/<div class="article-inner">([\s\S]*?)<hr>/i);
+        let raw = articleMatch ? articleMatch[1] : data;
+
+        // Remove the post-tags div entirely
+        raw = raw.replace(/<div class="post-tags">[\s\S]*?<\/div>/i, '');
+
         const text = raw
           .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
           .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
           .replace(/<[^>]+>/g, ' ')
+          .replace(/&amp;/g, '&')
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'")
           .replace(/\s+/g, ' ')
           .trim()
-          .substring(0, 8000);
+          .substring(0, 50000);
         resolve(text);
       });
     }).on('error', reject);
