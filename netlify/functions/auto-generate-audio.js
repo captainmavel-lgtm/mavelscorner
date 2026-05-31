@@ -139,7 +139,10 @@ function fetchPostText(url) {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
-        const text = data
+        // Extract only the article-inner div — the actual post content
+        const match = data.match(/<div class="article-inner">([\s\S]*?)<hr>/i);
+        const raw = match ? match[1] : data;
+        const text = raw
           .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
           .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
           .replace(/<[^>]+>/g, ' ')
