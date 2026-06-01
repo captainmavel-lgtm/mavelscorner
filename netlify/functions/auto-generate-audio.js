@@ -132,6 +132,18 @@ exports.handler = async function (event) {
 
 /* ════════════════════════════════════════════════
    FETCH POST TEXT FROM PUBLISHED PAGE
+   
+   Template structure inside article-inner:
+     1. div.post-tags   — hashtag chips (must be excluded)
+     2. {{ content }}   — the actual post body (paragraphs, blockquotes, headings)
+     3. <hr>            — divider marking end of content
+     4. div.article-share — share buttons (must be excluded)
+
+   Strategy:
+     - Grab everything inside article-inner up to the <hr>
+     - Strip the post-tags div using a character-by-character safe removal
+       that handles nested spans inside the tags div
+     - Strip all remaining HTML tags to get plain text
 ════════════════════════════════════════════════ */
 function fetchPostText(url) {
   return new Promise((resolve, reject) => {
@@ -139,14 +151,24 @@ function fetchPostText(url) {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
-        // Skip the tags div and extract only the post body content up to the <hr>
-        // Tags div ends with </div> before the actual {{ content }} block
-        const articleMatch = data.match(/<div class="article-inner">([\s\S]*?)<hr>/i);
-        let raw = articleMatch ? articleMatch[1] : data;
 
-        // Remove the post-tags div entirely
-        raw = raw.replace(/<div class="post-tags">[\s\S]*?<\/div>/i, '');
+        // Step 1: Extract everything inside article-inner up to the <hr>
+        const articleMatch = data.match(/<div class="article-inner">([\s\S]*?)<hr/i);
+        let raw = articleMatch ? articleMatch[1] : '';
 
+        // Step 2: If we got nothing useful, fall back to empty (caller will use excerpt)
+        if (!raw || raw.trim().length < 10) {
+          resolve('');
+          return;
+        }
+
+        // Step 3: Remove the post-tags div and ALL its nested children safely.
+        // We find the opening tag and then walk forward counting open/close div
+        // tags until the matching closing </div> is found — this handles any
+        // number of nested <span> or other elements inside post-tags.
+        raw = removeDiv(raw, 'post-tags');
+
+        // Step 4: Strip all remaining HTML and clean up whitespace
         const text = raw
           .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
           .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
@@ -156,13 +178,47 @@ function fetchPostText(url) {
           .replace(/&gt;/g, '>')
           .replace(/&quot;/g, '"')
           .replace(/&#39;/g, "'")
+          .replace(/&nbsp;/g, ' ')
           .replace(/\s+/g, ' ')
           .trim()
           .substring(0, 50000);
+
         resolve(text);
       });
     }).on('error', reject);
   });
+}
+
+/* ════════════════════════════════════════════════
+   REMOVE A TOP-LEVEL DIV BY CLASS NAME
+   Walks the HTML string and removes the div with the given class
+   plus all of its nested content, handling any depth of nesting.
+════════════════════════════════════════════════ */
+function removeDiv(html, className) {
+  const openPattern = new RegExp('<div[^>]+class="[^"]*' + className + '[^"]*"[^>]*>', 'i');
+  const match = openPattern.exec(html);
+  if (!match) return html;
+
+  const start = match.index;
+  let pos = start + match[0].length;
+  let depth = 1;
+
+  while (pos < html.length && depth > 0) {
+    const nextOpen  = html.indexOf('<div', pos);
+    const nextClose = html.indexOf('</div>', pos);
+
+    if (nextClose === -1) break;
+
+    if (nextOpen !== -1 && nextOpen < nextClose) {
+      depth++;
+      pos = nextOpen + 4;
+    } else {
+      depth--;
+      pos = nextClose + 6;
+    }
+  }
+
+  return html.substring(0, start) + html.substring(pos);
 }
 
 /* ════════════════════════════════════════════════

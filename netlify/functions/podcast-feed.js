@@ -20,7 +20,7 @@ exports.handler = async function (event) {
   /* ── PODCAST METADATA ── */
   const podcast = {
     title:       "Mavel's Corner",
-    description: "A faith-based podcast for young adults and millennials exploring hope, Scripture, and the beauty of second chances. New episodes with every post from mavelscorner.blog",
+    description: "A faith-based podcast for young adults and millennials exploring faith, hope and the beauty of second chances with God. New episodes with every post from mavelscorner.blog",
     link:        SITE_URL,
     language:    'en',
     author:      'Emmanuel Avleshie',
@@ -28,7 +28,8 @@ exports.handler = async function (event) {
     category:    'Religion &amp; Spirituality',
     subcategory: 'Christianity',
     image:       SITE_URL + '/images/podcast-cover.jpg',
-    explicit:    'false'
+    explicit:    'false',
+    copyright:   `\u00a9 ${new Date().getFullYear()} Mavel's Corner. All rights reserved.`
   };
 
   /* ── FETCH POSTS FROM SITE ── */
@@ -79,6 +80,7 @@ exports.handler = async function (event) {
     <link>${podcast.link}</link>
     <description>${podcast.description}</description>
     <language>${podcast.language}</language>
+    <copyright>${podcast.copyright}</copyright>
     <managingEditor>${podcast.email} (${podcast.author})</managingEditor>
     <atom:link href="${SITE_URL}/.netlify/functions/podcast-feed" rel="self" type="application/rss+xml"/>
     <itunes:author>${podcast.author}</itunes:author>
