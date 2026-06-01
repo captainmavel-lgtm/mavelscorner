@@ -8,12 +8,7 @@ date: 2026-01-15T09:36:26.013Z
 category: Faith and Discipleship
 scripture: Matthew 17:20
 scripture_text: Nothing will be impossible for you.
-tags:
-  - post
-  - faith
-  - breakthrough
-  - mountains
-  - Hannah
+tags: []
 ---
 You know that thing you have been praying about for longer than you want to admit? The situation that was supposed to have changed by now. The door that was supposed to have opened. The relationship that was supposed to have been restored, the debt that was supposed to have been cleared, the healing that was supposed to have come. You have watched other people get their breakthrough. You have sat in rooms where people testified about what God did for them, and you clapped and you celebrated — but somewhere quietly on the inside, a small voice whispered, *"What about me?"*
 

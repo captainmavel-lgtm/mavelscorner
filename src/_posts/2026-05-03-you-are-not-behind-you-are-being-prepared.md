@@ -9,16 +9,7 @@ featured_image: /images/uploads/gemini_generated_image_wx7pjuwx7pjuwx7p.png
 excerpt: When we feel behind, the world offers successful people’s formulas.
   Hard work and discipline matter, but only genuinely seeking God and finding
   Him gives the real answer and peace.
-tags:
-  - post
-  - prayer
-  - God
-  - SeekGodFirst
-  - TrustTheProcess
-  - PutGodFirst
-  - GodsTiming
-  - JesusLovesYou
-  - HopeInJesus
+tags: []
 ---
 You open Instagram on a Tuesday morning and within sixty seconds you have seen two engagement announcements, someone's new apartment, a university graduation, a business launch, and a travel photo from a place you have only ever searched on Google. And then you put your phone down and look at your own life and the gap between where you are and where you thought you would be by now feels enormous.
 

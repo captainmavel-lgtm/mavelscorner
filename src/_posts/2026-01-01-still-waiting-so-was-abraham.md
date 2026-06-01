@@ -8,12 +8,7 @@ date: 2026-01-01T14:28:34.302Z
 category: Faith and Discipleship
 scripture: Habakkuk 2:3
 scripture_text: Though it tarries, wait for it; it will surely come.
-tags:
-  - post
-  - faith
-  - waiting
-  - Abraham
-  - purpose
+tags: []
 ---
 You had a plan. Maybe you still do. Somewhere underneath all the disappointment, it is still there, folded up quietly in the corner of your heart. You were going to launch that business by twenty-five. You were going to be married by now. You were going to be further along in life, further along in your healing journey, further along in your Christian faith but here you are, still waiting. And the waiting is starting to feel less like a season and more like a sentence.
 

@@ -8,14 +8,7 @@ scripture_text: For the Son of Man came to seek and to save the lost.
 excerpt: "Have you ever sat in a room full of people and felt completely alone?
   Not because no one was there but because you were carrying something so heavy
   and so private that you could not imagine saying it out loud to any of them. "
-tags:
-  - ChristianBlog
-  - FaithBlog
-  - ChristianContent
-  - FaithContent
-  - BiblicalTruth
-  - ChristianLiving
-  - FaithAndDiscipleship
+tags: []
 ---
 Have you ever sat in a room full of people and felt completely alone? Not because no one was there but because you were carrying something so heavy and so private that you could not imagine saying it out loud to any of them. Who knows, may be it was shame from something you had done wrong, the sadness you could not explain or the growing, quiet fear that you were too broken for anyone to reach you, including God.
 
