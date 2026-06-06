@@ -45,8 +45,8 @@ If God met Elijah in his exhaustion with gentleness and food rather than correct
 
 **Prayer.**
 
-Lord, I have been hiding, not from You, I know I cannot do that, but from everyone else, and honestly from myself. I am tired in a way I do not have the words for. I am asking You to meet me here, in the quiet and the empty, the way You met Elijah. Remind me that staying is worth it. Help me hold on long enough to see what You have in tomorrow in Jesus mighty name, Amen.
+*Lord, I have been hiding, not from You, I know I cannot do that, but from everyone else, and honestly from myself. I am tired in a way I do not have the words for. I am asking You to meet me here, in the quiet and the empty, the way You met Elijah. Remind me that staying is worth it. Help me hold on long enough to see what You have for me tomorrow in Jesus mighty name, Amen.*
 
 **Challenge.**
 
-This week, reach out to one person who is closest to you. You do not have to explain everything. You do not have to have the right words. Just send a message that says: Hey, I have been struggling with something and I wanted you to know so you pray with me. That is it, just one message.
+This week, reach out to one person who is closest to you. You do not have to explain everything. You do not have to have the right words. Just send a message that says: *Hey, I have been struggling with something and I wanted you to know so you pray with me.* That is it, just one message.
