@@ -8,7 +8,7 @@ scripture_text: '"When you pass through the waters, I will be with you; and
 excerpt: You stopped answering your phone a few weeks ago not because anything
   dramatic happened neither was it because there was one big moment you could
   point to. You just got tired. Tired of pretending things were fine when
-  actually they were not
+  actually they were not.
 tags: []
 ---
 You stopped answering your phone a few weeks ago not because anything dramatic happened neither was it because there was one big moment you could point to. You just got tired. Tired of pretending things were fine when actually they were not. Tired of showing up to rooms full of people and still feeling completely alone. You went quiet and told yourself it was just a season. But deep down within you, part of you wondered what it would feel like if you just disappeared. Not dramatically or in the way people might imagine, just quietly, like you had never been there at all.
@@ -19,7 +19,7 @@ If that sounds familiar, I am not here to give you a five-step plan, and not to 
 
 Elijah was one of the most powerful prophets who ever lived. He had just called fire down from heaven and watched God move in undeniable ways. But one chapter later, he was sitting alone under a tree asking God to let him die. This was not because his faith had failed but due to the fact that he was simply done. Running on empty in a way that sleep could not fix. He did not want to fight anymore, he did not want to be found either but he just wanted it to stop.
 
-God's response is one of the most tender moments in all of Scripture. He did not rebuke Elijah, neither did He remind him of all the ways he had been used but He sent an angel who touched him gently and said: arise and eat, because the journey is too great for you. God knew what Elijah needed was not a lecture, but rest, nourishment and the quiet reassurance that someone had noticed he was there.
+God's response is one of the most tender moments in all of Scripture. He did not rebuke Elijah, neither did He remind him of all the ways he had been used but He sent an angel who touched him gently and said: *arise and eat, because the journey is too great for you*. God knew what Elijah needed was not a lecture, but rest, nourishment and the quiet reassurance that someone had noticed he was there.
 
 That is the God you are dealing with right now. The One who notices when you go quiet. The One who does not wait for you to have it together before He comes close. He meets you in the exhaustion, not on the other side of it.
 
