@@ -62,4 +62,4 @@ Lord, I will be honest with You. The waiting has been hard, and there are days I
 
 This week, revisit the promise God gave you a day ago, a week ago, a month ago or a year ago. Go back to that specific word, Scripture, or conviction God gave you about your situation and write it down so you are reminded of it every day. Do not let the famine talk louder than the prophecy. Remind yourself daily: the appointed time is coming, and it will not be late.
 
-Today’s post was titled “Tomorrow By This Time, Declares The Lord”. Share it with someone close to you now. God bless you!
+Today’s post was titled “Tomorrow By This Time, Declares The Lord”. Share this with someone close to you now. God bless you!
