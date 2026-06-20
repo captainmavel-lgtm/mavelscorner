@@ -36,7 +36,7 @@ This scripture says it all. His mercies are new every morning, not new once. Not
 
 Starting over is not a crisis in God's economy. It is built into the rhythm of how He operates. Mercy renewed daily is God's way of telling you that new beginnings are not the exception in His Kingdom, but the norm.
 
-"Forgetting those things which are behind and reaching forward to those things which are ahead, I press toward the goal for the prize of the upward call of God in Christ Jesus."  Philippians 3:13-14 (NKJV)
+> *"Forgetting those things which are behind and reaching forward to those things which are ahead, I press toward the goal for the prize of the upward call of God in Christ Jesus."  Philippians 3:13-14 (NKJV)*
 
 Paul wrote these words as a man who had everything the world considered impressive and chose to release all of it. He did not drift into starting over. He made a deliberate decision to forget what was behind and press toward what was ahead. Starting over, for Paul, was not a defeat. It was an act of faith. It was him saying that what God was calling him toward was worth more than what he was leaving behind.
 
@@ -56,6 +56,6 @@ Lord, I have carried so much shame about where I am starting from, and I am tire
 
 ## Challenge.
 
-This week, write down one thing you have been grieving about, a chapter that ended. Then, underneath it, write this sentence: “God is building something new here, and I choose to make room for it.” Carry that sentence with you through the week and let it begin to replace the narrative that starting over means you failed.
+This week, write down one thing you have been grieving about, a chapter that ended. Then, underneath it, write this sentence: *“God is building something new here, and I choose to make room for it.”* Carry that sentence with you through the week and let it begin to replace the narrative that starting over means you failed.
 
 Today's post was titled Starting Over Is Not a Failure. It Is a Calling. - Part 1. Share it with someone close to you now. God bless you!
