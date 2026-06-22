@@ -1,6 +1,6 @@
 ---
 title: Starting Over Is Not a Failure. It Is A Calling. - Part 2
-date: 2026-06-22T03:15:28.730Z
+date: 2026-06-24T03:15:28.730Z
 category: Faith and Discipleship
 scripture: Genesis 12:1 (NKJV)
 scripture_text: "\"Now the Lord had said to Abram, get out of your country, from
