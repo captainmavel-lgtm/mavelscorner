@@ -53,7 +53,7 @@ What would it look like to grieve what ended without letting that grief talk you
 
 ## Prayer.
 
-Lord, I want to move forward, but I will be honest, the uncertainty makes me hesitate. Help me trust that You go ahead of me even when I cannot see the whole road. Give me the courage to take the next small step instead of waiting for a finished map. Thank You for staying with me in this new season, in Jesus’ mighty name, Amen.
+*Lord, I want to move forward, but I will be honest, the uncertainty makes me hesitate. Help me trust that You go ahead of me even when I cannot see the whole road. Give me the courage to take the next small step instead of waiting for a finished map. Thank You for staying with me in this new season, in Jesus’ mighty name, Amen.*
 
 ## Challenge.
 
