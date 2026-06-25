@@ -1,0 +1,28 @@
+---
+permalink: /events.json
+eleventyExcludeFromCollections: true
+---
+[
+{% for event in collections.event %}
+  {
+    "title": {{ event.data.title | dump | safe }},
+    "slug": {{ event.fileSlug | dump | safe }},
+    "event_date": {{ event.data.event_date | dump | safe }},
+    "event_date_display": {{ event.data.event_date | readableDate | dump | safe }},
+    "end_date": {{ event.data.end_date | default("") | dump | safe }},
+    "start_time": {{ event.data.start_time | default("") | dump | safe }},
+    "end_time": {{ event.data.end_time | default("") | dump | safe }},
+    "location": {{ event.data.location | default("") | dump | safe }},
+    "virtual_link": {{ event.data.virtual_link | default("") | dump | safe }},
+    "event_type": {{ event.data.event_type | default("") | dump | safe }},
+    "featured_image": {{ event.data.featured_image | default("") | dump | safe }},
+    "registration_link": {{ event.data.registration_link | default("") | dump | safe }},
+    "cost_type": {{ event.data.cost_type | default("Free") | dump | safe }},
+    "cost_amount": {{ event.data.cost_amount | default("") | dump | safe }},
+    "contact_info": {{ event.data.contact_info | default("") | dump | safe }},
+    "featured": {{ event.data.featured | default(false) | dump | safe }},
+    "url": {{ event.url | dump | safe }},
+    "body_html": {{ event.templateContent | default("") | dump | safe }}
+  }{% if not loop.last %},{% endif %}
+{% endfor %}
+]

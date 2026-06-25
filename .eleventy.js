@@ -18,6 +18,14 @@ module.exports = function(eleventyConfig) {
     str && str.length > len ? str.slice(0, len) + "…" : str
   );
 
+  eleventyConfig.addCollection("event", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/_events/*.md");
+  });
+
+  eleventyConfig.addCollection("ebook", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/_ebooks/*.md");
+  });
+
   return {
     dir: {
       input: "src",

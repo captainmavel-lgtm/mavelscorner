@@ -1,0 +1,25 @@
+---
+permalink: /ebooks.json
+eleventyExcludeFromCollections: true
+---
+[
+{% for ebook in collections.ebook %}
+  {
+    "title": {{ ebook.data.title | dump | safe }},
+    "slug": {{ ebook.fileSlug | dump | safe }},
+    "author": {{ ebook.data.author | default("") | dump | safe }},
+    "cover_image": {{ ebook.data.cover_image | default("") | dump | safe }},
+    "ebook_file": {{ ebook.data.ebook_file | default("") | dump | safe }},
+    "date": {{ ebook.data.date | dump | safe }},
+    "date_display": {{ ebook.data.date | readableDate | dump | safe }},
+    "category": {{ ebook.data.category | default("") | dump | safe }},
+    "price_type": {{ ebook.data.price_type | default("Free") | dump | safe }},
+    "price_amount": {{ ebook.data.price_amount | default("") | dump | safe }},
+    "page_count": {{ ebook.data.page_count | default("") | dump | safe }},
+    "featured": {{ ebook.data.featured | default(false) | dump | safe }},
+    "tags": {{ ebook.data.tags | default([]) | dump | safe }},
+    "url": {{ ebook.url | dump | safe }},
+    "body_html": {{ ebook.templateContent | default("") | dump | safe }}
+  }{% if not loop.last %},{% endif %}
+{% endfor %}
+]
