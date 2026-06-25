@@ -66,3 +66,171 @@ collections:
         required: false
         default: ["post"]
         hint: "Add tags separated by pressing Enter — e.g. faith, grace, prayer"
+
+  - name: "events"
+    label: "Events"
+    folder: "src/_events"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+
+      - label: "Event Date"
+        name: "event_date"
+        widget: "date"
+        hint: "The day the event starts"
+
+      - label: "End Date"
+        name: "end_date"
+        widget: "date"
+        required: false
+        hint: "Only needed for multi-day events or conferences"
+
+      - label: "Start Time"
+        name: "start_time"
+        widget: "string"
+        hint: "e.g. 6:00 PM"
+
+      - label: "End Time"
+        name: "end_time"
+        widget: "string"
+        required: false
+        hint: "e.g. 8:00 PM"
+
+      - label: "Location"
+        name: "location"
+        widget: "string"
+        required: false
+        hint: "Physical address, if applicable"
+
+      - label: "Online/Virtual Link"
+        name: "virtual_link"
+        widget: "string"
+        required: false
+        hint: "Zoom, YouTube, or livestream link, if applicable"
+
+      - label: "Event Type"
+        name: "event_type"
+        widget: "select"
+        options:
+          - "Worship Service"
+          - "Conference"
+          - "Outreach"
+          - "Bible Study"
+          - "Fundraiser"
+          - "Other"
+
+      - label: "Description"
+        name: "body"
+        widget: "markdown"
+
+      - label: "Featured Image"
+        name: "featured_image"
+        widget: "image"
+        required: false
+
+      - label: "Registration/RSVP Link"
+        name: "registration_link"
+        widget: "string"
+        required: false
+
+      - label: "Cost Type"
+        name: "cost_type"
+        widget: "select"
+        options:
+          - "Free"
+          - "Paid"
+        default: "Free"
+
+      - label: "Cost Amount"
+        name: "cost_amount"
+        widget: "string"
+        required: false
+        hint: "Only fill in if Cost Type is Paid"
+
+      - label: "Contact Info"
+        name: "contact_info"
+        widget: "string"
+        required: false
+        hint: "Email or phone number for inquiries"
+
+      - label: "Featured Event"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "Turn on to highlight this event at the top of the Events list"
+
+  - name: "ebooks"
+    label: "E-books"
+    folder: "src/_ebooks"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+
+      - label: "Author"
+        name: "author"
+        widget: "string"
+
+      - label: "Cover Image"
+        name: "cover_image"
+        widget: "image"
+
+      - label: "Description"
+        name: "body"
+        widget: "markdown"
+        hint: "Summary of the e-book"
+
+      - label: "E-book File (PDF)"
+        name: "ebook_file"
+        widget: "file"
+        hint: "Upload the PDF file for this e-book"
+
+      - label: "Publish Date"
+        name: "date"
+        widget: "date"
+
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - "Devotional"
+          - "Theology"
+          - "Testimony"
+          - "Christian Living"
+          - "Other"
+
+      - label: "Price Type"
+        name: "price_type"
+        widget: "select"
+        options:
+          - "Free"
+          - "Paid"
+        default: "Free"
+
+      - label: "Price Amount"
+        name: "price_amount"
+        widget: "string"
+        required: false
+        hint: "Only fill in if Price Type is Paid"
+
+      - label: "Page Count"
+        name: "page_count"
+        widget: "number"
+        required: false
+
+      - label: "Featured E-book"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "Turn on to highlight this e-book at the top of the E-books list"
+
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+        hint: "Add tags separated by pressing Enter — e.g. grief, healing, marriage"
