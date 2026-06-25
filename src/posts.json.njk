@@ -1,14 +1,23 @@
 ---
 permalink: /posts.json
+eleventyExcludeFromCollections: true
 ---
 [
 {% for post in collections.post %}
   {
-    "title":   {{ post.data.title | dump | safe }},
-    "slug":    {{ post.fileSlug | dump | safe }},
-    "excerpt": {{ post.data.excerpt | dump | safe }},
-    "date":    "{{ post.date | readableDate }}",
-    "url":     "{{ post.url }}"
+    "title": {{ post.data.title | dump | safe }},
+    "subtitle": {{ post.data.subtitle | default("") | dump | safe }},
+    "slug": {{ post.fileSlug | dump | safe }},
+    "excerpt": {{ post.data.excerpt | default("") | dump | safe }},
+    "category": {{ post.data.category | default("") | dump | safe }},
+    "scripture": {{ post.data.scripture | default("") | dump | safe }},
+    "scripture_text": {{ post.data.scripture_text | default("") | dump | safe }},
+    "featured_image": {{ post.data.featured_image | default("") | dump | safe }},
+    "tags": {{ post.data.tags | default([]) | dump | safe }},
+    "date": {{ post.date | dump | safe }},
+    "date_display": {{ post.date | readableDate | dump | safe }},
+    "url": {{ post.url | dump | safe }},
+    "body_html": {{ post.templateContent | default("") | dump | safe }}
   }{% if not loop.last %},{% endif %}
 {% endfor %}
 ]
