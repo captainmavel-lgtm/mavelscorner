@@ -8,4 +8,4 @@ event_type: Conference
 cost_type: Free
 featured: false
 ---
-W﻿e hope to see you there!
+W﻿e hope to see you there!!
