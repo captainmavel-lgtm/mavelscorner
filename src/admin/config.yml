@@ -239,7 +239,8 @@ collections:
     label: "Christian Quotes"
     folder: "src/_quotes"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{fields.author}}"
+    identifier_field: "author"
     fields:
       - label: "Quote Text"
         name: "quote_text"
