@@ -9,4 +9,5 @@ price_type: Free
 featured: false
 ---
 You Are Not in That Fire Alone.
+
 The Story of the Fourth Man and What It Means for the Fire You Are Walking Through Right Now
