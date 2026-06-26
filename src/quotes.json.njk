@@ -1,0 +1,18 @@
+---
+permalink: /quotes.json
+eleventyExcludeFromCollections: true
+---
+[
+{% for quote in collections.quote %}
+  {
+    "quote_text": {{ quote.data.quote_text | dump | safe }},
+    "slug": {{ quote.fileSlug | dump | safe }},
+    "author": {{ quote.data.author | default("") | dump | safe }},
+    "category": {{ quote.data.category | default("") | dump | safe }},
+    "date": {{ quote.data.date | dump | safe }},
+    "date_display": {{ quote.data.date | readableDate | dump | safe }},
+    "featured": {{ quote.data.featured | default(false) | dump | safe }},
+    "url": {{ quote.url | dump | safe }}
+  }{% if not loop.last %},{% endif %}
+{% endfor %}
+]

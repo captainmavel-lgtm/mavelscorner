@@ -26,6 +26,10 @@ module.exports = function(eleventyConfig) {
     return collectionApi.getFilteredByGlob("src/_ebooks/*.md");
   });
 
+  eleventyConfig.addCollection("quote", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/_quotes/*.md");
+  });
+
   return {
     dir: {
       input: "src",
