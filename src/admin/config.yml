@@ -234,3 +234,41 @@ collections:
         widget: "list"
         required: false
         hint: "Add tags separated by pressing Enter — e.g. grief, healing, marriage"
+
+  - name: "quotes"
+    label: "Christian Quotes"
+    folder: "src/_quotes"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Quote Text"
+        name: "quote_text"
+        widget: "text"
+        hint: "The full quote, exactly as it should appear"
+
+      - label: "Author / Source"
+        name: "author"
+        widget: "string"
+        hint: "e.g. C.S. Lewis, or 'Unknown' if not known"
+
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - "Faith"
+          - "Hope"
+          - "Second Chances"
+          - "Encouragement"
+          - "Perseverance"
+          - "Other"
+        required: false
+
+      - label: "Date Added"
+        name: "date"
+        widget: "date"
+
+      - label: "Featured Quote"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "Turn on to highlight this quote at the top of the list, or use it as Quote of the Day"
