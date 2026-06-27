@@ -273,3 +273,37 @@ collections:
         widget: "boolean"
         default: false
         hint: "Turn on to highlight this quote at the top of the list, or use it as Quote of the Day"
+
+  - name: "devotionals"
+    label: "Devotionals"
+    folder: "src/_devotionals"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+
+      - label: "Scripture Reference"
+        name: "scripture"
+        widget: "string"
+        hint: "e.g. Philippians 4:13"
+
+      - label: "Scripture Text"
+        name: "scripture_text"
+        widget: "text"
+        hint: "The full verse text this devotional is built around"
+
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        hint: "The main devotional writing"
+
+      - label: "Date"
+        name: "date"
+        widget: "date"
+
+      - label: "Featured Image"
+        name: "featured_image"
+        widget: "image"
+        required: false
