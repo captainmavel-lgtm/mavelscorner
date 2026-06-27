@@ -307,3 +307,32 @@ collections:
         name: "featured_image"
         widget: "image"
         required: false
+
+  - name: "testimonies"
+    label: "Testimonies"
+    folder: "src/_testimonies"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+
+      - label: "Person's Name"
+        name: "person_name"
+        widget: "string"
+        hint: "Whose testimony this is, e.g. Sarah M."
+
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        hint: "The testimony itself"
+
+      - label: "Date"
+        name: "date"
+        widget: "date"
+
+      - label: "Featured Image"
+        name: "featured_image"
+        widget: "image"
+        required: false
