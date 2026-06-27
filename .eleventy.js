@@ -34,6 +34,10 @@ module.exports = function(eleventyConfig) {
     return collectionApi.getFilteredByGlob("src/_devotionals/*.md");
   });
 
+  eleventyConfig.addCollection("testimony", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/_testimonies/*.md");
+  });
+
   return {
     dir: {
       input: "src",

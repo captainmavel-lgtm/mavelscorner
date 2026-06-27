@@ -1,0 +1,18 @@
+---
+permalink: /testimonies.json
+eleventyExcludeFromCollections: true
+---
+[
+{% for testimony in collections.testimony %}
+  {
+    "title": {{ testimony.data.title | dump | safe }},
+    "slug": {{ testimony.fileSlug | dump | safe }},
+    "person_name": {{ testimony.data.person_name | default("") | dump | safe }},
+    "date": {{ testimony.data.date | dump | safe }},
+    "date_display": {{ testimony.data.date | readableDate | dump | safe }},
+    "featured_image": {{ testimony.data.featured_image | default("") | dump | safe }},
+    "url": {{ testimony.url | dump | safe }},
+    "body_html": {{ testimony.templateContent | default("") | dump | safe }}
+  }{% if not loop.last %},{% endif %}
+{% endfor %}
+]
