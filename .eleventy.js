@@ -30,6 +30,10 @@ module.exports = function(eleventyConfig) {
     return collectionApi.getFilteredByGlob("src/_quotes/*.md");
   });
 
+  eleventyConfig.addCollection("devotional", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/_devotionals/*.md");
+  });
+
   return {
     dir: {
       input: "src",

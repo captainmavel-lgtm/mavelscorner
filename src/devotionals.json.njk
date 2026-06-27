@@ -1,0 +1,19 @@
+---
+permalink: /devotionals.json
+eleventyExcludeFromCollections: true
+---
+[
+{% for devotional in collections.devotional %}
+  {
+    "title": {{ devotional.data.title | dump | safe }},
+    "slug": {{ devotional.fileSlug | dump | safe }},
+    "scripture": {{ devotional.data.scripture | default("") | dump | safe }},
+    "scripture_text": {{ devotional.data.scripture_text | default("") | dump | safe }},
+    "date": {{ devotional.data.date | dump | safe }},
+    "date_display": {{ devotional.data.date | readableDate | dump | safe }},
+    "featured_image": {{ devotional.data.featured_image | default("") | dump | safe }},
+    "url": {{ devotional.url | dump | safe }},
+    "body_html": {{ devotional.templateContent | default("") | dump | safe }}
+  }{% if not loop.last %},{% endif %}
+{% endfor %}
+]
