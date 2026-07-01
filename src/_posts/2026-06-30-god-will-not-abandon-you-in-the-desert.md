@@ -43,4 +43,5 @@ God, this season feels dry and I am tired of waiting without seeing where this r
 ## Challenge.
 
 This week, identify one specific way God has sustained you through this current season, something small or practical you might have overlooked, and write it down somewhere you will see it daily as a reminder that He has been present in the wilderness all along.
+
 Today's post was titled God Will Not Abandon You In The Desert. Share it with someone close to you now. God bless you!
