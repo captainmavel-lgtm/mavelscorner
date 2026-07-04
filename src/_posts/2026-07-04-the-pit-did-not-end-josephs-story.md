@@ -53,4 +53,4 @@ You are working underneath it. Bring my appointed time to pass the way You broug
 
 Do write down one season of your life that felt wasted or unfair at the time. Beside it, write one way you can already see God may be using it, even partially. Let that be the start of trusting Him with the rest.
 
-Today's post was titled The Pit Was Not the End of Joseph's Story, and It Is Not the End of Yours. Share it with someone close to you now. God bless you!
+Today's post was titled The Pit Did Not End Joseph's Story. Share it with someone close to you now. God bless you!
