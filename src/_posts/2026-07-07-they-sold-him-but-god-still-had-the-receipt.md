@@ -13,6 +13,7 @@ excerpt: Twenty pieces of silver was what Joseph's brothers decided he was worth
 tags: []
 ---
 Twenty pieces of silver was what Joseph's brothers decided he was worth to them. He was not a stranger, neither was he an enemy to them. His own blood, the ones who grew up beside him, who knew his name before the world did, who sat at the same table and heard the same father's voice, and yet, they counted out the coins and handed him over without looking back.
+
 There is a wound you can never explain. It may come wrapped in familiarity, in shared history, in the face of someone who should have been safe. Betrayal from an enemy is painful, but betrayal from someone who knows you is something that settles into a different part of you entirely, somewhere harder to reach and far harder to name.
 
 ## What The Word Says About It.
