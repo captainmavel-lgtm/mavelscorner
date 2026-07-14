@@ -1,6 +1,6 @@
 ---
 title: The Man Who Forgot You Was Never The Door
-date: 2026-07-15T03:18:11.719Z
+date: 2026-07-14T03:18:11.719Z
 category: Faith and Discipleship
 scripture: Genesis 40:14 NKJV
 scripture_text: '"But remember me when it is well with you, and please show
