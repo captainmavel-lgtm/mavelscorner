@@ -34,7 +34,9 @@ But Psalm 75 tells us where promotion was actually coming from the whole time, a
 
 ## Promotion Does Not Come from People.
 
-This is the truth that changes how you wait. Promotion does not come from the east, the west, or the south. It does not come from the person with the right title, the right network, or the right willingness to remember your name at the right moment. It comes from God. Which means that when a person forgets you, when a connection goes cold, when a promise dissolves without explanation, God's timetable for your life has not been delayed by a single day. The cupbearer was never the door; he was a corridor. A temporary passage that God could use or set aside depending entirely on what was needed and when. When he forgot Joseph, God did not reach for a backup plan. He simply waited for the precise moment when the corridor would open again, and then He used it exactly when He intended to.
+This is the truth that changes how you wait. Promotion does not come from the east, the west, or the south. It does not come from the person with the right title, the right network, or the right willingness to remember your name at the right moment. It comes from God. Which means that when a person forgets you, when a connection goes cold, when a promise dissolves without explanation, God's timetable for your life has not been delayed by a single day. 
+
+The cupbearer was never the door; he was a corridor. A temporary passage that God could use or set aside depending entirely on what was needed and when. When he forgot Joseph, God did not reach for a backup plan. He simply waited for the precise moment when the corridor would open again, and then He used it exactly when He intended to.
 
 ## When The Person Who Was Supposed To Help You Disappeared.
 
@@ -44,7 +46,9 @@ Here is what it actually says. Nothing about your value. A person forgetting you
 
 ## God Has Not Forgotten What People Have Overlooked.
 
-The most important contrast in Joseph's story at this point is not between Joseph and the cupbearer. It is between the cupbearer's memory and God's. The cupbearer forgot but God did not. Through every one of those two years, God knew exactly where Joseph was, exactly what He had promised, and exactly when the moment would arrive. Joseph was not off God's radar, rather, he was at the center of it. Whatever has been forgotten about you by people who should have remembered, God has not forgotten. The gifts He placed in you, the calling on your life, the doors He has written into your story. None of it has slipped His mind, and He is not waiting to be reminded of any of it.
+The most important contrast in Joseph's story at this point is not between Joseph and the cupbearer. It is between the cupbearer's memory and God's. The cupbearer forgot but God did not. Through every one of those two years, God knew exactly where Joseph was, exactly what He had promised, and exactly when the moment would arrive. Joseph was not off God's radar, rather, he was at the center of it. 
+
+Whatever has been forgotten about you by people who should have remembered, God has not forgotten. The gifts He placed in you, the calling on your life, the doors He has written into your story. None of it has slipped His mind, and He is not waiting to be reminded of any of it.
 
 ## The One Who Actually Holds Your Door Has Not Moved.
 
