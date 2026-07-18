@@ -19,7 +19,7 @@ Joseph held on through thirteen years of it and then one morning, without warnin
 
 ## The Morning Everything Shifted.
 
-Pharaoh had a two dreams in one night, and he could not sleep that he called every wise man and magician in Egypt to interpret the dreams to him. No one could and it was only in that moment of Pharaoh's frustration that the cupbearer finally remembered the Hebrew prisoner who had once spoken a true word over his own dream with complete accuracy. The chain of events that followed happened with a speed that must have felt surreal to everyone in the room, most of all to Joseph himself.
+Pharaoh had two dreams in one night, and he could not sleep that he called every wise man and magician in Egypt to interpret the dreams to him. No one could and it was only in that moment of Pharaoh's frustration that the cupbearer finally remembered the Hebrew prisoner who had once spoken a true word over his own dream with complete accuracy. The chain of events that followed happened with a speed that must have felt surreal to everyone in the room, most of all to Joseph himself.
 
 > *"Then Pharaoh sent and called Joseph, and they brought him quickly out of the dungeon; and he shaved, changed his clothing, and came to Pharaoh." Genesis 41:14 NKJV*
 
@@ -28,7 +28,6 @@ That morning Joseph woke up in a dungeon and by the time the day ended, his enti
 > *"And Pharaoh said to Joseph, "See, I have set you over all the land of Egypt."" Genesis 41:41 NKJV*
 
 One conversation in one day. After thirteen years of betrayal, slavery, false accusation, and spending time in prison, and then one conversation that reversed the entire trajectory of his life. Psalm 126 gives us the language for what that kind of restoration feels like from the inside.
-
 
 "When the Lord brought back the captivity of Zion, we were like those who dream." Psalm 126:1 NKJV
 
