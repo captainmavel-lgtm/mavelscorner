@@ -1,0 +1,271 @@
+---
+permalink: /about/index.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | Mavel's Corner — Faith. Hope. Second Chances.</title>
+<meta name="description" content="Mavel's Corner was born in the dark — to reach those still sitting in theirs. A faith ministry for the broken, the searching, and the waiting.">
+<meta property="og:title" content="About | Mavel's Corner — Faith. Hope. Second Chances.">
+<meta property="og:description" content="Mavel's Corner was born in the dark — to reach those still sitting in theirs.">
+<meta property="og:image" content="https://mavelscorner.blog/og-image.png">
+<meta property="og:url" content="https://mavelscorner.blog/about/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mavel's Corner">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About | Mavel's Corner — Faith. Hope. Second Chances.">
+<meta name="twitter:image" content="https://mavelscorner.blog/twitter-image.png">
+<link rel="canonical" href="https://mavelscorner.blog/about/">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<style>
+:root {
+  --teal:#1B9AAA; --teal-light:#22b8cc; --teal-dark:#157a87;
+  --white:#FFFFFF; --navy:#0D2B30; --navy-light:#163b42;
+  --gold:#C8973A; --gold-light:#d9ac55; --cream:#FBF8F3;
+  --text-dark:#1a1a2e; --text-mid:#3d4f52; --text-light:#6b7c7f;
+  --border:rgba(27,154,170,0.15);
+  --shadow-sm:0 2px 12px rgba(13,43,48,0.08);
+  --shadow-md:0 8px 32px rgba(13,43,48,0.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Lato',sans-serif;color:var(--text-dark);background:var(--cream);line-height:1.7}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.25}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(13,43,48,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(200,151,58,0.2);padding:0 2rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;min-height:68px}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:#fff;text-decoration:none;letter-spacing:0.01em}
+.nav-brand span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:0.25rem;list-style:none}
+.nav-links a{display:block;padding:0.45rem 0.85rem;color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.875rem;font-weight:400;letter-spacing:0.04em;text-transform:uppercase;border-radius:4px;transition:color 0.2s,background 0.2s}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,0.08)}
+.nav-links a.active{color:var(--gold);background:rgba(200,151,58,0.12)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:var(--navy);padding:1.5rem 2rem;z-index:998;border-bottom:2px solid var(--gold);flex-direction:column;gap:0.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:1rem;letter-spacing:0.05em;text-transform:uppercase;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.08);transition:color 0.2s}
+.mobile-menu a:hover,.mobile-menu a.active{color:var(--gold)}
+.podcast-icons{display:flex;align-items:center;gap:0.6rem;margin:0 0.75rem}
+.podcast-icons a{display:flex;align-items:center;justify-content:center;width:28px;height:28px;opacity:0.6;transition:opacity 0.2s,transform 0.2s;position:relative;text-decoration:none}
+.podcast-icons a:hover{opacity:1;transform:translateY(-2px)}
+.podcast-icons a svg{width:30px;height:30px}
+.podcast-icons a::after{content:attr(data-label);position:absolute;bottom:-28px;left:50%;transform:translateX(-50%);background:rgba(13,43,48,0.95);color:#fff;font-size:0.65rem;letter-spacing:0.05em;white-space:nowrap;padding:3px 7px;border-radius:3px;opacity:0;pointer-events:none;transition:opacity 0.2s;border:1px solid rgba(200,151,58,0.3)}
+.podcast-icons a:hover::after{opacity:1}
+.nav-podcast-strip{display:none;width:100%;justify-content:center;align-items:center;gap:1.25rem;padding:0.5rem 0 0.6rem;border-top:1px solid rgba(200,151,58,0.15)}
+.nav-podcast-strip a{display:flex;align-items:center;justify-content:center;opacity:0.75;transition:opacity 0.2s;text-decoration:none}
+@media(max-width:700px){.nav-links{display:none}.hamburger{display:flex}.podcast-icons{display:none}.nav-podcast-strip{display:flex}}
+
+.section{padding:5rem 2rem}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-label{display:inline-block;font-family:'Lato',sans-serif;font-size:1.2rem;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem}
+.section-title{font-size:clamp(2rem,4vw,2.75rem);color:var(--navy);margin-bottom:1.25rem;font-weight:700}
+
+.about-hero{background:var(--navy);padding:8rem 2rem 5rem;position:relative;overflow:hidden}
+.about-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 30% 50%,rgba(27,154,170,0.15) 0%,transparent 60%)}
+.about-hero-inner{max-width:740px;margin:0 auto;text-align:center;position:relative}
+.about-hero h1{font-size:clamp(2rem,5vw,3.5rem);color:#fff;font-weight:800;margin-bottom:1.5rem;line-height:1.15}
+.about-hero h1 em{color:var(--teal-light);font-style:italic}
+.about-hero p{color:rgba(255,255,255,0.65);font-size:1.1rem;line-height:1.9}
+
+.about-story{background:#fff}
+.about-story-inner{max-width:760px;margin:0 auto}
+.about-story p{font-size:1.05rem;color:var(--text-mid);line-height:1.9;margin-bottom:1.5rem}
+.pull-quote{border-left:3px solid var(--gold);margin:2.5rem 0;padding:1.5rem 2rem;background:rgba(200,151,58,0.06);border-radius:0 8px 8px 0}
+.pull-quote p{font-family:'Playfair Display',serif;font-size:1.25rem;font-style:italic;color:var(--navy);line-height:1.6;margin-bottom:0.5rem}
+.pull-quote cite{font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-style:normal;font-weight:700}
+
+.mission-vision{background:var(--cream)}
+.mv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-top:3rem}
+.mv-card{background:#fff;border-radius:8px;padding:2.5rem;border:1px solid var(--border);position:relative;overflow:hidden}
+.mv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--teal)}
+.mv-card h3{font-size:1.3rem;color:var(--navy);margin-bottom:1rem}
+.mv-card p{color:var(--text-mid);line-height:1.8}
+
+.values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:3rem}
+.value-card{text-align:center;padding:2.5rem 1.75rem;background:#fff;border-radius:8px;border:1px solid var(--border);transition:all 0.3s}
+.value-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.value-card h3{font-size:1.15rem;color:var(--navy);margin-bottom:0.75rem}
+.value-card p{font-size:0.9rem;color:var(--text-mid);line-height:1.75}
+
+.commitments{background:var(--navy)}
+.commitments .section-title{color:#fff}
+.commit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.75rem;margin-top:3rem}
+.commit-card{border:1px solid rgba(27,154,170,0.25);border-radius:8px;padding:2.5rem;background:rgba(27,154,170,0.05);transition:all 0.3s}
+.commit-card:hover{background:rgba(27,154,170,0.1);border-color:rgba(27,154,170,0.5);transform:translateY(-4px)}
+.commit-number{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:800;color:rgba(27,154,170,0.25);line-height:1;margin-bottom:1rem}
+.commit-card h3{font-size:1.25rem;color:#fff;margin-bottom:0.75rem}
+.commit-card p{color:rgba(255,255,255,0.55);font-size:0.9rem;line-height:1.8}
+
+footer{background:#070f11;padding:3.5rem 2rem 2rem;color:rgba(255,255,255,0.5);font-size:0.875rem}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:2.5rem;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.07)}
+@media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.footer-top{grid-template-columns:1fr}}
+.footer-brand h3{font-family:'Playfair Display',serif;color:#fff;font-size:1.2rem;margin-bottom:0.75rem}
+.footer-brand h3 span{color:var(--gold)}
+.footer-brand p{font-style:italic;color:rgba(255,255,255,0.4);font-size:0.85rem;line-height:1.8;margin-bottom:1.25rem}
+.footer-teal-line{width:40px;height:2px;background:var(--teal)}
+.footer-col h4{font-family:'Lato',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:1.25rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:0.6rem}
+.footer-col ul li a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:0.875rem;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--teal-light)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:0.8rem}
+.footer-social{display:flex;align-items:center;justify-content:center;gap:0.75rem;padding:1.5rem 0;border-top:1px solid rgba(255,255,255,0.08);margin-top:1.5rem}
+.footer-social-btn{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.08);transition:background 0.2s,transform 0.2s;text-decoration:none}
+.footer-social-btn:hover{background:rgba(27,154,170,0.3);transform:translateY(-2px)}
+.footer-social-btn svg{width:16px;height:16px;fill:rgba(255,255,255,0.8)}
+.footer-social-btn:hover svg{fill:#fff}
+@keyframes mavelog-sweep{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+.mavelog-credit{text-decoration:none;font-size:0.8rem;opacity:0.8;transition:opacity 0.25s;color:inherit}
+.mavelog-credit:hover{opacity:1}
+.mavelog-brand{font-weight:700;background:linear-gradient(90deg,#E85C6E,#F5A825,#7070BB,#3BBFA0,#4A9DC4,#F47820,#E85C6E);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:mavelog-sweep 4s linear infinite}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="/" class="nav-brand">Mavel's <span>Corner</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about/" class="active">About</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/prayer-request/">Prayer</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+  <div class="podcast-icons" aria-label="Listen on">
+    <a href="https://open.spotify.com/show/033pSTRVZs86RZp4RzVgrG?si=86b4c9bef8534653" target="_blank" rel="noopener noreferrer" data-label="Spotify" aria-label="Listen on Spotify"><svg viewBox="0 0 24 24" width="30" height="30" xmlns="http://www.w3.org/2000/svg"><path fill="#1ED760" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></a>
+    <a href="https://podcasts.apple.com/us/podcast/mavels-corner/id1896851095" target="_blank" rel="noopener noreferrer" data-label="Apple Podcasts" aria-label="Listen on Apple Podcasts"><svg viewBox="0 0 24 24" width="30" height="30" xmlns="http://www.w3.org/2000/svg"><path fill="#9933CC" d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.056 2.587 1.224 1.272 1.912 2.619 2.264 4.392.12.59.12 2.2.007 2.864a8.506 8.506 0 01-3.24 5.296c-.608.46-2.096 1.261-2.336 1.261-.088 0-.096-.091-.056-.46.072-.592.144-.715.48-.856.536-.224 1.448-.874 2.008-1.435a7.644 7.644 0 002.008-3.536c.208-.824.184-2.656-.048-3.504-.728-2.696-2.928-4.792-5.624-5.352-.784-.16-2.208-.16-3 0-2.728.56-4.984 2.76-5.672 5.528-.184.752-.184 2.584 0 3.336.456 1.832 1.64 3.512 3.192 4.512.304.2.672.408.824.472.336.144.408.264.472.856.04.36.03.464-.056.464-.056 0-.464-.176-.896-.384l-.04-.03c-2.472-1.216-4.056-3.274-4.632-6.012-.144-.706-.168-2.392-.03-3.04.36-1.74 1.048-3.1 2.192-4.304 1.648-1.737 3.768-2.656 6.128-2.656z"/></svg></a>
+    <a href="https://www.iheart.com/podcast/269-mavels-corner-336446280/" target="_blank" rel="noopener noreferrer" data-label="iHeartRadio" aria-label="Listen on iHeartRadio"><svg role="img" viewBox="0 0 24 24" width="30" height="30" xmlns="http://www.w3.org/2000/svg"><path fill="#C6002B" d="M16.152 0c-1.727 0-3.27.915-4.164 2.252C11.094.915 9.55 0 7.823 0A4.982 4.982 0 002.84 4.983c0 1.746 1.106 3.005 2.261 4.17l4.518 4.272a.371.371 0 00.626-.27V9.827c0-.963.78-1.743 1.743-1.745a1.745 1.745 0 011.742 1.745v3.328c0 .326.39.493.626.27l4.518-4.272c1.155-1.165 2.261-2.424 2.261-4.17A4.982 4.982 0 0016.152 0"/></svg></a>
+    <a href="https://deezer.com/show/1003217501" target="_blank" rel="noopener noreferrer" data-label="Deezer" aria-label="Listen on Deezer"><svg role="img" viewBox="0 0 24 24" width="30" height="30" xmlns="http://www.w3.org/2000/svg"><path fill="#A238FF" d="M.693 10.024c.381 0 .693-1.256.693-2.807 0-1.55-.312-2.807-.693-2.807C.312 4.41 0 5.666 0 7.217s.312 2.808.693 2.808ZM23.307 10.024c.381 0 .693-1.256.693-2.807 0-1.55-.312-2.807-.693-2.807-.381 0-.693 1.256-.693 2.807s.312 2.808.693 2.808Z"/></svg></a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-podcast-strip">
+    <a href="https://open.spotify.com/show/033pSTRVZs86RZp4RzVgrG?si=86b4c9bef8534653" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><svg viewBox="0 0 24 24" width="26" height="26"><path fill="#1ED760" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></a>
+    <a href="https://podcasts.apple.com/us/podcast/mavels-corner/id1896851095" target="_blank" rel="noopener noreferrer" aria-label="Apple Podcasts"><svg viewBox="0 0 24 24" width="26" height="26"><path fill="#9933CC" d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0z"/></svg></a>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/">Home</a>
+  <a href="/about/" class="active">About</a>
+  <a href="/blog/">Blog</a>
+  <a href="/prayer-request/">Prayer</a>
+  <a href="/contact/">Contact</a>
+</div>
+
+<section class="about-hero">
+  <div class="about-hero-inner">
+    <span class="section-label" style="color:var(--teal-light);">Our Story</span>
+    <h1>Rooted in Faith.<br><em>Reaching the Lost.</em></h1>
+    <p>Mavel's Corner was not born in a comfortable season. It was born in the dark - to reach those still sitting in theirs.</p>
+  </div>
+</section>
+
+<section class="section about-story" style="background:#fff;">
+  <div class="about-story-inner">
+    <span class="section-label">Why We Started</span>
+    <h2 class="section-title">The Story Behind Mavel's Corner</h2>
+    <p>There is a kind of pain that makes you question whether life is worth living. A heaviness so deep it feels permanent. A silence so loud you begin to wonder if God has looked away.</p>
+    <p>Mavel's Corner was created for those moments. For the young adult staring at their ceiling at 2am, asking God why. For the millennial who gave their best years to a dream that crumbled. For the one who smiled through service on Sunday but wept alone on Monday.</p>
+    <div class="pull-quote">
+      <p>"He heals the brokenhearted and binds up their wounds."</p>
+      <cite>Psalm 147:3 - NIV</cite>
+    </div>
+    <p>This is not a platform for polished theology or performance-based Christianity. Mavel's Corner is a table where the broken, the searching, and the waiting are welcome exactly as they are. Where the truth is spoken plainly. Where Scripture is not weaponised but offered like water to someone desperately thirsty.</p>
+    <p>If you have ever felt like giving up on life - or worse, acted on that feeling - please know: God has not given up on you. Not one breath you take has been outside of His notice. And His plans for your life are not cancelled by your pain. They are simply not finished yet.</p>
+    <div class="pull-quote">
+      <p>"Being confident of this, that he who began a good work in you will carry it on to completion until the day of Christ Jesus."</p>
+      <cite>Philippians 1:6 - NIV</cite>
+    </div>
+    <p>We believe every person who finds their way to Mavel's Corner was brought here by Someone who loves them. And we will do our part to make sure they leave with more hope than they came with.</p>
+  </div>
+</section>
+
+<section class="section mission-vision">
+  <div class="section-inner">
+    <span class="section-label">Our Foundation</span>
+    <h2 class="section-title">Mission &amp; Vision</h2>
+    <div class="mv-grid">
+      <div class="mv-card">
+        <h3>Our Mission</h3>
+        <p>To give hope to those who have given up on life, are battling suicidal thoughts or deep hopelessness, and to point them to the only true source of healing - a God who has not abandoned them and whose plans for their lives are still very much alive.</p>
+      </div>
+      <div class="mv-card">
+        <h3>Our Vision</h3>
+        <p>To become a trusted digital sanctuary where young adults and millennials across the world encounter the love of God, experience genuine restoration, and find the courage to step into the purpose He prepared for them before the foundation of the earth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:#fff;">
+  <div class="section-inner">
+    <span class="section-label">What We Stand For</span>
+    <h2 class="section-title">Our Core Values</h2>
+    <div class="values-grid">
+      <div class="value-card"><h3>Radical Grace</h3><p>We lead with grace first. No one who comes here should feel judged or shamed. Jesus did not come for the well - He came for the broken.</p></div>
+      <div class="value-card"><h3>Scripture-Grounded</h3><p>Everything here is anchored in the Word of God. Not opinion, not self-help - but the unchanging truth of who God is and what He says about you.</p></div>
+      <div class="value-card"><h3>Authentic Community</h3><p>We are not curating a highlight reel. We are having honest conversations about faith, struggle, and the real journey of following Jesus.</p></div>
+      <div class="value-card"><h3>Life-Giving Purpose</h3><p>We believe every person reading these words was made for a purpose that goes beyond their worst day. We exist to help them remember that.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section commitments">
+  <div class="section-inner">
+    <span class="section-label" style="color:var(--teal-light);">Our Promise to You</span>
+    <h2 class="section-title">Three Core Commitments</h2>
+    <p style="color:rgba(255,255,255,0.55);font-size:1.05rem;max-width:600px;">These three commitments shape every post, every prayer, and every word written at Mavel's Corner.</p>
+    <div class="commit-grid">
+      <div class="commit-card"><div class="commit-number">01</div><h3>Restore Hope</h3><p>We are committed to speaking life into people who have heard nothing but death. If you came here hopeless, we want you to leave with a spark that will not go out.</p></div>
+      <div class="commit-card"><div class="commit-number">02</div><h3>Root in Scripture</h3><p>Every word will be tested against the Word. We will never lead you to a feeling - we will lead you to a Person. Jesus Christ, the same yesterday, today and forever.</p></div>
+      <div class="commit-card"><div class="commit-number">03</div><h3>Release Purpose</h3><p>We are not just here to comfort - we are here to mobilise. Once hope is restored and truth is received, we want to help you step into why God made you.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>Mavel's <span>Corner</span></h3>
+        <p>FAITH. HOPE. SECOND CHANCES.</p>
+        <div class="footer-teal-line"></div>
+      </div>
+      <div class="footer-col"><h4>Navigate</h4><ul><li><a href="/">Home</a></li><li><a href="/about/">About</a></li><li><a href="/blog/">Blog</a></li><li><a href="/prayer-request/">Prayer Request</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="/contact/">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Categories</h4><ul><li><a href="/blog/">Faith &amp; Discipleship</a></li><li><a href="/blog/">Christian Living</a></li></ul></div>
+    </div>
+    <div class="footer-social">
+      <a href="https://instagram.com/mavelscorner" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-social-btn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="https://tiktok.com/@mavelscorner" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="footer-social-btn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.79a4.85 4.85 0 01-1.01-.1z"/></svg></a>
+      <a href="https://facebook.com/mavelscorner" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="footer-social-btn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="https://x.com/mavelscorner" target="_blank" rel="noopener noreferrer" aria-label="X" class="footer-social-btn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg></a>
+      <a href="https://whatsapp.com/channel/0029VbCMDgCEKyZGWwHWds3w" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="footer-social-btn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mavel's Corner. All rights reserved.</span>
+      <a href="https://mavelogxdigital.com/" target="_blank" rel="noopener noreferrer" class="mavelog-credit">Website designed by <span class="mavelog-brand">MavelogxDigital</span></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+window.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>20)})
+</script>
+</body>
+</html>
