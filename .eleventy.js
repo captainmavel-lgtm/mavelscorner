@@ -5,6 +5,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/_redirects");
   eleventyConfig.addPassthroughCopy("src/assets/css");
   eleventyConfig.addPassthroughCopy("src/assets/js");
+  eleventyConfig.addPassthroughCopy({ "src/*.ico": "/" });
+  eleventyConfig.addPassthroughCopy({ "src/*.png": "/" });
+  eleventyConfig.addPassthroughCopy({ "src/*.webmanifest": "/" });
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     const d = new Date(dateObj);
