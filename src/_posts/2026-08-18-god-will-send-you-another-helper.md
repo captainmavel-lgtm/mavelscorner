@@ -21,7 +21,7 @@ The disciples knew this feeling and lived it the night Jesus told them He was le
 
 He did not leave them with a farewell and a memory but He made a promise. He told them that what was coming was not a lesser version of what they had known about Him. Another Helper, the same Greek word used of Himself, Paraclete, one called alongside to help. Someone of the same level as He was, sent to be with them permanently because He was going back to His Father in heaven.
 
-## A Departure That Was Actually a Gift.
+## A Departure That Was Actually A Gift.
 
 > *John 16:7 (NKJV) "Nevertheless I tell you the truth. It is to your advantage that I go away; for if I do not go away, the Helper will not come to you; but if I depart, I will send Him to you."*
 
