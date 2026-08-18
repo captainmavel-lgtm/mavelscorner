@@ -8,8 +8,7 @@ scripture_text: '"And I will pray the Father, and He will give you another
 excerpt: You have not told the person who was close to you how much you miss
   them. Not because you are not allowed to, but because you are not entirely
   sure how to explain it to them.
-tags:
-  - post
+tags: []
 ---
 You have not told the person who was close to you how much you miss them. Not because you are not allowed to, but because you are not entirely sure how to explain it to them. The person is still alive and they have not wronged you in anyway. Life just shifted, the way it sometimes does, and the one who used to help carry your faith is no longer in the position they used to be. The mentor who poured into you moved on. The pastor who knew your name and your story left the church. The friend who always prayed with you got busy with a new season of their own, and you kept going because that is what you do. But privately, without making a big deal of it, you have been doing it a little more alone than you used to, but it turns out it has been harder than you expected.
 
