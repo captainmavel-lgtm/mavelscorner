@@ -46,7 +46,7 @@ exports.handler = async function (event) {
     email:       'mavelscorner@outlook.com',
     category:    'Religion &amp; Spirituality',
     subcategory: 'Christianity',
-    image:       'https://pub-93187dfdcc26437598d36034fa970f11.r2.dev/podcast-cover.png',
+    image:       R2_PUBLIC + '/podcast-cover.png',
     explicit:    'false',
     copyright:   `\u00a9 ${new Date().getFullYear()} Mavel's Corner. All rights reserved.`
   };
