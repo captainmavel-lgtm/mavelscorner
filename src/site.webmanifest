@@ -1,39 +1,23 @@
 {
   "name": "Mavel's Corner",
   "short_name": "Mavel's Corner",
-  "description": "Faith. Hope. Second Chances. Scripture-rooted words for the broken, the waiting, and the searching.",
+  "description": "Faith. Hope. Second Chances.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0D1B2A",
-  "theme_color": "#0D1B2A",
-  "lang": "en-GB",
+  "background_color": "#ffffff",
+  "theme_color": "#1B2A4A",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any maskable"
     },
     {
       "src": "/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "/favicon-96x96.png",
-      "sizes": "96x96",
-      "type": "image/png"
-    },
-    {
-      "src": "/favicon-32x32.png",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "/favicon-16x16.png",
-      "sizes": "16x16",
-      "type": "image/png"
+      "purpose": "any maskable"
     }
   ]
 }
