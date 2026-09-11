@@ -118,46 +118,6 @@ permalink: false
     .share-btn{background:transparent;border:1.5px solid var(--border);color:var(--text-mid);font-family:'Lato',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.5rem 1rem;border-radius:4px;cursor:pointer;transition:all 0.2s}
     .share-btn:hover{background:var(--teal);border-color:var(--teal);color:var(--white)}
 
-    /* ── PREV / NEXT POST NAV ── */
-    .post-nav{
-      max-width:720px;margin:0 auto;
-      padding:2.5rem 0 0;
-      border-top:1px solid var(--border);
-      display:grid;grid-template-columns:1fr 1fr;gap:1rem;
-    }
-    .post-nav-link{
-      display:flex;flex-direction:column;gap:0.35rem;
-      padding:1.25rem 1.5rem;
-      border:1px solid var(--border);border-radius:6px;
-      text-decoration:none;background:var(--white);
-      transition:border-color 0.2s,box-shadow 0.2s,transform 0.2s;
-    }
-    .post-nav-link:hover{
-      border-color:var(--teal);
-      box-shadow:var(--shadow-sm);
-      transform:translateY(-2px);
-    }
-    .post-nav-link.next{text-align:right}
-    .post-nav-label{
-      font-size:0.65rem;font-weight:700;letter-spacing:0.15em;
-      text-transform:uppercase;color:var(--teal);
-      display:flex;align-items:center;gap:0.35rem;
-    }
-    .post-nav-link.next .post-nav-label{justify-content:flex-end}
-    .post-nav-title{
-      font-family:'Playfair Display',serif;
-      font-size:0.95rem;color:var(--navy);
-      line-height:1.35;font-weight:600;
-    }
-    .post-nav-placeholder{
-      /* empty side keeps grid balanced */
-    }
-    @media(max-width:600px){
-      .post-nav{grid-template-columns:1fr}
-      .post-nav-link.next{text-align:left}
-      .post-nav-link.next .post-nav-label{justify-content:flex-start}
-    }
-
     /* Related posts */
     .related-section{background:var(--cream);padding:4rem 2rem}
     .related-inner{max-width:1100px;margin:0 auto}
@@ -298,39 +258,6 @@ permalink: false
         <a href="/#prayer" class="btn btn-primary">Submit a Prayer Request →</a>
       </div>
     </div>
-
-    {# ── PREV / NEXT POST NAVIGATION ── #}
-    {% set currentIndex = 0 %}
-    {% for p in collections.post %}
-      {% if p.url == page.url %}
-        {% set currentIndex = loop.index0 %}
-      {% endif %}
-    {% endfor %}
-
-    {% set prevPost = collections.post[currentIndex - 1] if currentIndex > 0 else null %}
-    {% set nextPost = collections.post[currentIndex + 1] if currentIndex < collections.post.length - 1 else null %}
-
-    <nav class="post-nav" aria-label="Post navigation">
-
-      {% if prevPost %}
-        <a href="{{ prevPost.url }}" class="post-nav-link prev">
-          <span class="post-nav-label">← Previous Post</span>
-          <span class="post-nav-title">{{ prevPost.data.title }}</span>
-        </a>
-      {% else %}
-        <div class="post-nav-placeholder"></div>
-      {% endif %}
-
-      {% if nextPost %}
-        <a href="{{ nextPost.url }}" class="post-nav-link next">
-          <span class="post-nav-label">Next Post →</span>
-          <span class="post-nav-title">{{ nextPost.data.title }}</span>
-        </a>
-      {% else %}
-        <div class="post-nav-placeholder"></div>
-      {% endif %}
-
-    </nav>
 
   </div>
 </article>
