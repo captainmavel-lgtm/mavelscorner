@@ -7,7 +7,7 @@ eleventyExcludeFromCollections: true
   {
     "title": {{ post.data.title | dump | safe }},
     "slug": "{{ post.fileSlug }}",
-    "date": "{{ post.date | dateIso }}",
+    "date": "{{ post.date | readableDate }}",
     "excerpt": {{ post.data.excerpt | default(post.data.title) | dump | safe }}
   }{% if not loop.last %},{% endif %}
   {%- endfor %}
