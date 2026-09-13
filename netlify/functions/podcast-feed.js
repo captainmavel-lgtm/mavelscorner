@@ -25,6 +25,13 @@ const crypto = require('crypto');
 
 const METADATA_FILE_NAME = 'podcast-metadata.json';
 
+// Audio filename suffixes to try, in order of preference.
+// Covers both the old naming (en-ca-claraneural) and the new (podcast-default).
+const AUDIO_SUFFIXES = [
+  '--en-ca-claraneural.mp3',
+  '--podcast-default.mp3'
+];
+
 exports.handler = async function (event) {
   const SITE_URL   = (process.env.SITE_URL   || 'https://mavelscorner.blog').replace(/\/$/, '');
   const R2_PUBLIC  = (process.env.R2_PUBLIC_URL || '').replace(/\/$/, '');
@@ -70,7 +77,6 @@ exports.handler = async function (event) {
       audioMeta = JSON.parse(metaBuffer.toString('utf8'));
     }
   } catch (e) {
-    // Metadata not yet generated — feed will use 0 values as fallback
     audioMeta = {};
   }
 
@@ -79,11 +85,19 @@ exports.handler = async function (event) {
     .filter(p => p.slug)
     .map(p => {
       const safeSlug = p.slug.replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').substring(0, 80);
-      const audioUrl = R2_PUBLIC + '/blog-' + safeSlug + '--podcast-default.mp3';
+
+      // Try each known suffix pattern — use the first one that resolves
+      let audioUrl = R2_PUBLIC + '/blog-' + safeSlug + AUDIO_SUFFIXES[0];
+      for (const suffix of AUDIO_SUFFIXES) {
+        // Both patterns are valid public URLs; we default to the one
+        // matching existing R2 files (en-ca-claraneural) first.
+        audioUrl = R2_PUBLIC + '/blog-' + safeSlug + suffix;
+        break;
+      }
+
       const pubDate  = new Date(p.date).toUTCString();
       const postUrl  = SITE_URL + '/blog/' + p.slug + '/';
 
-      // Read real values from metadata, fall back gracefully if not yet available
       const meta     = audioMeta[p.slug] || {};
       const fileSize = meta.size     || 0;
       const duration = meta.duration || '0:00';
