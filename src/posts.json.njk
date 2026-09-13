@@ -1,0 +1,14 @@
+---
+permalink: /posts.json
+eleventyExcludeFromCollections: true
+---
+[
+  {%- for post in collections.post | reverse %}
+  {
+    "title": {{ post.data.title | dump | safe }},
+    "slug": "{{ post.fileSlug }}",
+    "date": "{{ post.date | dateIso }}",
+    "excerpt": {{ post.data.excerpt | default(post.data.title) | dump | safe }}
+  }{% if not loop.last %},{% endif %}
+  {%- endfor %}
+]
