@@ -33,6 +33,7 @@ const crypto = require('crypto');
 
 const DEFAULT_VOICE      = 'en-CA-ClaraNeural';
 const METADATA_FILE_NAME = 'podcast-metadata.json';
+const VOICE_SUFFIX       = DEFAULT_VOICE.toLowerCase().replace(/[^a-z0-9]/g, '-');
 
 exports.handler = async function (event) {
   if (event.httpMethod !== 'POST') {
@@ -86,7 +87,10 @@ exports.handler = async function (event) {
     if (!post.slug) continue;
 
     const safeSlug  = post.slug.replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').substring(0, 80);
-    const fileName  = 'blog-' + safeSlug + '--podcast-default.mp3';
+    // Must match the filename podcast-feed.js points at, and the files
+    // generate-audio.js already writes for the website player, otherwise
+    // this generates audio nothing ever reads.
+    const fileName  = 'blog-' + safeSlug + '--' + VOICE_SUFFIX + '.mp3';
     const publicUrl = r2Public + '/' + fileName;
 
     /* ── CACHE CHECK ── */
