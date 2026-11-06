@@ -10,7 +10,9 @@ excerpt: "Praying “Your will be done LORD” is not giving up. Giving up says 
   and I would rather have His outcome than my own. "
 tags: []
 ---
-On the night He was betrayed, Jesus crossed the Brook Kidron with His disciples and came to a garden called Gethsemane. Matthew records that He left most of them near the entrance, took Peter and the two sons of Zebedee a little farther in, and began to be sorrowful and deeply distressed. He told those three plainly what was happening within Him, that His soul was exceedingly sorrowful, even to death, and He asked them to stay in that place and watch with Him. Then He went a little farther still, fell on His face, and prayed. The same Jesus who had stilled a storm with His voice and called a dead man out of a tomb lay face down on the ground of a garden, asking His Father whether the hours ahead of Him could go another way.
+On the night He was betrayed, Jesus crossed the Brook Kidron with His disciples and came to a garden called Gethsemane. Matthew records that He left most of them near the entrance, took Peter and the two sons of Zebedee a little farther in, and began to be sorrowful and deeply distressed. He told those three plainly what was happening within Him, that His soul was exceedingly sorrowful, even to death, and He asked them to stay in that place and watch with Him. 
+
+Then He went a little farther still, fell on His face, and prayed. The same Jesus who had stilled a storm with His voice and called a dead man out of a tomb lay face down on the ground of a garden, asking His Father whether the hours ahead of Him could go another way.
 
 > ***“O My Father, if it is possible, let this cup pass from Me; nevertheless, not as I will, but as You will.” (Matthew 26:39, NKJV)***
 
@@ -35,11 +37,15 @@ Years later, the writer of Hebrews looked back at that night and recorded someth
 
 Three words in that passage carry more comfort than most of us realise. Jesus was heard when He prayed and the cries came out with tears, the request was answered with no, and heaven still received every syllable of it. Being heard and being spared turned out to be two different things, and only one of them was ever promised.
 
-So when your situation has not shifted, understand what that silence actually means. It does not mean God stopped listening. It does not mean He grew tired of you or decided your case had become too much trouble. Our God and Father who heard His Son, Jesus Christ, weeping in the garden of Gethsemane hears you in whatever room you are praying in. God has not given up on you. The answer to your prayer is still forming, God shall surely send you His strength through His holy angels and it will arrive soon, and also know that His love for you has never once wavered.
+So when your situation has not shifted, understand what that silence actually means. It does not mean God stopped listening. It does not mean He grew tired of you or decided your case had become too much trouble. Our God and Father who heard His Son, Jesus Christ, weeping in the garden of Gethsemane hears you in whatever room you are praying in. God has not given up on you. 
+
+The answer to your prayer is still forming, God shall surely send you His strength through His holy angels and it will arrive soon, and also know that His love for you has never once wavered.
 
 ### God Heard Every Word You Could Not Finish.
 
-The prayer you gave up on halfway through reached Him. The one you prayed with your face in your hands, the one that turned into crying before you got to the end of a sentence, the one you were too ashamed to repeat out loud the next morning. Heaven received all of it and you were not ignored. Jesus went into that garden ahead of you so that your worst night would already carry His footprints, and He came out of it still trusting His Father and He will bring you out too. Whatever cup you are holding, you do not drink it alone, and you will not drink it forever.
+The prayer you gave up on halfway through reached Him. The one you prayed with your face in your hands, the one that turned into crying before you got to the end of a sentence, the one you were too ashamed to repeat out loud the next morning. 
+
+Heaven received all of it and you were not ignored. Jesus went into that garden ahead of you so that your worst night would already carry His footprints, and He came out of it still trusting His Father and He will bring you out too. Whatever cup you are holding, you do not drink it alone, and you will not drink it forever.
 
 Praying “Your will be done LORD” is not giving up. Giving up says that nothing matters. Surrender says that Someone wiser than me is holding this, and I would rather have His outcome than my own. That prayer carried Jesus through a garden, a trial and a cross, and three days later it carried Him out of a tomb. The same Father is writing your story, and the chapter you are sitting in right now will not be the last one. Keep praying and watch what God does with a surrendered life.
 
